@@ -1,10 +1,12 @@
 <?php 
 /**
-* Classe qui parente qui définit un controlleur
+* Classe parente qui représente un controlleur
 * @author Amaury Lavieille
 */
 
-
+/**
+* Classe parente qui représente un controlleur
+*/
 class Controller
 {
 	/**
@@ -20,7 +22,9 @@ class Controller
 	public $name;
 
 
-
+	/**
+	* initialise un constructeur en générale
+	**/
 	public function __construct()
 	{
 
@@ -28,7 +32,7 @@ class Controller
 
 	/**
 	* Inclut la vue definsi par $filename dans le layout
-	* @var string $filename
+	* @param string $filename
 	*/
 	public function render($filename=""){
 
