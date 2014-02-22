@@ -1,12 +1,46 @@
 <!doctype html>
-<html lang="fr">
+<html class="no-js" lang="fr">
 <head>
 	<meta charset="UTF-8">
-<!-- 	<link rel="stylesheet" type="text/css" href="ui/css/knacss.css" />
-	<link rel="stylesheet" type="text/css" href="ui/css/form.css" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>MVCApp</title>
+	<link rel="stylesheet" href="css/foundation/css/foundation.css" />
+    <script src="css/foundation/js/vendor/modernizr.js"></script>
+	
 </head>
 	<body>
-		<?php echo $content; ?>
+		<!-- navigation -->
+		<div class="fixed">
+			<nav class="top-bar" data-topbar>
+			  <ul class="title-area">
+			    <li class="name">
+			      <h1><a href="index.html">MVCApp</a></h1>
+			    </li>
+			     <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+			  </ul>
+
+			  <section class="top-bar-section">
+			    <ul class="right">
+				    <li class="divider"></li>
+				    <li><a href="">Menu1</a></li>
+				    <li class="divider"></li>
+				    <li><a href="">Menu2</a></li>
+				    <li class="divider"></li>
+			    </ul>
+			  </section>
+			</nav>  
+	  	</div>
+	  	
+	  	<!--content -->
+ 		<div role="content">
+			<?php echo $content; ?>
+	    </div>
+
+
+	<script src="css/foundation/js/vendor/jquery.js"></script>
+    <script src="css/foundation/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
 	</body>
 </html>
