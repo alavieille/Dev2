@@ -4,6 +4,7 @@
 * @author Amaury Lavieille
 */
 
+namespace MvcApp\Exemple;
 
 /**
 * Controlleur d'exemple

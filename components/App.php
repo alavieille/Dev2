@@ -115,6 +115,7 @@ class App{
 	public static function autoload($className)
 	{	
 
+		var_dump($className);
 		$path = "";		
 		if(array_key_exists($className, self::$pathComponents)) {
 			$path = "components/".self::$pathComponents[$className];

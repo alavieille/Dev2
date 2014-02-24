@@ -4,6 +4,7 @@
 * @author Amaury Lavieille
 */
 
+
 /**
 * Classe parente qui représente un controlleur
 */
