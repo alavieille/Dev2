@@ -6,7 +6,7 @@
 */
 
 namespace MvcApp\Components;
-
+use MvcApp\Components\App;
 /**
 * Classe parente qui représente un controlleur
 */
@@ -41,7 +41,6 @@ class Controller
 	{
 
 		$content = "";
-
 		if($filename != ""){
 			ob_start();
 			require_once("views/".$this->name."/".$filename.".php");
@@ -50,9 +49,7 @@ class Controller
 		}
 
 		require_once("views/layout/".$this->layout.".php");
+
 	}
 
-
-
 }
-

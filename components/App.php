@@ -4,6 +4,7 @@
 * @author Amaury Lavieille
 */
 
+namespace MvcApp\Components;
 
 /**
 * Classe qui représente l'application
@@ -16,7 +17,8 @@ class App{
 	*/
 	private static $pathComponents = array(
 		"App" => "App.php",
-		"Controller" => "Controller.php"
+		"Controller" => "Controller.php",
+		"Db" => "Db.php"
 		);
 
 	/**
@@ -98,7 +100,7 @@ class App{
 	**/
 	private function getRoute(){
 
-		
+
 		$route = (($_GET["p"])!="") ? $_GET["p"] : $this->config["defaultController"];
 		$routeArray = explode("/",$route);
 
@@ -161,7 +163,6 @@ class App{
 	public static function autoload($className)
 	{	
 
-		//	var_dump("aut");
 		$className = explode("\\", $className);
 		$className = $className[count($className)-1];
 		
@@ -176,7 +177,7 @@ class App{
 		else {	
 			$path = "models/".$className.".php";
 		}
-		//var_dump($path);
+
 		if(file_exists($path)){
 			require_once($path);
 		}
@@ -186,4 +187,4 @@ class App{
 	}
 
 }
-spl_autoload_register(array('App', 'autoload'));
+spl_autoload_register(array('\MvcApp\Components\App', 'autoload'));
