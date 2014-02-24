@@ -34,12 +34,12 @@ class Controller
 	* Inclut la vue definsi par $filename dans le layout
 	* @param string $filename
 	*/
-	public function render($filename=""){
+	public function render($filename="")
+	{
 
 		$content = "";
-		
-		if($filename != "")
-		{
+
+		if($filename != ""){
 			ob_start();
 			require_once("views/".$this->name."/".$filename.".php");
 			$content = ob_get_contents();
@@ -53,5 +53,3 @@ class Controller
 
 }
 
-
-?>
