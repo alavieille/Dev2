@@ -98,9 +98,13 @@ class App{
 	**/
 	private function getRoute(){
 
-		$controller =  isset($_GET["controller"]) ? $_GET["controller"] : $this->config["defaultController"];
-		$action = isset($_GET["action"]) ? $_GET["action"] : "index";
-		$id = isset($_GET["id"]) ? $_GET["id"] : null;
+		
+		$route = (($_GET["p"])!="") ? $_GET["p"] : $this->config["defaultController"];
+		$routeArray = explode("/",$route);
+
+		$controller = $routeArray[0];
+		$action = (isset($routeArray[1]) && $routeArray[1] != "") ? $routeArray[1] : "index";
+		$id = isset($routeArray[2]) ? $routeArray[2] : null;
 
 		$controllerName = ucfirst($controller);
 		$classController = $controllerName."Controller";
@@ -174,7 +178,7 @@ class App{
 		}
 		//var_dump($path);
 		if(file_exists($path)){
-			require_once(self::$basePath.$path);
+			require_once($path);
 		}
 		else{
 			throw new Exception("Impossible de charger la classe ".$className);		

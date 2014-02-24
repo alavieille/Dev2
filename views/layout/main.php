@@ -4,8 +4,8 @@
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>MVCApp</title>
-	<link rel="stylesheet" href="css/foundation/css/foundation.css" />
-    <script src="css/foundation/js/vendor/modernizr.js"></script>
+	<link rel="stylesheet" href="<?php echo App::getApp()->getBasePath() ?>css/foundation/css/foundation.css" />
+    <script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/vendor/modernizr.js"></script>
 	
 </head>
 	<body>
@@ -37,8 +37,8 @@
 	    </div>
 
 
-	<script src="css/foundation/js/vendor/jquery.js"></script>
-    <script src="css/foundation/js/foundation.min.js"></script>
+	<script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/vendor/jquery.js"></script>
+    <script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/foundation.min.js"></script>
     <script>
       $(document).foundation();
     </script>

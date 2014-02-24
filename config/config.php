@@ -5,7 +5,8 @@ $config = array(
 	"appName" => "MvcApp", 
 	//namespace principale utilisé dans vos classe( ex: MonApli/Exemple)
 	"namespaceApp" => "MonAppli",
-	"basePath" => str_replace("index.php","",$_SERVER["SCRIPT_FILENAME"]),
+	"path" =>dirname(__FILE__).DIRECTORY_SEPARATOR."..",
+	"basePath" => str_replace("index.php","",$_SERVER["SCRIPT_NAME"]),
 	// controlleur par defaut
 	"defaultController" => "exemple", 
 	);
