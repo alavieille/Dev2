@@ -4,7 +4,7 @@
 * @author Amaury Lavieille
 */
 
-namespace MvcApp\Exemple;
+namespace MonAppli\Exemple;
 use MvcApp\Components\Controller;
 
 /**

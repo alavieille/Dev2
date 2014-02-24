@@ -106,7 +106,7 @@ class App{
 		$classController = $controllerName."Controller";
 		$action = $action."Action";
 
-		$classController = "MvcApp\\".$controllerName."\\".$classController;
+		$classController = $this->config["namespaceApp"]."\\".$controllerName."\\".$classController;
 
 		return array($classController,$action,$id);
 
