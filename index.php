@@ -1,13 +1,17 @@
 <?php 
-require_once("config/init.php");
+
 require_once("components/App.php");
+require_once("config/init.php");
+
+
+
 
 // initalisation de l'application
 App::newApp($config);
 
 
 
-$controller =  isset($_GET["controller"]) ? $_GET["controller"] : APP::getApp()->getConfig("defaultController");
+$controller =  isset($_GET["controller"]) ? $_GET["controller"] : App::getApp()->getConfig("defaultController");
 $action = isset($_GET["action"]) ? $_GET["action"] : "index";
 $id = isset($_GET["id"]) ? $_GET["id"] : "null";
 

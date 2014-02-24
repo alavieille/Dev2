@@ -9,7 +9,14 @@
 * Elle implemente le pattern singleton
 */
 class App{
-	
+
+	/**
+	* @param Array Contient les chemins des composants de l'application
+	*/
+	private static $pathComponents = array(
+		"Controller" => "Controller.php"
+		);
+
 	/**
 	* @param Object $instance contient l'instance de la classe
 	*/
@@ -18,12 +25,12 @@ class App{
 	/**
 	* @param String $appName Nom de l'application
 	*/
-	private $appName;
+	private static $appName;
 
 	/**
 	* @param String $basePath Chemin de la racine de l'application
 	*/
-	private $basePath;
+	private static $basePath;
 
 
 	/**
@@ -34,7 +41,8 @@ class App{
 	* Constructeur
 	* @var Array $config , tableau qui contient la configuration de l'applcation
 	*/
-	private function __construct($config){
+	private function __construct($config)
+	{
 		$this->config = $config;
 		$this->extractConfig();
 	}
@@ -44,8 +52,12 @@ class App{
 	* @var Array $config configuration de l'application
 	*/
 
-	public static function newApp($config){
-		self::$instance=new App($config);
+	public static function newApp($config)
+	{
+		if (self::$instance==null) {
+			self::$instance=new App($config);
+		}
+		return self::$instance;
 	}
 
 	/**
@@ -53,8 +65,9 @@ class App{
 	*/
 	public static function getApp()
 	{
-		if (self::$instance==null)
+		if (self::$instance==null) {
       		self::$instance=new App(array());
+      	}
    		return self::$instance;
 	}
 
@@ -63,8 +76,8 @@ class App{
 	*/
 	private function extractConfig()
 	{
-		$this->appName = isset($this->config["appName"]) ? $this->config["appName"] : "";
-		$this->basePath = isset($this->config["basePath"]) ? $this->config["basePath"] : "";
+		self::$appName = isset($this->config["appName"]) ? $this->config["appName"] : "";
+		self::$basePath = isset($this->config["basePath"]) ? $this->config["basePath"] : "";
 	}
 
 	/**
@@ -83,7 +96,7 @@ class App{
 	*/
 	public function getName()
 	{
-		return $this->appName;
+		return self::$appName;
 	}
 
 	/**
@@ -92,10 +105,32 @@ class App{
 	*/
 	public function getBasePath()
 	{
-		return $this->basePath;
+		return self::$basePath;
 	}
 
+	/**
+	* Autoload des classes de l'applcation
+	* @param String $className
+	*/
+	public static function autoload($className)
+	{	
 
+		$path = "";		
+		if(array_key_exists($className, self::$pathComponents)) {
+			$path = "components/".self::$pathComponents[$className];
+		}
+		elseif(strrpos($className,"Controller")) {
+			$path = "controllers/".$className.".php";
+		}
+		else {	
+			$path = "models/".$className.".php";
+		}
+
+		if(file_exists($path))
+			require_once(self::$basePath.$path);
+		else
+			throw new Exception("Impossible de charger la classe ".$className);		
+	}
 
 }
-
+spl_autoload_register(array('App', 'autoload'));
