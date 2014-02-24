@@ -4,6 +4,7 @@
 * @author Amaury Lavieille
 */
 
+
 /**
 * Classe qui représente l'application
 * Elle implemente le pattern singleton
@@ -14,6 +15,7 @@ class App{
 	* @param Array Contient les chemins des composants de l'application
 	*/
 	private static $pathComponents = array(
+		"App" => "App.php",
 		"Controller" => "Controller.php"
 		);
 
@@ -71,6 +73,46 @@ class App{
    		return self::$instance;
 	}
 
+
+	/**
+	* Fonction qui retourne l'action du controlleur transmis dans l'url
+	* Si le controlleur ou la méthode est inconnue alors une exception est levée
+	* @throws Exception 404
+	**/
+	public function run(){
+
+		list($controller,$action,$id) = $this->getRoute();
+		if(class_exists($controller) && method_exists($controller, $action)){
+			$instanceController = new $controller();	
+			return $instanceController->$action($id);
+		}
+		else{
+			throw new Exception("Requete invalide", 404);
+			
+		}
+	}
+
+	/**
+	* Retourne le controlleur et l'action demande dans l'url
+	* @return Array 
+	**/
+	private function getRoute(){
+
+		$controller =  isset($_GET["controller"]) ? $_GET["controller"] : $this->config["defaultController"];
+		$action = isset($_GET["action"]) ? $_GET["action"] : "index";
+		$id = isset($_GET["id"]) ? $_GET["id"] : null;
+
+		$controllerName = ucfirst($controller);
+		$classController = $controllerName."Controller";
+		$action = $action."Action";
+
+		$classController = "MvcApp\\".$controllerName."\\".$classController;
+
+		return array($classController,$action,$id);
+
+	}
+
+
 	/**
 	* Extrait le tableau de configuration dans les paramètres de classe
 	*/
@@ -115,9 +157,13 @@ class App{
 	public static function autoload($className)
 	{	
 
-		var_dump($className);
-		$path = "";		
+		//	var_dump("aut");
+		$className = explode("\\", $className);
+		$className = $className[count($className)-1];
+		
+
 		if(array_key_exists($className, self::$pathComponents)) {
+
 			$path = "components/".self::$pathComponents[$className];
 		}
 		elseif(strrpos($className,"Controller")) {
@@ -126,11 +172,13 @@ class App{
 		else {	
 			$path = "models/".$className.".php";
 		}
-
-		if(file_exists($path))
+		//var_dump($path);
+		if(file_exists($path)){
 			require_once(self::$basePath.$path);
-		else
+		}
+		else{
 			throw new Exception("Impossible de charger la classe ".$className);		
+		}
 	}
 
 }

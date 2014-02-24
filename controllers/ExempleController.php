@@ -5,6 +5,7 @@
 */
 
 namespace MvcApp\Exemple;
+use MvcApp\Components\Controller;
 
 /**
 * Controlleur d'exemple

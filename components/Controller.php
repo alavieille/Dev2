@@ -1,9 +1,11 @@
-<?php 
+<?php
+
 /**
 * Classe parente qui représente un controlleur
 * @author Amaury Lavieille
 */
 
+namespace MvcApp\Components;
 
 /**
 * Classe parente qui représente un controlleur
