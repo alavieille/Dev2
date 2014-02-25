@@ -30,15 +30,23 @@ class ExempleController extends Controller
 		$this->render("viewExemple");
 	}
 
+	public function createAction()
+	{
+		$exemple = Exemple::initialize();
+		$this->render("form",array(
+			"model"=>$exemple,
+		));
+	}
 	/**
 	* Crée un exemple
 	*/
-	public function createAction()
+	public function validCreateAction()
 	{
-		$data = array("id"=>"2","title"=>"titre","content"=>"je suis contenue");
-		$exemple = Exemple::initialize($data);
-		ExempleDB::getInstance()->save($exemple);
-
+		$exemple = Exemple::initialize($_POST);
+		$this->render("form",array(
+			"model"=>$exemple,
+		));
+		//ExempleDB::getInstance()->save($exemple);
 	}
 
 	public function showallAction(){

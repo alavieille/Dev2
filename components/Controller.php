@@ -36,11 +36,13 @@ class Controller
 	/**
 	* Inclut la vue definsi par $filename dans le layout
 	* @param string $filename
+	* @param Array $vars 
 	*/
-	public function render($filename="")
+	public function render($filename="",$vars=array())
 	{
 
 		$content = "";
+		extract($vars);
 		if($filename != ""){
 			ob_start();
 			require_once("views/".$this->name."/".$filename.".php");

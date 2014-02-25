@@ -39,8 +39,8 @@ class ExempleDB extends Db
     */
     private function createInsertQuery()
     {
-    	$values = ":id, :title, :content";
-    	$query = "INSERT INTO ".$this->tableName." VALUES (".$values.")";
+    	$values = ":title, :content";
+    	$query = "INSERT INTO ".$this->tableName." VALUES ('',".$values.")";
     	return $this->pdo->prepare($query);
     }
 
@@ -59,7 +59,7 @@ class ExempleDB extends Db
     */
     public function save($model)
     {
-        $this->createModelStatement->bindValue("id",$model->getID());
+        
         $this->createModelStatement->bindValue("title",$model->getTitle());
         $this->createModelStatement->bindValue("content",$model->getContent());
 		$this->createModelStatement->execute();	
