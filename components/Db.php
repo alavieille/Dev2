@@ -11,20 +11,20 @@ class Db
 {
 
 	/**
-	* @param Object $instance contient l'instance de la classe
-	*/
-	private static $instance;
+    * @param Array $instances Tableau contenant les classes qui herite de ModelDb
+    */
+    static $instances = array();
 
     /**
     * propriété contennat le lien pdo de connexion à la BD
     */
-    protected $connexion;
+    protected $pdo;
 
     /**
     * constructeur privé qui initialise la connexion
     * @todo rendre le constructeur indépendant du nom des constantes
     */
-    private function __construct() {
+    protected function __construct() {
 
         /**
         * tableau d'options pour le réglage de la connexion
@@ -36,25 +36,31 @@ class Db
         );
 
        	$dbConfig = App::getApp()->getConfig("db");
-        $this->connexion = new PDO($dbConfig["dsn"], $dbConfig["user"], $dbConfig["pwd"], $options);
+        $this->pdo = new PDO($dbConfig["dsn"], $dbConfig["user"], $dbConfig["pwd"], $options);
     }
 
-    /**
+      /**
     * desactive le clonage
     */
     private function __clone() {}
 
-
     /**
-    * Méthode pour accéder à l'UNIQUE instance de la classe
-    * @return l'instance du singleton
+    * Méthode pour accéder à l'UNIQUE instance de la classe heritant de cette modèle
+    * @return Object l'instance du singleton
     */
-    public static function getInstance() {
-        if (! (self::$instance instanceof self)) {
-          self::$instance = new self();
+    public static function getInstance()
+    {
+        $calledClass = get_called_class();
+
+        if (!isset(self::$instances[$calledClass]))
+        {
+             self::$instances[$calledClass] = new $calledClass();
         }
-        return self::$instance;
+
+        return  self::$instances[$calledClass];
     }
+
+
 
     /**
     * Accesseur de la connexion

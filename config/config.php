@@ -11,9 +11,9 @@ $config = array(
 	"defaultController" => "exemple", 
 	// information de connexion à la base de donnée
 	'db'=>array(
-			'dsn' => 'mysql:host=localhost;dbname=libebook',
+			'dsn' => 'mysql:host=localhost;dbname=MvcApp',
 			'user' => 'root',
-			'pwd' => '',
+			'pwd' => 'root',
 
 		),
 	);

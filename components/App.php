@@ -18,7 +18,7 @@ class App{
 	private static $pathComponents = array(
 		"App" => "App.php",
 		"Controller" => "Controller.php",
-		"Db" => "Db.php"
+		"Db" => "Db.php",
 		);
 
 	/**
@@ -163,7 +163,9 @@ class App{
 	public static function autoload($className)
 	{	
 
+		//var_dump($className);
 		$className = explode("\\", $className);
+		$package = $className[1];
 		$className = $className[count($className)-1];
 		
 
@@ -175,14 +177,14 @@ class App{
 			$path = "controllers/".$className.".php";
 		}
 		else {	
-			$path = "models/".$className.".php";
+			$path = "models/".$package."/".$className.".php";
 		}
-
+	//	var_dump($path);
 		if(file_exists($path)){
 			require_once($path);
 		}
 		else{
-			throw new Exception("Impossible de charger la classe ".$className);		
+			throw new \Exception("Impossible de charger la classe ".$className);		
 		}
 	}
 
