@@ -89,7 +89,7 @@ class App{
 			return $instanceController->$action($id);
 		}
 		else{
-			throw new Exception("Requete invalide", 404);
+			throw new \Exception("Requete invalide", 404);
 			
 		}
 	}
@@ -130,7 +130,7 @@ class App{
 
 	/**
 	* Retourne le tableau de configuration de l'application
-	* @param String $index clé dans le tableau de configuration
+	* @var String $index clé dans le tableau de configuration
 	* @return String retourne le contenue correspondant dans le tableau ou une chaine vide 
 	*/
 	public function getConfig($index)
@@ -157,13 +157,40 @@ class App{
 	}
 
 	/**
+	* Créer une url a partir du nom du controlleur et de l'action
+	* @var String $controlleur nom du controleur
+	* @var String $action nom de l'action
+	* @var String $param 
+	* @return String url
+	*/
+	public function createUrl($method,$action="",$param="")
+	{
+		$url = self::$basePath.$method."/".$action."/".$param;
+		return $url;
+	}
+
+
+	/**
+	* Redirige l'utilisateur vers une action d'un controlleur
+	* @var String $controlleur nom du controleur
+	* @var String $action nom de l'action
+	* @var String $param 
+	*/
+	public function redirect($method,$action="",$param="")
+	{
+		$url = self::$basePath.$method."/".$action."/".$param;
+		header('Location: '.$url);
+	}	
+
+
+	/**
 	* Autoload des classes de l'applcation
-	* @param String $className
+	* @var String $className
 	*/
 	public static function autoload($className)
 	{	
 
-		//var_dump($className);
+
 		$className = explode("\\", $className);
 		$package = $className[1];
 		$className = $className[count($className)-1];
@@ -183,9 +210,7 @@ class App{
 		if(file_exists($path)){
 			require_once($path);
 		}
-		else{
-			throw new \Exception("Impossible de charger la classe ".$className);		
-		}
+		
 	}
 
 }

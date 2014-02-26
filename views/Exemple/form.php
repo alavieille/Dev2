@@ -6,6 +6,7 @@
     <h1>Créer un exemple</h1>
   </div>
 </div>
+
 <div class="row">
   <div class="columns large-12">
     <div class="panel">
@@ -16,14 +17,20 @@
          <div class="row">
             <div class="large-12 columns">
              <label>Titre<label>
-                <input id="title" name="title" type="text" placeholder="Votre titre" value="<?php echo $model->getTitle(); ?>" />
+                <input class="<?php if(isset($model->getErrors()['title'])) echo 'error' ?>" id="title" name="title" type="text" placeholder="Votre titre" value="<?php echo $model->getTitle(); ?>" />
+            <?php if(isset($model->getErrors()['title'])) : ?>
+                 <small class="error"><?php echo $model->getErrors()['title'] ?></small>
+            <?php endif;?>
             </div>
         </div>         
 
         <div class="row">
             <div class="large-12 columns">
               <label>Contenue<label>
-              <textarea id="content" name="content"><?php echo $model->getContent(); ?></textarea>
+              <textarea class="<?php if(isset($model->getErrors()['content'])) echo 'error' ?>" id="content" name="content"><?php echo $model->getContent(); ?></textarea>
+              <?php if(isset($model->getErrors()['content'])) : ?>
+                <small class="error"><?php echo $model->getErrors()['content'] ?></small>
+              <?php endif;?>
             </div>
         </div>    
 

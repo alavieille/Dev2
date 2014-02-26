@@ -25,9 +25,9 @@
 			  <section class="top-bar-section">
 			    <ul class="right">
 				    <li class="divider"></li>
-				    <li><a href="">Menu1</a></li>
+				    <li><a href="<?php echo App::getApp()->createUrl('exemple','viewAll');?>">Liste exemple</a></li>
 				    <li class="divider"></li>
-				    <li><a href="">Menu2</a></li>
+				    <li><a href="<?php echo App::createUrl('exemple','create') ?>">Créer Exemple</a></li>
 				    <li class="divider"></li>
 			    </ul>
 			  </section>

@@ -12,6 +12,7 @@ class Exemple
 	protected $id;
     protected $title;
     protected $content;
+    protected $errors;
 
     /**
     * Crée un Exemple
@@ -40,8 +41,8 @@ class Exemple
             $data['id'] = null;
         }
 
-        $data['title'] = isset($dataObj['title']) ? $dataObj['title'] : '';
-        $data['content'] = isset($dataObj['content']) ? $dataObj['content'] : '';
+        $data['title'] = isset($dataObj['title']) ? htmlentities($dataObj['title']) : '';
+        $data['content'] = isset($dataObj['content']) ? htmlentities($dataObj['content']) : '';
         return new self($data);
     }
 
@@ -98,7 +99,7 @@ class Exemple
     }
     
     /**
-     * [Description]
+     * Change le contenue
      *
      * @param String $newcontent Contenue de l'exemple
      */
@@ -106,6 +107,32 @@ class Exemple
         $this->content = $content;
     
         return $this;
+    }
+
+
+    /**
+    * Retourne le tableau des erreurs
+    * @return Array
+    */
+    public function getErrors(){
+        return $this->errors;
+    }
+
+    
+    /**
+    * Verifie si l'objet est valide
+    **/
+    public function valid(){
+        if( $this->title == "") {
+            $this->errors["title"] = "Le titre ne peut être vide";
+        }        
+
+        if( $this->content == "") {
+            $this->errors["content"] = "Le contenue ne peut être vide";
+        }
+
+        return(count($this->errors) == 0);
+
     }
 	
 }

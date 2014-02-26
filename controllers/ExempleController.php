@@ -6,6 +6,7 @@
 
 namespace MonAppli\Exemple;
 use MvcApp\Components\Controller;
+use MvcApp\Components\App;
 
 /**
 * Controlleur d'exemple
@@ -27,7 +28,9 @@ class ExempleController extends Controller
 	*/
 	public function indexAction()
 	{
-		$this->render("viewExemple");
+		$this->render("index");
+
+
 	}
 
 	public function createAction()
@@ -37,20 +40,49 @@ class ExempleController extends Controller
 			"model"=>$exemple,
 		));
 	}
+	
 	/**
 	* Crée un exemple
 	*/
 	public function validCreateAction()
 	{
-		$exemple = Exemple::initialize($_POST);
+		if(isset($_POST)) {
+			$exemple = Exemple::initialize($_POST);
+			if($exemple->valid()) {
+				$id = ExempleDB::getInstance()->save($exemple);
+				App::getApp()->redirect("exemple","view",$id);
+			}
+		}
+
 		$this->render("form",array(
 			"model"=>$exemple,
 		));
-		//ExempleDB::getInstance()->save($exemple);
 	}
 
-	public function showallAction(){
-		var_dump(ExempleDB::getInstance()->findAll());
+	/**
+	* Affiche tous les exemples
+	*/
+	public function viewAllAction(){
+		$arrayExemple = ExempleDB::getInstance()->findAll();
+		$this->render("viewAll",array(
+			"arrayModel" => $arrayExemple,
+		));
+	}	
+
+	/**
+	* Affiche un exemple
+	*/
+	public function viewAction($id){
+
+		$model = ExempleDB::getInstance()->find($id);
+		
+		$this->render("view",array(
+			"model"=>$model,
+		));
+		/*$arrayExemple = ExempleDB::getInstance()->findAll();
+		$this->render("viewAll",array(
+			"arrayModel" => $arrayExemple,
+		));*/
 	}
 }
 

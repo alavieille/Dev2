@@ -17,7 +17,8 @@ class ExempleDB extends Db
 
 
     private $createModelStatement;
-	private $findAllModelStatement;
+    private $findAllModelStatement;
+	private $findModelStatement;
 
 	/**
 	* Contructeur protégé, 
@@ -28,7 +29,8 @@ class ExempleDB extends Db
 		$this->tableName = "Exemple";
 		parent::__construct();
 		$this->createModelStatement = $this->createInsertQuery();
-		$this->findAllModelStatement = $this->createSelectAllQuery();
+        $this->findAllModelStatement = $this->createSelectAllQuery();
+		$this->findModelStatement = $this->createSelectQuery();
 	}
 
 
@@ -49,7 +51,16 @@ class ExempleDB extends Db
     * @return PDO statement
     */
     public function createSelectAllQuery(){
-        $query = "  SELECT * FROM ". $this->tableName;
+        $query = "  SELECT * FROM ". $this->tableName." ORDER BY id desc";
+        return $this->pdo->prepare($query);
+    }
+
+    /**
+    * Crée la requête préparée pour la selection d'une ligne
+    * @return PDO statement
+    */
+    public function createSelectQuery(){
+        $query = "  SELECT * FROM ". $this->tableName." WHERE id=:id";
         return $this->pdo->prepare($query);
     }
 
@@ -63,6 +74,7 @@ class ExempleDB extends Db
         $this->createModelStatement->bindValue("title",$model->getTitle());
         $this->createModelStatement->bindValue("content",$model->getContent());
 		$this->createModelStatement->execute();	
+        return $this->pdo->lastInsertId();
     }
 
 
@@ -78,6 +90,22 @@ class ExempleDB extends Db
             $res[] = Exemple::initialize($ligne);
         } 
         return $res;
+    }
+
+    /**
+    * Cherche une ligne
+    * @return Object Model if exist else return null
+    */
+    public function find($id)
+    {
+       
+        $this->findModelStatement->bindValue("id",$id);
+        $this->findModelStatement->execute();
+        $res = array();
+        if($ligne = $this->findModelStatement->fetch()){
+            return Exemple::initialize($ligne);
+        }
+        return null;
     }
 
 

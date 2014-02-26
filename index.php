@@ -5,7 +5,6 @@ use MvcApp\Components\App;
 
 App::newApp($config)->run();
 
-MonAppli\Exemple\ExempleDB::getInstance();
 
 
 ?>
