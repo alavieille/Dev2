@@ -1,5 +1,6 @@
 <?php
   use MvcApp\Components\App;
+
 ?>
 <div class="row">
   <div class="columns large-12">
@@ -10,9 +11,9 @@
 <div class="row">
   <div class="columns large-12">
     <div class="panel">
-      <form action="<?php echo App::getApp()->getBasePath() ?>exemple/validCreate" method="post">
-        
-         <input type="hidden" value="<?php echo $model->getId(); ?>" />
+  
+      <form action="<?php echo App::getApp()->createUrl('exemple','save') ?>" method="post"> 
+         <input type="hidden" name="id" value="<?php echo $model->getId(); ?>" />
 
          <div class="row">
             <div class="large-12 columns">

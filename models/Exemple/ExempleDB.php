@@ -17,6 +17,8 @@ class ExempleDB extends Db
 
 
     private $createModelStatement;
+    private $updateModelStatement;
+    private $deleteModelStatement;
     private $findAllModelStatement;
 	private $findModelStatement;
 
@@ -28,7 +30,9 @@ class ExempleDB extends Db
 	{
 		$this->tableName = "Exemple";
 		parent::__construct();
-		$this->createModelStatement = $this->createInsertQuery();
+        $this->createModelStatement = $this->createInsertQuery();
+        $this->updateModelStatement = $this->createUpdateQuery();
+		$this->deleteModelStatement = $this->createDeleteQuery();
         $this->findAllModelStatement = $this->createSelectAllQuery();
 		$this->findModelStatement = $this->createSelectQuery();
 	}
@@ -36,13 +40,34 @@ class ExempleDB extends Db
 
 
     /**
-    * Créer la requête preparée pour l'insertion suivant le tableau des colonnes $fields fournit
+    * Créer la requête preparée pour l'insertion d'un exemple
     * @return PDO statement 
     */
     private function createInsertQuery()
     {
-    	$values = ":title, :content";
-    	$query = "INSERT INTO ".$this->tableName." VALUES ('',".$values.")";
+        $values = ":title, :content";
+        $query = "INSERT INTO ".$this->tableName." VALUES ('',".$values.")";
+        return $this->pdo->prepare($query);
+    }
+
+    /**
+    * Créer la requête preparée pour la mise jour d'un exemple 
+    * @return PDO statement 
+    */
+    private function createUpdateQuery()
+    {
+        $values = "title=:title, content=:content";
+        $query = " UPDATE ".$this->tableName." SET ".$values." WHERE id=:id";
+        return $this->pdo->prepare($query);
+    }   
+
+     /**
+    * Créer la requête preparée pour la mise jour d'un exemple 
+    * @return PDO statement 
+    */
+    private function createDeleteQuery()
+    {
+    	$query = "DELETE FROM ".$this->tableName." WHERE id=:id";
     	return $this->pdo->prepare($query);
     }
 
@@ -50,7 +75,8 @@ class ExempleDB extends Db
     * Crée la requête préparée pour la selection de tous les lignes
     * @return PDO statement
     */
-    public function createSelectAllQuery(){
+    public function createSelectAllQuery()
+    {
         $query = "  SELECT * FROM ". $this->tableName." ORDER BY id desc";
         return $this->pdo->prepare($query);
     }
@@ -59,7 +85,8 @@ class ExempleDB extends Db
     * Crée la requête préparée pour la selection d'une ligne
     * @return PDO statement
     */
-    public function createSelectQuery(){
+    public function createSelectQuery()
+    {
         $query = "  SELECT * FROM ". $this->tableName." WHERE id=:id";
         return $this->pdo->prepare($query);
     }
@@ -73,8 +100,34 @@ class ExempleDB extends Db
         
         $this->createModelStatement->bindValue("title",$model->getTitle());
         $this->createModelStatement->bindValue("content",$model->getContent());
-		$this->createModelStatement->execute();	
+        $this->createModelStatement->execute(); 
         return $this->pdo->lastInsertId();
+    }
+
+    /**
+    * Met à jour un modele dans la base de donnée
+    * @var Object $model
+    */
+    public function update($model)
+    {
+        
+        $this->updateModelStatement->bindValue(":id",$model->getId());
+        $this->updateModelStatement->bindValue("title",$model->getTitle());
+        $this->updateModelStatement->bindValue("content",$model->getContent());
+        $this->updateModelStatement->execute();    
+        return $model->getId();
+    }
+
+   /**
+    * Supprimer un exemple
+    * @var Object $model
+    */
+    public function delete($model)
+    {
+        
+        $this->deleteModelStatement->bindValue(":id",$model->getId());
+		$this->deleteModelStatement->execute();	
+
     }
 
 
