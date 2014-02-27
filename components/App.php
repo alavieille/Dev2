@@ -21,6 +21,7 @@ class App{
 		"Controller" => "Controller.php",
 		"Db" => "Db.php",
 		"AppException" => "AppException.php",
+		"FlashMessage" => "FlashMessage.php",
 		);
 
 	/**
@@ -85,6 +86,7 @@ class App{
 	{
 		try {
             try {
+            	session_start();
                 $this->init();
             } 
             catch (AppException $e) {
@@ -103,6 +105,7 @@ class App{
 	**/
 	private function init()
 	{
+		
 		list($controller,$action,$id) = $this->getRoute();
 		if(class_exists($controller) && method_exists($controller, $action)){
 			$instanceController = new $controller();	
@@ -203,6 +206,24 @@ class App{
 		$url = self::$basePath.$method."/".$action."/".$param;
 		header('Location: '.$url);
 	}	
+
+	/** 
+	* Ajoute un message flash
+	* @var String $message contenue du message
+	* @var String $type type du message
+	*/
+	public static function setFlash($message,$type="")
+	{
+		FlashMessage::setFlash($message,$type);
+	}
+
+	/**
+	* Affiche les message flash
+	*/
+	public static function getFlash()
+	{
+		return FlashMessage::getFlash();
+	}
 
 
 	/**

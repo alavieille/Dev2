@@ -12,6 +12,7 @@
 	
 </head>
 	<body>
+
 		<!-- navigation -->
 		<div class="fixed">
 			<nav class="top-bar" data-topbar>
@@ -36,6 +37,7 @@
 	  	
 	  	<!--content -->
  		<div role="content">
+			<?php echo App::getApp()->getFlash(); ?>
 			<?php echo $content; ?>
 	    </div>
 

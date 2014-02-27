@@ -140,6 +140,7 @@ class ExempleController extends Controller
 		$model = ExempleDB::getInstance()->find($id);
 		if(! is_null($model)) {
 			ExempleDB::getInstance()->delete($model);
+			App::getApp()->setFlash("Exemple supprimé avec succés","success");
 			App::getApp()->redirect("exemple","viewAll");
 		}
 		else {
