@@ -5,6 +5,7 @@
 */
 
 namespace MvcApp\Components;
+use \Exception;
 
 /**
 * Classe qui représente l'application
@@ -19,6 +20,7 @@ class App{
 		"App" => "App.php",
 		"Controller" => "Controller.php",
 		"Db" => "Db.php",
+		"AppException" => "AppException.php",
 		);
 
 	/**
@@ -77,22 +79,42 @@ class App{
 
 
 	/**
+	* Fonction qui lance l'application
+	**/
+	public function run()
+	{
+		try {
+            try {
+                $this->init();
+            } 
+            catch (AppException $e) {
+              
+                $e->display();
+            }
+        } catch (Exception $e) {
+            (New AppException($e->getMessage(),$e->getCode()))->display();
+        }
+	}
+
+	/**
 	* Fonction qui retourne l'action du controlleur transmis dans l'url
 	* Si le controlleur ou la méthode est inconnue alors une exception est levée
 	* @throws Exception 404
 	**/
-	public function run(){
-
+	private function init()
+	{
 		list($controller,$action,$id) = $this->getRoute();
 		if(class_exists($controller) && method_exists($controller, $action)){
 			$instanceController = new $controller();	
 			return $instanceController->$action($id);
 		}
 		else{
-			throw new \Exception("Requete invalide", 404);
+			throw new AppException("Requete invalide", 404);
 			
 		}
+
 	}
+
 
 	/**
 	* Retourne le controlleur et l'action demande dans l'url
@@ -206,7 +228,7 @@ class App{
 		else {	
 			$path = "models/".$package."/".$className.".php";
 		}
-	//	var_dump($path);
+
 		if(file_exists($path)){
 			require_once($path);
 		}

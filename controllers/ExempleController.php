@@ -7,6 +7,7 @@
 namespace MonAppli\Exemple;
 use MvcApp\Components\Controller;
 use MvcApp\Components\App;
+use MvcApp\Components\AppException;
 
 /**
 * Controlleur d'exemple
@@ -47,7 +48,6 @@ class ExempleController extends Controller
 	public function saveAction()
 	{
 		
-		var_dump($_POST);
 		if(isset($_POST)) {
 			$exemple = Exemple::initialize($_POST);
 			if($exemple->valid()) {
@@ -91,7 +91,7 @@ class ExempleController extends Controller
 			));
 		}
 		else {
-			echo "erreur";
+			throw new AppException("Impossible de trouver l'exemple ".$id);
 		}
 	}
 
@@ -109,7 +109,7 @@ class ExempleController extends Controller
 			));
 		}
 		else {
-			echo "erreur";
+			throw new AppException("Impossible de trouver l'exemple ".$id);
 		}
 
 	}
@@ -127,7 +127,7 @@ class ExempleController extends Controller
 			));
 		}
 		else {
-			echo "erreur";
+			throw new AppException("Impossible de trouver l'exemple ".$id);
 		}
 	}
 
@@ -143,7 +143,7 @@ class ExempleController extends Controller
 			App::getApp()->redirect("exemple","viewAll");
 		}
 		else {
-			echo "erreur";
+			throw new AppException("Impossible de trouver l'exemple ".$id);
 		}
 	}
 
