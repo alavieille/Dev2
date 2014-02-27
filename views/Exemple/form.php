@@ -1,6 +1,12 @@
 <?php
   use MvcApp\Components\App;
+  use MvcApp\Components\Form;
 
+
+  $form = new Form($model,"action");
+  echo $form->label("title","Titre");
+  echo $form->inputText("title",array("class"=>"test"));
+  $form->endForm();
 ?>
 <div class="row">
   <div class="columns large-12">
