@@ -3,8 +3,9 @@
 * Classe fournissant une connexion à la base de donnée
 * @author Amaury Lavieille
 */
-
 namespace MvcApp\Components;
+
+
 use PDO;
 
 class Db
@@ -25,7 +26,6 @@ class Db
     * @todo rendre le constructeur indépendant du nom des constantes
     */
     protected function __construct() {
-
         /**
         * tableau d'options pour le réglage de la connexion
         */
@@ -39,7 +39,7 @@ class Db
         $this->pdo = new PDO($dbConfig["dsn"], $dbConfig["user"], $dbConfig["pwd"], $options);
     }
 
-      /**
+    /**
     * desactive le clonage
     */
     private function __clone() {}
@@ -67,7 +67,8 @@ class Db
     *
     * @return L'identifiant de connexion BD à utiliser pour exécuter les requêtes
     */
-    public function getConnexion() {
+    public function getConnexion() 
+    {
         return $this->connexion;
     }
 }

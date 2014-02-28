@@ -3,39 +3,41 @@
 * Classe qui gére le modèle exemple en base de donnée
 * @author Amaury Lavieille
 */
-
 namespace MonAppli\Exemple;
+
+
 use MvcApp\Components\Db;
 
 class ExempleDB extends Db
 {
-	
-	/**
-	* @param String $dbName Nom de la table 
-	*/
-	protected $tableName;
+    
+    /**
+    * @param String $dbName Nom de la table 
+    */
+    
+    protected $tableName;
 
 
     private $createModelStatement;
     private $updateModelStatement;
     private $deleteModelStatement;
     private $findAllModelStatement;
-	private $findModelStatement;
+    private $findModelStatement;
 
-	/**
-	* Contructeur protégé, 
-	* utiliser getInstance() pour acceder à l'instance de classe
-	*/
-	protected function __construct()
-	{
-		$this->tableName = "Exemple";
-		parent::__construct();
+    /**
+    * Contructeur protégé, 
+    * utiliser getInstance() pour acceder à l'instance de classe
+    */
+    protected function __construct()
+    {
+        $this->tableName = "Exemple";
+        parent::__construct();
         $this->createModelStatement = $this->createInsertQuery();
         $this->updateModelStatement = $this->createUpdateQuery();
-		$this->deleteModelStatement = $this->createDeleteQuery();
+        $this->deleteModelStatement = $this->createDeleteQuery();
         $this->findAllModelStatement = $this->createSelectAllQuery();
-		$this->findModelStatement = $this->createSelectQuery();
-	}
+        $this->findModelStatement = $this->createSelectQuery();
+    }
 
 
 
@@ -67,8 +69,8 @@ class ExempleDB extends Db
     */
     private function createDeleteQuery()
     {
-    	$query = "DELETE FROM ".$this->tableName." WHERE id=:id";
-    	return $this->pdo->prepare($query);
+        $query = "DELETE FROM ".$this->tableName." WHERE id=:id";
+        return $this->pdo->prepare($query);
     }
 
     /**
@@ -96,8 +98,7 @@ class ExempleDB extends Db
     * @var Object $model
     */
     public function save($model)
-    {
-        
+    {    
         $this->createModelStatement->bindValue("title",$model->getTitle());
         $this->createModelStatement->bindValue("content",$model->getContent());
         $this->createModelStatement->execute(); 
@@ -109,8 +110,7 @@ class ExempleDB extends Db
     * @var Object $model
     */
     public function update($model)
-    {
-        
+    {      
         $this->updateModelStatement->bindValue(":id",$model->getId());
         $this->updateModelStatement->bindValue("title",$model->getTitle());
         $this->updateModelStatement->bindValue("content",$model->getContent());
@@ -123,10 +123,9 @@ class ExempleDB extends Db
     * @var Object $model
     */
     public function delete($model)
-    {
-        
+    {       
         $this->deleteModelStatement->bindValue(":id",$model->getId());
-		$this->deleteModelStatement->execute();	
+        $this->deleteModelStatement->execute(); 
 
     }
 
@@ -150,8 +149,7 @@ class ExempleDB extends Db
     * @return Object Model if exist else return null
     */
     public function find($id)
-    {
-       
+    {  
         $this->findModelStatement->bindValue("id",$id);
         $this->findModelStatement->execute();
         $res = array();
@@ -160,8 +158,4 @@ class ExempleDB extends Db
         }
         return null;
     }
-
-
-
-
 }

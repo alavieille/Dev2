@@ -3,8 +3,9 @@
 * Classe qui représente le modèle Exemple
 * @author Amaury Lavieille
 */
-
 namespace MonAppli\Exemple;
+
+
 use MvcApp\Components\Model;
 
 class Exemple extends Model
