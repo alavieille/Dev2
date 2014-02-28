@@ -44,13 +44,12 @@ class Form
 		$this->model = $model;
 		$this->htmlOptions = $htmlOptions;
 		$this->method = $method;
-		echo $this->beginForm();
 	}
 
 	/**
 	* Retourne la balise ouvrante d'un formulaire
 	*/
-	private function beginForm()
+	public function beginForm()
 	{
 		$res = "";
 		$res .= "<form action='".$this->action."' method='".$this->method."' ";
@@ -58,7 +57,7 @@ class Form
 			$res .= $option."='".$valeur."' ";
 		}
 		$res .= "/>\n";
-		return $res;
+		echo $res;
 	}
 
 	/**
@@ -199,6 +198,33 @@ class Form
 	}
 
 	/**
+	* Ajoute un input file
+	* @var String $name name de l'input
+	* @var Array $htmlOptions 
+	*/
+	public function inputFile($name, $htmlOptions=array())
+	{
+		$res = "";	
+
+		if(isset($this->model->getErrors()[$name])) {
+			$htmlOptions['class'] = isset($htmlOptions["class"])? $htmlOptions["class"] : "";
+			$htmlOptions['class'] .= " error";
+		}
+
+		$res .= "<input type='file' id='".$name."' name='".$name."' ";
+		foreach ($htmlOptions as $option => $valeur) {
+			$res .= $option."='".$valeur."' ";
+		}
+		$methodGet = "get".ucfirst($name);
+		$res .="/>\n";
+
+		if(isset($this->model->getErrors()[$name])) {
+			$res .= "<small class='error'>".$this->model->getErrors()[$name]."</small>\n";
+		}
+		return $res;
+	}
+
+	/**
 	* Ajoute un input date
 	* @var String $name name de l'input
 	* @var Array $htmlOptions 
@@ -311,11 +337,13 @@ class Form
 	}
 
 	/**
-	* Ajoute un input search
+	* Ajoute un input checkbox
 	* @var String $name name de l'input
+	* @var String $value 
+	* @var Boolean $checked bouton coché ou non
 	* @var Array $htmlOptions 
 	*/
-	public function inputCheckbox($name, $htmlOptions=array())
+	public function inputCheckbox($name, $value, $checked=false, $htmlOptions=array())
 	{
 		$res = "";	
 
@@ -328,8 +356,10 @@ class Form
 		foreach ($htmlOptions as $option => $valeur) {
 			$res .= $option."='".$valeur."' ";
 		}
-		$methodGet = "get".ucfirst($name);
-		$res .="value='".$this->model->$methodGet()."'";
+		$res .="value='".$value."'";
+		if($checked) {
+			$res .= " checked";
+		}
 		$res .="/>\n";
 
 		if(isset($this->model->getErrors()[$name])) {
@@ -370,18 +400,18 @@ class Form
 
 	/**
 	* Ajoute bouton submit
-	* @var String $name name de l'input
 	* @var String $value
 	* @var Array $htmlOptions 
 	*/
-	public function submit($name,$value,$htmlOptions=array())
+	public function submit($value,$htmlOptions=array())
 	{
 		$res = "";	
-		$res .= "<input type='submit' id='".$name."' name='".$name."' ";
+		$htmlOptions['class'] = isset($htmlOptions["class"])? $htmlOptions["class"] : "";
+		$htmlOptions['class'] .= " button";
+		$res .= "<input type='submit'  ";
 		foreach ($htmlOptions as $option => $valeur) {
 			$res .= $option."='".$valeur."' ";
 		}
-		$methodGet = "get".ucfirst($name);
 		$res .="value='".$value."'";
 		$res .="/>\n";
 		return $res;
@@ -400,33 +430,73 @@ class Form
 		foreach ($htmlOptions as $option => $valeur) {
 			$res .= $option."='".$valeur."' ";
 		}
-		$methodGet = "get".ucfirst($name);
 		$res .="value='".$value."'";
 		$res .="/>\n";
 		return $res;
 	}
 
-// <select name="select">
-//   <option value="value1">Valeur 1</option> 
-//   <option value="value2" selected>Valeur 2</option>
-//   <option value="value3">Valeur 3</option>
-// </select>
+	/**
+	* Ajoute un input radio
+	* @var String $name name de l'input
+	* @var String $value
+	* @var Array $htmlOptions 
+	*/
+	public function inputRadio($name, $value, $htmlOptions=array())
+	{
+		$res = "";	
+
+		if(isset($this->model->getErrors()[$name])) {
+			$htmlOptions['class'] = isset($htmlOptions["class"])? $htmlOptions["class"] : "";
+			$htmlOptions['class'] .= " error";
+		}
+
+		$res .= "<input type='radio' id='".$name."' name='".$name."' ";
+		foreach ($htmlOptions as $option => $valeur) {
+			$res .= $option."='".$valeur."' ";
+		}
+		$res .="value='".$value."'";
+		$res .="/>\n";
+
+		if(isset($this->model->getErrors()[$name])) {
+			$res .= "<small class='error'>".$this->model->getErrors()[$name]."</small>\n";
+		}
+		return $res;
+	}
+
+	/**
+	* Ajoute select 
+	* @var String $name name de l'input
+	* @var Array $htmlOptions 
+	*/
+	public function selectOption($name, $options,$htmlOptions=array())
+	{
+		$res = "";	
+
+		if(isset($this->model->getErrors()[$name])) {
+			$htmlOptions['class'] = isset($htmlOptions["class"])? $htmlOptions["class"] : "";
+			$htmlOptions['class'] .= " error";
+		}
+
+		$res .= "<select id='".$name."' name='".$name."' ";
+		foreach ($htmlOptions as $option => $valeur) {
+			$res .= $option."='".$valeur."' ";
+		}
+		$res .= ">\n";
+		foreach ($options as $value => $content) {
+			$res .= "<option value='".$value."' >".$content."</option>\n";
+		}
+
+		$res .= "</seclect>\n";
+
+		if(isset($this->model->getErrors()[$name])) {
+			$res .= "<small class='error'>".$this->model->getErrors()[$name]."</small>\n";
+		}
+		
+		return $res;
+	}
 
 
-// <input list="navigateurs" />
-// <datalist id="navigateurs">
-//   <option value="Chrome">
-//   <option value="Firefox">
-//   <option value="Internet Explorer">
-//   <option value="Opera">
-//   <option value="Safari">
-// </datalist>
-	
-// <radio id="yellow" label="Jaune"/>
-	
-// 	<radiogroup>
-//   <radio id="orange" label="Orange"/>
-//   <radio id="violet" selected="true" label="Violet"/>
-//   <radio id="Jaune" label="Jaune"/>
-// </radiogroup>
 }
+
+
+
