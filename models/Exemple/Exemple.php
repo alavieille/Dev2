@@ -5,9 +5,9 @@
 */
 
 namespace MonAppli\Exemple;
+use MvcApp\Components\Model;
 
-
-class Exemple
+class Exemple extends Model
 {
 	protected $id;
     protected $title;
@@ -20,6 +20,9 @@ class Exemple
     */
 	protected function __construct($data=array()) 
     {
+
+        parent::__construct();
+        $data = $this->cleanVar($data);
         $this->id = $data['id'];
         $this->title = $data['title'];
         $this->content = $data['content'];
@@ -33,16 +36,17 @@ class Exemple
     */
     public static function initialize($dataObj=array())
     {
+        
         $data = array();
 
-        if (isset($dataObj['id']) && (trim($dataObj['id']) != '')) {
+        if (isset($dataObj['id']) && trim($dataObj['id']) != '') {
             $data['id'] =  (int) $dataObj['id'];
         } else {
             $data['id'] = null;
         }
 
-        $data['title'] = isset($dataObj['title']) ? htmlentities($dataObj['title']) : '';
-        $data['content'] = isset($dataObj['content']) ? htmlentities($dataObj['content']) : '';
+        $data['title'] = isset($dataObj['title']) ? $dataObj['title'] : '';
+        $data['content'] = isset($dataObj['content']) ? $dataObj['content'] : '';
         return new self($data);
     }
 

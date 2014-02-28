@@ -23,6 +23,7 @@ class App{
 		"AppException" => "AppException.php",
 		"FlashMessage" => "FlashMessage.php",
 		"Form" => "Form.php",
+		"Model" => "Model.php",
 		);
 
 	/**
