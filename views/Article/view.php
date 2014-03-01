@@ -34,8 +34,8 @@
 	<footer>
 		<div class="row">
 			<ul class="button-group">
-			  <li><a href="<?php echo App::createUrl('exemple','update',$model->getId()); ?>" class="button small">Modifier</a></li>
-			  <li><a href="<?php echo App::createUrl('exemple','delete',$model->getId()); ?>" class="button small">Supprimer</a></li>
+			  <li><a href="<?php echo App::createUrl('article','update',$model->getId()); ?>" class="button small">Modifier</a></li>
+			  <li><a href="<?php echo App::createUrl('article','delete',$model->getId()); ?>" class="button small">Supprimer</a></li>
 			</ul>
 		</div>
 	</footer>

@@ -106,34 +106,33 @@ class ArticleController extends Controller
     * Suppression d'un exemple
     * @var Integer id de l'exemple
     */
-   /* public function deleteAction($id)
+    public function deleteAction($id)
     {
-        $model = ExempleDB::getInstance()->find($id);
+        $model = ArticleDB::getInstance()->find($id);
         if(! is_null($model)) {
             $this->render("delete",array(
                 "model"=>$model,
             ));
         }
         else {
-            throw new AppException("Impossible de trouver l'exemple ".$id);
+            throw new AppException("Impossible de trouver l'article ".$id);
         }
     }
-*/
     /**
     * Confirme suppression d'un exemple
     * @var Integer id de l'exemple
     */
-   /* public function confirmDeleteAction($id)
+    public function confirmDeleteAction($id)
     {
-        $model = ExempleDB::getInstance()->find($id);
+        $model = ArticleDB::getInstance()->find($id);
         if(! is_null($model)) {
-            ExempleDB::getInstance()->delete($model);
-            App::getApp()->setFlash("Exemple supprimé avec succés","success");
-            App::getApp()->redirect("exemple","viewAll");
+            ArticleDB::getInstance()->delete($model);
+            App::getApp()->setFlash("Article supprimé avec succés","success");
+            App::getApp()->redirect("article","viewAll");
         }
         else {
-            throw new AppException("Impossible de trouver l'exemple ".$id);
+            throw new AppException("Impossible de trouver l'article ".$id);
         }
-    }*/
+    }
 
 }

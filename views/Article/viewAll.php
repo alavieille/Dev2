@@ -12,10 +12,9 @@ $(window).load(function(){
 });    
 </script>
 <div class="row">
-  <div class="columns large-12">
-    <h1>Liste des Articles</h1>
-  </div>
+  <h1 class="columns large-12"> Liste des Articles</h1>
 </div>
+
 <div class="row" id="previousArticle">
 	<div class="large-12 columns">
 		<div id="masonryContainer">
