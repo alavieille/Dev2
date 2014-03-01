@@ -56,8 +56,8 @@ class Article extends Model
         $data['contenue'] = isset($dataObj['contenue']) ? $dataObj['contenue'] : '';
         $data['auteur'] = isset($dataObj['auteur']) ? $dataObj['auteur'] : '';
         $data['status'] = isset($dataObj['status']) ? $dataObj['status'] : null;
-        $data['dateCreation'] = isset($dataObj['dateCreation']) ? $dataObj['dateCreation'] : null;
-        $data['datePublication'] = isset($dataObj['datePublication']) ? $dataObj['datePublication'] : null;
+        $data['dateCreation'] = isset($dataObj['date_creation']) ? $dataObj['date_creation'] : null;
+        $data['datePublication'] = isset($dataObj['date_publication']) ? $dataObj['date_publication'] : null;
 
         return new self($data);
     }

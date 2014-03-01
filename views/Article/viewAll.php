@@ -1,5 +1,6 @@
 <?php
 	use MvcApp\Components\App;
+
 ?>
 <script src="<?php echo App::getApp()->getBasePath() ?>js/masonry.min.js"></script>
 <script>
@@ -15,19 +16,24 @@ $(window).load(function(){
     <h1>Liste des Articles</h1>
   </div>
 </div>
-<div class="row">
+<div class="row" id="previousArticle">
 	<div class="large-12 columns">
 		<div id="masonryContainer">
 		<?php foreach ($arrayModel as $num => $model): ?>
-			<div class="panel masonry-brick columns">
-				<h3 class="" ><?php echo $model->getTitre() ?></h3>
-				<?php if($model->getChapo() != "" ) : ?>
-					<p class="" ><?php echo $model->getChapo(); ?></p>
-				<?php else : ?>
-					<p class="" ><?php echo $model->previousContenue(); ?></p>
-				<?php endif; ?>
-				<a class=" button tiny" href="<?php echo App::createUrl('article','view',$model->getId()); ?>">Voir</a>
-			</div>
+			<a class="panel masonry-brick columns" href="<?php echo App::createUrl('article','view',$model->getId()); ?>">
+				<article >
+						<h3><?php echo $model->getTitre() ?></h3>
+						<div class="row details">
+							<p class="auteur large-9 columns txt-left"><?php echo $model->getAuteur() ?></p>
+							<p class="large-3 columns"><?php echo $model->getDateCreation()?> </p>		
+						</div>
+						<?php if($model->getChapo() != "" ) : ?>
+							<p class="" ><?php echo $model->getChapo(); ?></p>
+						<?php else : ?>
+							<p class="" ><?php echo $model->previousContenue(); ?></p>
+						<?php endif; ?>
+				</article>
+			</a>
 		<?php endforeach; ?>
 		</div>
 	</div>

@@ -69,22 +69,22 @@ class ArticleController extends Controller
     }   
 
     /**
-    * Affiche un exemple
+    * Affiche un article
     * @var Integer id de l'exemple
     */
-  /*  public function viewAction($id)
+    public function viewAction($id)
     {
-        $model = ExempleDB::getInstance()->find($id);
+        $model = ArticleDB::getInstance()->find($id);
         if(! is_null($model)) {
             $this->render("view",array(
                 "model"=>$model,
             ));
         }
         else {
-            throw new AppException("Impossible de trouver l'exemple ".$id);
+            throw new AppException("Impossible de trouver l'article ".$id);
         }
     }
-*/
+
     /**
     * Mise a un jour d'un exemple
     * @var Integer id de l'exemple

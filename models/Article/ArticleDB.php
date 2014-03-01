@@ -42,7 +42,7 @@ class ArticleDB extends Db
 
 
     /**
-    * Créer la requête preparée pour l'insertion d'un exemple
+    * Créer la requête preparée pour l'insertion d'un article
     * @return PDO statement 
     */
     private function createInsertQuery()
@@ -53,7 +53,7 @@ class ArticleDB extends Db
     }
 
     /**
-    * Créer la requête preparée pour la mise jour d'un exemple 
+    * Créer la requête preparée pour la mise jour d'un article 
     * @return PDO statement 
     */
     private function createUpdateQuery()
@@ -64,7 +64,7 @@ class ArticleDB extends Db
     }   
 
      /**
-    * Créer la requête preparée pour la mise jour d'un exemple 
+    * Créer la requête preparée pour la mise jour d'un article 
     * @return PDO statement 
     */
     private function createDeleteQuery()
@@ -121,7 +121,7 @@ class ArticleDB extends Db
     }
 
    /**
-    * Supprimer un exemple
+    * Supprimer un article
     * @var Object $model
     */
     public function delete($model)
@@ -156,7 +156,7 @@ class ArticleDB extends Db
         $this->findModelStatement->execute();
         $res = array();
         if($ligne = $this->findModelStatement->fetch()){
-            return Exemple::initialize($ligne);
+            return Article::initialize($ligne);
         }
         return null;
     }

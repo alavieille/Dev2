@@ -33,6 +33,16 @@ textarea{
 
 }  
 
+#previousArticle  a:hover
+{
+	background-color: #ddd;
+}
+
+#previousArticle article .details p{
+	margin-bottom: 8px;
+	color:#777;
+}
+
 /**
  * 3.0 responsive
  * ----------------------------------------------------------------------------
