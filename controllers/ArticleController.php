@@ -3,7 +3,7 @@
 * Controlleur d'exemple
 * @author Amaury Lavieille
 */
-namespace Dev2AL\Exemple;
+namespace Dev2AL\Article;
 
 
 use MvcApp\Components\Controller;
@@ -13,7 +13,7 @@ use MvcApp\Components\AppException;
 /**
 * Controlleur d'exemple
 */
-class ExempleController extends Controller
+class ArticleController extends Controller
 {
 
     /**
@@ -21,7 +21,7 @@ class ExempleController extends Controller
     */
     public function __construct()
     {
-        $this->name = 'Exemple';
+        $this->name = 'Article';
         parent::__construct();
     }
 
@@ -35,43 +35,36 @@ class ExempleController extends Controller
 
     public function createAction()
     {
-        $exemple = Exemple::initialize();
+        $article = Article::initialize();
         $this->render("form",array(
-            "model"=>$exemple,
+            "model"=>$article,
         ));
     }
     
     /**
-    * Crée un exemple
+    * Crée un article
     */
     public function saveAction()
     {     
         if(isset($_POST)) {
-            $exemple = Exemple::initialize($_POST);
-            if($exemple->valid()) {
-                if($exemple->getId() == "") { //sauvegarde
-                    $id = ExempleDB::getInstance()->save($exemple);
-                }
-                else { // update
-
-                    $id = ExempleDB::getInstance()->update($exemple);
-                }
-
-                App::getApp()->redirect("exemple","view",$id);
+            $article = Article::initialize($_POST);
+            if($article->valid()) {
+                $id = ArticleDB::getInstance()->save($article);
+              //  App::getApp()->redirect("exemple","view",$id);
             }
         }
         $this->render("form",array(
-            "model"=>$exemple,
+            "model"=>$article,
         ));
     }
 
     /**
     * Affiche tous les exemples
     */
-    public function viewAllAction(){
-        $arrayExemple = ExempleDB::getInstance()->findAll();
+   public function viewAllAction(){
+        $arrayArticle = ArticleDB::getInstance()->findAll();
         $this->render("viewAll",array(
-            "arrayModel" => $arrayExemple,
+            "arrayModel" => $arrayArticle,
         ));
     }   
 
@@ -79,7 +72,7 @@ class ExempleController extends Controller
     * Affiche un exemple
     * @var Integer id de l'exemple
     */
-    public function viewAction($id)
+  /*  public function viewAction($id)
     {
         $model = ExempleDB::getInstance()->find($id);
         if(! is_null($model)) {
@@ -91,12 +84,12 @@ class ExempleController extends Controller
             throw new AppException("Impossible de trouver l'exemple ".$id);
         }
     }
-
+*/
     /**
     * Mise a un jour d'un exemple
     * @var Integer id de l'exemple
     */
-    public function updateAction($id)
+   /* public function updateAction($id)
     {     
         $model = ExempleDB::getInstance()->find($id);
         if(! is_null($model)) {
@@ -108,12 +101,12 @@ class ExempleController extends Controller
             throw new AppException("Impossible de trouver l'exemple ".$id);
         }
     }
-
+*/
     /** 
     * Suppression d'un exemple
     * @var Integer id de l'exemple
     */
-    public function deleteAction($id)
+   /* public function deleteAction($id)
     {
         $model = ExempleDB::getInstance()->find($id);
         if(! is_null($model)) {
@@ -125,12 +118,12 @@ class ExempleController extends Controller
             throw new AppException("Impossible de trouver l'exemple ".$id);
         }
     }
-
+*/
     /**
     * Confirme suppression d'un exemple
     * @var Integer id de l'exemple
     */
-    public function confirmDeleteAction($id)
+   /* public function confirmDeleteAction($id)
     {
         $model = ExempleDB::getInstance()->find($id);
         if(! is_null($model)) {
@@ -141,6 +134,6 @@ class ExempleController extends Controller
         else {
             throw new AppException("Impossible de trouver l'exemple ".$id);
         }
-    }
+    }*/
 
 }

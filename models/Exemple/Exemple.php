@@ -3,7 +3,7 @@
 * Classe qui représente le modèle Exemple
 * @author Amaury Lavieille
 */
-namespace MonAppli\Exemple;
+namespace Dev2AL\Exemple;
 
 
 use MvcApp\Components\Model;

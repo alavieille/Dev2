@@ -3,12 +3,12 @@
 * Classe qui gére le modèle exemple en base de donnée
 * @author Amaury Lavieille
 */
-namespace Dev2AL\Exemple;
+namespace Dev2AL\Article;
 
 
 use MvcApp\Components\Db;
 
-class ExempleDB extends Db
+class ArticleDB extends Db
 {
     
     /**
@@ -30,7 +30,7 @@ class ExempleDB extends Db
     */
     protected function __construct()
     {
-        $this->tableName = "Exemple";
+        $this->tableName = "Article";
         parent::__construct();
         $this->createModelStatement = $this->createInsertQuery();
         $this->updateModelStatement = $this->createUpdateQuery();
@@ -47,8 +47,8 @@ class ExempleDB extends Db
     */
     private function createInsertQuery()
     {
-        $values = ":title, :content";
-        $query = "INSERT INTO ".$this->tableName." VALUES ('',".$values.")";
+        $values = "'', :titre, :chapo, :contenue, :auteur, '', NOW(), ''";
+        $query = "INSERT INTO ".$this->tableName." VALUES (".$values.")";
         return $this->pdo->prepare($query);
     }
 
@@ -99,8 +99,10 @@ class ExempleDB extends Db
     */
     public function save($model)
     {    
-        $this->createModelStatement->bindValue("title",$model->getTitle());
-        $this->createModelStatement->bindValue("content",$model->getContent());
+        $this->createModelStatement->bindValue("titre",$model->getTitre());
+        $this->createModelStatement->bindValue("chapo",$model->getChapo());
+        $this->createModelStatement->bindValue("contenue",$model->getContenue());
+        $this->createModelStatement->bindValue("auteur",$model->getAuteur());
         $this->createModelStatement->execute(); 
         return $this->pdo->lastInsertId();
     }
@@ -139,7 +141,7 @@ class ExempleDB extends Db
         $this->findAllModelStatement->execute();
         $res = array();
         while (($ligne = $this->findAllModelStatement->fetch()) !== false) {
-            $res[] = Exemple::initialize($ligne);
+            $res[] = Article::initialize($ligne);
         } 
         return $res;
     }

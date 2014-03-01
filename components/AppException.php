@@ -20,14 +20,6 @@ class AppException extends Exception
     public $layout = "main";
 
     /**
-    * Constructeur
-    */
-    public function __construct($message,$code=0)
-    {
-        parent::__construct($message,$code);
-    }
-
-    /**
     * Affiche l'erreur
     */
     public function display()

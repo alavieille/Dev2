@@ -7,9 +7,12 @@
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>MVCApp</title>
+	<link rel="stylesheet" href="<?php echo App::getApp()->getBasePath() ?>css/foundation/css/normalize.css" />
 	<link rel="stylesheet" href="<?php echo App::getApp()->getBasePath() ?>css/foundation/css/foundation.css" />
+	<link rel="stylesheet" href="<?php echo App::getApp()->getBasePath() ?>css/main.css" />
     <script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/vendor/modernizr.js"></script>
-	
+	<script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/vendor/jquery.js"></script>
+
 </head>
 	<body>
 
@@ -26,9 +29,9 @@
 			  <section class="top-bar-section">
 			    <ul class="right">
 				    <li class="divider"></li>
-				    <li><a href="<?php echo App::getApp()->createUrl('exemple','viewAll');?>">Liste exemple</a></li>
+				    <li><a href="<?php echo App::getApp()->createUrl('article','viewAll');?>">Liste des articles</a></li>
 				    <li class="divider"></li>
-				    <li><a href="<?php echo App::createUrl('exemple','create') ?>">Créer Exemple</a></li>
+				    <li><a href="<?php echo App::createUrl('article','create') ?>">Créer un article</a></li>
 				    <li class="divider"></li>
 			    </ul>
 			  </section>
@@ -42,7 +45,7 @@
 	    </div>
 
 
-	<script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/vendor/jquery.js"></script>
+
     <script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/foundation.min.js"></script>
     <script>
       $(document).foundation();

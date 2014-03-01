@@ -97,7 +97,7 @@ class App{
             }
         } 
         catch (Exception $e) {
-            (New AppException($e->getMessage(),$e->getCode()))->display();
+            (New AppException($e->getMessage()))->display();
         }
     }
 
