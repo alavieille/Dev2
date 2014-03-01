@@ -58,7 +58,7 @@ class ArticleDB extends Db
     */
     private function createUpdateQuery()
     {
-        $values = "title=:title, content=:content";
+        $values = "titre=:titre, chapo=:chapo, contenue=:contenue, auteur=:auteur";
         $query = " UPDATE ".$this->tableName." SET ".$values." WHERE id=:id";
         return $this->pdo->prepare($query);
     }   
@@ -114,8 +114,10 @@ class ArticleDB extends Db
     public function update($model)
     {      
         $this->updateModelStatement->bindValue(":id",$model->getId());
-        $this->updateModelStatement->bindValue("title",$model->getTitle());
-        $this->updateModelStatement->bindValue("content",$model->getContent());
+        $this->updateModelStatement->bindValue("titre",$model->getTitre());
+        $this->updateModelStatement->bindValue("chapo",$model->getChapo());
+        $this->updateModelStatement->bindValue("contenue",$model->getContenue());
+        $this->updateModelStatement->bindValue("auteur",$model->getAuteur());
         $this->updateModelStatement->execute();    
         return $model->getId();
     }

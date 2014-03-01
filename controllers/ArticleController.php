@@ -30,19 +30,19 @@ class ArticleController extends Controller
     */
     public function indexAction()
     {
-        $this->render("index");
+          App::getApp()->redirect("article","viewAll");
     }
 
     public function createAction()
     {
         $article = Article::initialize();
-        $this->render("form",array(
+        $this->render("create",array(
             "model"=>$article,
         ));
     }
     
     /**
-    * Crée un article
+    * Créé un article
     */
     public function saveAction()
     {     
@@ -50,10 +50,10 @@ class ArticleController extends Controller
             $article = Article::initialize($_POST);
             if($article->valid()) {
                 $id = ArticleDB::getInstance()->save($article);
-              //  App::getApp()->redirect("exemple","view",$id);
+                App::getApp()->redirect("article","view",$id);
             }
         }
-        $this->render("form",array(
+        $this->render("create",array(
             "model"=>$article,
         ));
     }
@@ -86,22 +86,39 @@ class ArticleController extends Controller
     }
 
     /**
-    * Mise a un jour d'un exemple
-    * @var Integer id de l'exemple
+    * Mise a un jour d'un article
+    * @var Integer id de l'article
     */
-   /* public function updateAction($id)
+    public function updateAction($id)
     {     
-        $model = ExempleDB::getInstance()->find($id);
+        $model = ArticleDB::getInstance()->find($id);
         if(! is_null($model)) {
-            $this->render("form",array(
+            $this->render("update",array(
                 "model"=>$model,
             ));
         }
         else {
-            throw new AppException("Impossible de trouver l'exemple ".$id);
+            throw new AppException("Impossible de trouver l'article ".$id);
         }
     }
-*/
+
+    /**
+    * Confirme la mise à jour d'un article
+    */
+    public function confirmUpdateAction()
+    {     
+        if(isset($_POST)) {
+            $article = Article::initialize($_POST);
+            if($article->valid()) {
+                $id = ArticleDB::getInstance()->update($article);
+                App::getApp()->redirect("article","view",$id);
+            }
+        }
+        $this->render("create",array(
+            "model"=>$article,
+        ));
+    }
+
     /** 
     * Suppression d'un exemple
     * @var Integer id de l'exemple

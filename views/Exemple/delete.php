@@ -10,7 +10,7 @@
 
 <div class="row panel">
 	<p>
-		Etes vous sur de vouloir supprimer <?php echo $model->getTitle(); ?> ?
+		Etes vous sur de vouloir supprimer <?php echo $model->getTitle$(); ?> ?
 	</p>
 	<ul class="button-group">
 	  <li><a href="<?php echo App::createUrl('exemple','confirmDelete',$model->getId()); ?>" class="button small">Oui</a></li>

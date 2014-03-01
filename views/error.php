@@ -15,10 +15,8 @@
 		<div class="row ">
 			<h2 class="large-12 columns text-center">Erreur <?php echo $code ?></h2>
 		</div>
-		<div class="row panel">
-			<p><?php echo $message ?></p>
-		<div>
-
+		
+		<p class="row panel"><?php echo $message ?></p>
 
 	
 	</body>
