@@ -1,4 +1,5 @@
-MVCApp
+Dev2
 ===
 
-Structure de base d'une application php basé sur le modèle MVC
+Projet réalisé dans le cadre du master DNR2I pour le cour Dev2
+Le projet consiste à la réalisation d'un mini-journal
