@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>MVCApp</title>
+	<title>Dev2</title>
 	<link rel="stylesheet" href="<?php echo App::getApp()->getBasePath() ?>css/foundation/css/normalize.css" />
 	<link rel="stylesheet" href="<?php echo App::getApp()->getBasePath() ?>css/foundation/css/foundation.css" />
 	<link rel="stylesheet" href="<?php echo App::getApp()->getBasePath() ?>css/main.css" />

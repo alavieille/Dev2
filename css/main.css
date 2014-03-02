@@ -49,17 +49,19 @@ box-shadow: 0 10px 0 1px #f90, 0 16px 0 1px #f90, 0 22px 0 1px #f90;
 }
 
 .top-bar-section ul li > a, .top-bar-section li:not(.has-form) a:not(.button),.top-bar-section li:not(.has-form) a:not(.button){
+	border-top:2px solid #fff;
 	font-weight: 200;
 	background: white;
 	border-bottom:2px solid #ddd;
-	line-height: 43px;
+	border-top:2px solid #fff;
+	line-height: 41px;
 	color:#888;
 }
 
 .top-bar-section ul li > a:hover, .top-bar-section li:not(.has-form) a:not(.button):hover,.top-bar-section li:not(.has-form) a:not(.button):hover{
 	color:#f90;
 	background: white;
-	border-color: #f90;
+	border-top:2px solid #f90;
 
 }
 h1, h2, h3, h4, h5, h6 {

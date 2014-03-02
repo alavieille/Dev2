@@ -108,10 +108,15 @@ class App{
     **/
     private function init()
     {        
-        list($controller,$action,$id) = $this->getRoute();
+        list($controller,$action,$param) = $this->getRoute();
         if(class_exists($controller) && method_exists($controller, $action)){
-            $instanceController = new $controller();    
-            return $instanceController->$action($id);
+            $instanceController = new $controller(); 
+            if($param != null) {
+                return $instanceController->$action($param);
+            }
+            else {
+                return $instanceController->$action();
+            }
         }
         else{
             throw new AppException("Requete invalide", 404);
@@ -129,7 +134,7 @@ class App{
 
         $controller = $routeArray[0];
         $action = (isset($routeArray[1]) && $routeArray[1] != "") ? $routeArray[1] : "index";
-        $id = isset($routeArray[2]) ? $routeArray[2] : null;
+        $param = isset($routeArray[2]) ? $routeArray[2] : null;
 
         $controllerName = ucfirst($controller);
         $classController = $controllerName."Controller";
@@ -137,7 +142,7 @@ class App{
 
         $classController = $this->config["namespaceApp"]."\\".$controllerName."\\".$classController;
 
-        return array($classController,$action,$id);
+        return array($classController,$action,$param);
     }
 
 

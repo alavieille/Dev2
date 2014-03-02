@@ -61,10 +61,24 @@ class ArticleController extends Controller
     /**
     * Affiche tous les exemples
     */
-   public function viewAllAction(){
-        $arrayArticle = ArticleDB::getInstance()->findAll();
+    public function viewAllAction($page=1)
+    {
+        $nbrArticle = ArticleDB::getInstance()->countAll();
+        $nbrParPage = 5;
+        $nbTotalPage = ceil($nbrArticle/$nbrParPage);
+
+        if( $page <0 || $page>$nbTotalPage) {
+            $page = 1;
+        }
+        
+        $offset = ($page-1)*$nbrParPage;
+        $arrayArticle = ArticleDB::getInstance()->findLimit($offset,$nbrParPage);
+ 
+        //$arrayArticle = ArticleDB::getInstance()->findAll();
         $this->render("viewAll",array(
             "arrayModel" => $arrayArticle,
+            "nbrTotalPage" => $nbTotalPage,
+            "page" => $page,
         ));
     }   
 

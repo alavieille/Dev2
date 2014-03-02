@@ -8,5 +8,3 @@ Le projet consiste à la réalisation d'un mini-journal
 
 ToDO
 ====
-* Mettre en forme la date
-* Modification vue de la page d'accueil ( un article en entête)

@@ -2,7 +2,7 @@
 // configuration de l'application
 $config = array(
 	// nom de l'application 
-	"appName" => "MvcApp", 
+	"appName" => "Dev2", 
 	//namespace principale utilisé dans vos classe( ex: MonApli/Exemple)
 	"namespaceApp" => "Dev2AL",
 	"path" =>dirname(__FILE__).DIRECTORY_SEPARATOR."..",

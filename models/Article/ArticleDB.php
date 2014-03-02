@@ -7,6 +7,7 @@ namespace Dev2AL\Article;
 
 
 use MvcApp\Components\Db;
+use \PDO;
 
 class ArticleDB extends Db
 {
@@ -22,6 +23,8 @@ class ArticleDB extends Db
     private $updateModelStatement;
     private $deleteModelStatement;
     private $findAllModelStatement;
+    private $findLimitModelStatement;
+    private $countAllModelStatement;
     private $findModelStatement;
 
     /**
@@ -36,6 +39,8 @@ class ArticleDB extends Db
         $this->updateModelStatement = $this->createUpdateQuery();
         $this->deleteModelStatement = $this->createDeleteQuery();
         $this->findAllModelStatement = $this->createSelectAllQuery();
+        $this->findLimitModelStatement = $this->createSelectLimitQuery();
+        $this->countAllModelStatement = $this->createCountAllQuery();
         $this->findModelStatement = $this->createSelectQuery();
     }
 
@@ -80,6 +85,25 @@ class ArticleDB extends Db
     public function createSelectAllQuery()
     {
         $query = "  SELECT * FROM ". $this->tableName." ORDER BY id desc";
+        return $this->pdo->prepare($query);
+    }    
+    /**
+    * Crée la requête préparée pour la selection de $nbrligne lignes à partir de $offset 
+    * @return PDO statement
+    */
+    public function createSelectLimitQuery()
+    {
+        $query = "  SELECT * FROM ". $this->tableName." ORDER BY id desc LIMIT :offset,:nbrligne";
+        return $this->pdo->prepare($query);
+    }    
+
+    /**
+    * Crée la requête préparée pour compter le nombre de ligne
+    * @return PDO statement
+    */
+    public function createCountAllQuery()
+    {
+        $query = "  SELECT count(*) as nbr FROM ". $this->tableName;
         return $this->pdo->prepare($query);
     }
 
@@ -149,6 +173,38 @@ class ArticleDB extends Db
     }
 
     /**
+    * Cherche les $nbrLigne à partir de $offset
+    * @param int $offset Début de la recherche
+    * @param int $nbrLigne Nombre de ligne à rechercher
+    * @return Array array of model
+    */
+    public function findLimit($offset,$nbrligne)
+    {
+        $this->findLimitModelStatement->bindValue(":offset",$offset,PDO::PARAM_INT);
+        $this->findLimitModelStatement->bindValue(":nbrligne",$nbrligne,PDO::PARAM_INT);
+        $this->findLimitModelStatement->execute();
+        $res = array();
+        while (($ligne = $this->findLimitModelStatement->fetch()) !== false) {
+
+            $res[] = Article::initialize($ligne);
+        } 
+        return $res;
+    }
+
+    /**
+    * Comtpe le nombre de ligne
+    * @return integer
+    */
+    public function countAll()
+    {
+        $this->countAllModelStatement->execute();
+        if($ligne = $this->countAllModelStatement->fetch()) {
+            return (int) $ligne["nbr"];
+        }
+        return 0;
+    }
+
+    /**
     * Cherche une ligne
     * @return Object Model if exist else return null
     */
@@ -156,8 +212,7 @@ class ArticleDB extends Db
     {  
         $this->findModelStatement->bindValue("id",$id);
         $this->findModelStatement->execute();
-        $res = array();
-        if($ligne = $this->findModelStatement->fetch()){
+        if($ligne = $this->findModelStatement->fetch()) {
             return Article::initialize($ligne);
         }
         return null;
