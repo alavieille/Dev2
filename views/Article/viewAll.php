@@ -19,9 +19,9 @@ $(window).load(function(){
     </div>
   </div>
 </div>
-
 <div class="row" id="previousArticle">
 	<div class="large-12 columns">
+<?php echo App::getApp()->getFlash(); ?>
 		<div id="masonryContainer">
 		<?php foreach ($arrayModel as $num => $model): ?>
 			<a class="panel masonry-brick columns" href="<?php echo App::createUrl('article','view',$model->getId()); ?>">

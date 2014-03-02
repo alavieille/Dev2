@@ -2,10 +2,13 @@
 	use MvcApp\Components\App;
 ?>
 
-<div class="row">
-  <h1 class="columns large-12">Supprimer</h1>
+<div  id="titleRow">
+  <div class="row">
+    <div class="columns large-12">
+      <h1>Supprimer</h1>
+    </div>
+  </div>
 </div>
-
 <div class="row panel">
 	<p>
 		Etes vous sur de vouloir supprimer <?php echo $model->getTitre(); ?> ?

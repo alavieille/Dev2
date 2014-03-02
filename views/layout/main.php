@@ -28,11 +28,11 @@
 
 			  <section class="top-bar-section">
 			    <ul class="left">
-				    <!-- <li class="divider"></li> -->
+				   
 				    <li><a href="<?php echo App::getApp()->createUrl('article','viewAll');?>">Liste des articles</a></li>
-				    <!-- <li class="divider"></li> -->
+
 				    <li><a href="<?php echo App::createUrl('article','create') ?>">Créer un article</a></li>
-				    <!-- <li class="divider"></li> -->
+				 
 			    </ul>
 			  </section>
 			</nav>  
@@ -40,7 +40,6 @@
 	  	
 	  	<!--content -->
  		<div role="content">
-			<?php echo App::getApp()->getFlash(); ?>
 			<?php echo $content; ?>
 	    </div>
 
