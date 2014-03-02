@@ -14,7 +14,7 @@
 			    <?php echo $model->getAuteur() ?>
 			  </p>  
 			  <p class="columns small-6 text-right ">
-			    <?php echo $model->getDateCreation() ?>
+			    <?php echo date("d-m-Y", strtotime($model->getDateCreation())) ?>
 			  </p>
 			</div>
 		</header>

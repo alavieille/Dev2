@@ -28,8 +28,8 @@ $(window).load(function(){
 				<article >
 						<h3><?php echo $model->getTitre() ?></h3>
 						<div class="row details">
-							<p class="auteur large-9 columns txt-left"><?php echo $model->getAuteur() ?></p>
-							<p class="large-3 columns "><?php echo $model->getDateCreation()?> </p>		
+							<p class="auteur large-8 columns txt-left"><?php echo $model->getAuteur() ?></p>
+							<p class="large-4 columns "><?php echo date("d-m-Y", strtotime($model->getDateCreation())) ?></p>		
 						</div>
 						<?php if($model->getChapo() != "" ) : ?>
 							<p class="text-justify" ><?php echo $model->getChapo(); ?></p>
