@@ -5,8 +5,12 @@ Style principale
 /**
  * Sommaire
  * 1.0 - Fix bug foundation
- * 2.0 - vue tous les articles
- * 3.0 - responsive
+ * 1.0 - Fix bug foundation
+ * 2.0 - modification couleur foundation
+ * 3.0 - main 
+ * 4.0 - vue tous les articles
+ * 5.0 - vue d'un article
+ * 6.0 - responsive
  * ----------------------------------------------------------------------------
  */
 
@@ -19,15 +23,93 @@ textarea{
 }
 
 /**
- * 2.0 vue tous les articles
+ * 2.0  modification couleur foundation
+ * ----------------------------------------------------------------------------
+ */
+body{
+	background-color: #efefef;
+}
+
+.top-bar,.top-bar.expanded .title-area
+{
+	background-color: white;
+	color:#ddd;
+	border-bottom:2px solid #ddd;
+}
+
+.top-bar .toggle-topbar.menu-icon a,.top-bar .name h1 a
+{
+	color:#f90;
+}
+
+
+.top-bar .toggle-topbar.menu-icon a::after{
+-webkit-box-shadow: 0 10px 0 1px #f90, 0 16px 0 1px #f90, 0 22px 0 1px #f90;
+box-shadow: 0 10px 0 1px #f90, 0 16px 0 1px #f90, 0 22px 0 1px #f90;
+}
+
+.top-bar-section ul li > a, .top-bar-section li:not(.has-form) a:not(.button),.top-bar-section li:not(.has-form) a:not(.button){
+	font-weight: 200;
+	background: white;
+	border-bottom:2px solid #ddd;
+	line-height: 43px;
+	color:#888;
+}
+
+.top-bar-section ul li > a:hover, .top-bar-section li:not(.has-form) a:not(.button):hover,.top-bar-section li:not(.has-form) a:not(.button):hover{
+	color:#f90;
+	background: white;
+	border-color: #f90;
+
+}
+h1, h2, h3, h4, h5, h6 {
+font-family: "Proxima Nova","proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+font-weight: 200;
+color: #333;
+}
+
+.panel{
+	background: white;
+	border: none;
+}
+
+.panel h1{
+		color:#f90;
+}
+
+/**
+ * 3.0  modification couleur foundation
+ * ----------------------------------------------------------------------------
+ */
+
+ #titleRow
+ {
+ 	background-color:#f90;
+ 	padding-top: 25px;
+ 	margin-bottom: 10px;
+ }
+  #titleRow h1{
+  	color:white;
+  	font-size:2em;
+  }
+
+/**
+ * 4.0 vue tous les articles
  * ----------------------------------------------------------------------------
  */
 
  /** plugin masonrt **/
 .masonry-brick {
-	max-width: 470px; 
+	max-width: 440px; 
 	margin-right:10px;
+	border:1px solid #ccc;
 }
+/*
+.masonry-brick:nth-child(3n+4){
+	max-width:100%;
+	background: red;
+}*/
+
 #masonryContainer {
 	margin: 0 auto;  
 
@@ -35,7 +117,9 @@ textarea{
 
 #previousArticle  a:hover
 {
-	background-color: #ddd;
+	//background-color: #f90;
+	border: 1px solid #f90;
+	
 }
 
 #previousArticle article .details p{
@@ -44,7 +128,17 @@ textarea{
 }
 
 /**
- * 3.0 responsive
+ * 5.0 Article
+ * ----------------------------------------------------------------------------
+ */
+
+ #article{
+ 	margin-top: 20px;
+ }
+
+
+/**
+ * 4.0 responsive
  * ----------------------------------------------------------------------------
  */
 

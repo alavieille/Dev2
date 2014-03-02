@@ -8,11 +8,16 @@ $(window).load(function(){
   $('#masonryContainer').masonry({  
     itemSelector: '.masonry-brick',
     isFitWidth: true,
+
   });  
 });    
 </script>
-<div class="row">
-  <h1 class="columns large-12"> Liste des Articles</h1>
+<div  id="titleRow">
+  <div class="row">
+    <div class="columns large-12">
+      <h1>Liste des articles</h1>
+    </div>
+  </div>
 </div>
 
 <div class="row" id="previousArticle">
@@ -24,12 +29,12 @@ $(window).load(function(){
 						<h3><?php echo $model->getTitre() ?></h3>
 						<div class="row details">
 							<p class="auteur large-9 columns txt-left"><?php echo $model->getAuteur() ?></p>
-							<p class="large-3 columns"><?php echo $model->getDateCreation()?> </p>		
+							<p class="large-3 columns "><?php echo $model->getDateCreation()?> </p>		
 						</div>
 						<?php if($model->getChapo() != "" ) : ?>
-							<p class="" ><?php echo $model->getChapo(); ?></p>
+							<p class="text-justify" ><?php echo $model->getChapo(); ?></p>
 						<?php else : ?>
-							<p class="" ><?php echo $model->previousContenue(); ?></p>
+							<p class="text-justify" ><?php echo $model->previousContenue(); ?></p>
 						<?php endif; ?>
 				</article>
 			</a>
