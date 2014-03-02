@@ -15,7 +15,7 @@ use \Exception;
 class App{
 
     /**
-    * @param Array Contient les chemins des composants de l'application
+    * @var Array Contient les chemins des composants de l'application
     */
     private static $pathComponents = array(
         "App" => "App.php",
@@ -28,17 +28,17 @@ class App{
         );
 
     /**
-    * @param Object $instance contient l'instance de la classe
+    * @var Object $instance contient l'instance de la classe
     */
     private static $instance;
 
     /**
-    * @param String $appName Nom de l'application
+    * @var String $appName Nom de l'application
     */
     private static $appName;
 
     /**
-    * @param String $basePath Chemin de la racine de l'application
+    * @var String $basePath Chemin de la racine de l'application
     */
     private static $basePath;
 
@@ -50,7 +50,7 @@ class App{
 
     /**
     * Constructeur
-    * @var Array $config , tableau qui contient la configuration de l'applcation
+    * @param Array $config , tableau qui contient la configuration de l'applcation
     */
     private function __construct($config)
     {
@@ -60,7 +60,7 @@ class App{
 
     /**
     * Initialise l'application
-    * @var Array $config configuration de l'application
+    * @param Array $config configuration de l'application
     */
     public static function newApp($config)
     {
@@ -157,7 +157,7 @@ class App{
 
     /**
     * Retourne le tableau de configuration de l'application
-    * @var String $index clé dans le tableau de configuration
+    * @param String $index clé dans le tableau de configuration
     * @return String retourne le contenue correspondant dans le tableau ou une chaine vide 
     */
     public function getConfig($index)
@@ -185,9 +185,9 @@ class App{
 
     /**
     * Créer une url a partir du nom du controlleur et de l'action
-    * @var String $controlleur nom du controleur
-    * @var String $action nom de l'action
-    * @var String $param 
+    * @param String $controlleur nom du controleur
+    * @param String $action nom de l'action
+    * @param String $param 
     * @return String url
     */
     public function createUrl($method,$action="",$param="")
@@ -199,9 +199,9 @@ class App{
 
     /**
     * Redirige l'utilisateur vers une action d'un controlleur
-    * @var String $controlleur nom du controleur
-    * @var String $action nom de l'action
-    * @var String $param 
+    * @param String $controlleur nom du controleur
+    * @param String $action nom de l'action
+    * @param String $param 
     */
     public function redirect($method,$action="",$param="")
     {
@@ -211,8 +211,8 @@ class App{
 
     /** 
     * Ajoute un message flash
-    * @var String $message contenue du message
-    * @var String $type type du message
+    * @param String $message contenue du message
+    * @param String $type type du message
     */
     public static function setFlash($message,$type="")
     {
@@ -229,7 +229,7 @@ class App{
 
     /**
     * Autoload des classes de l'applcation
-    * @var String $className
+    * @param String $className
     */
     public static function autoload($className)
     {   

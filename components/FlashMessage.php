@@ -22,8 +22,8 @@ class FlashMessage
 
     /**
     * Ajout un message flash
-    * @var String $message contenue du message
-    * @var String $type type du message
+    * @param String $message contenue du message
+    * @param String $type type du message
     */
     public static function setFlash($message,$type = "")
     {

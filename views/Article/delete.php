@@ -4,9 +4,7 @@
 
 <div  id="titleRow">
   <div class="row">
-    <div class="columns large-12">
-      <h1>Supprimer</h1>
-    </div>
+    <h1 class="columns large-12">Supprimer</h1>
   </div>
 </div>
 <div class="row panel">

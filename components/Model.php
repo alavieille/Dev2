@@ -12,7 +12,7 @@ Abstract class Model
 
     /**
     * Nettoie les variables
-    * @var Array $arrayVar
+    * @param Array $arrayVar
     * @return Array Tableau des varibles nettoyées
     */
     public function cleanVar($arrayVar)

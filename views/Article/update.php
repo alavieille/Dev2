@@ -6,9 +6,9 @@
         "id" => "formCreateExemple"
         ));
 ?>
-<div class="row">
-  <div class="columns large-12">
-    <h1>Créer un article</h1>
+<div  id="titleRow">
+  <div class="row">
+    <h1 class="columns large-12">Mettre à jour</h1>
   </div>
 </div>
 

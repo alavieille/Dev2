@@ -11,31 +11,31 @@ namespace MvcApp\Components;
 class Form 
 {   
     /**
-    * @param String $action 
+    * @var String $action 
     */
     private $action;
     
     /**
-    * @param Array $htmlOptions
+    * @var Array $htmlOptions
     */
     private $htmlOptions;
     
     /**
-    * @param String $method
+    * @var String $method
     */
     private $method;
 
     /**
-    * @param Object $model
+    * @var Object $model
     */
     private $model;
 
     /**
     * Constructeur
-    * @var Object $model Model utilisé pour le formulaire
-    * @var String $action action lors de la validation
-    * @var Array $htmlOptions exemple array("id"=>"monid")
-    * @var String $method $_GET ou $_POST par défaut POST
+    * @param Object $model Model utilisé pour le formulaire
+    * @param String $action action lors de la validation
+    * @param Array $htmlOptions exemple array("id"=>"monid")
+    * @param String $method $_GET ou $_POST par défaut POST
     */
     public function __construct($model,$action,$htmlOptions=array(),$method="post")
     {
@@ -69,9 +69,10 @@ class Form
 
     /**
     * Ajoute un label
-    * @var String $name champ for du label
-    * @var String $content contenue du label
-    * @var Array $htmlOptions 
+    * @param String $name champ for du label
+    * @param String $content contenue du label
+    * @param Array $htmlOptions
+    * @return String $res
     */
     public function label($name,$content,$htmlOptions=array())
     {
@@ -86,8 +87,9 @@ class Form
 
     /**
     * Ajoute un input texte
-    * @var String $name name de l'input
-    * @var Array $htmlOptions 
+    * @param String $name name de l'input
+    * @param Array $htmlOptions 
+    * @return String $res
     */
     public function inputText($name, $htmlOptions=array())
     {
@@ -113,8 +115,9 @@ class Form
 
     /**
     * Ajoute un input email
-    * @var String $name name de l'input
-    * @var Array $htmlOptions 
+    * @param String $name name de l'input
+    * @param Array $htmlOptions 
+    * @return String $res
     */
     public function inputEmail($name, $htmlOptions=array())
     {
@@ -139,8 +142,9 @@ class Form
 
     /**
     * Ajoute un input hidden
-    * @var String $name name de l'input
-    * @var Array $htmlOptions 
+    * @param String $name name de l'input
+    * @param Array $htmlOptions 
+    * @return String $res
     */
     public function inputHidden($name, $htmlOptions=array())
     {
@@ -166,8 +170,9 @@ class Form
 
     /**
     * Ajoute un input password
-    * @var String $name name de l'input
-    * @var Array $htmlOptions 
+    * @param String $name name de l'input
+    * @param Array $htmlOptions 
+    * @return String $res
     */
     public function inputPassword($name, $htmlOptions=array())
     {
@@ -192,8 +197,9 @@ class Form
 
     /**
     * Ajoute un input file
-    * @var String $name name de l'input
-    * @var Array $htmlOptions 
+    * @param String $name name de l'input
+    * @param Array $htmlOptions 
+    * @return String $res
     */
     public function inputFile($name, $htmlOptions=array())
     {
@@ -217,8 +223,9 @@ class Form
 
     /**
     * Ajoute un input date
-    * @var String $name name de l'input
-    * @var Array $htmlOptions 
+    * @param String $name name de l'input
+    * @param Array $htmlOptions 
+    * @return String $res
     */
     public function inputDate($name, $htmlOptions=array())
     {
@@ -244,8 +251,9 @@ class Form
 
     /**
     * Ajoute un input number
-    * @var String $name name de l'input
-    * @var Array $htmlOptions 
+    * @param String $name name de l'input
+    * @param Array $htmlOptions 
+    * @return String $res
     */
     public function inputNumber($name, $htmlOptions=array())
     {
@@ -270,8 +278,9 @@ class Form
 
     /**
     * Ajoute un input url
-    * @var String $name name de l'input
-    * @var Array $htmlOptions 
+    * @param String $name name de l'input
+    * @param Array $htmlOptions 
+    * @return String $res
     */
     public function inputUrl($name, $htmlOptions=array())
     {
@@ -296,8 +305,9 @@ class Form
 
     /**
     * Ajoute un input tel
-    * @var String $name name de l'input
-    * @var Array $htmlOptions 
+    * @param String $name name de l'input
+    * @param Array $htmlOptions 
+    * @return String $res
     */
     public function inputTel($name, $htmlOptions=array())
     {
@@ -323,10 +333,11 @@ class Form
 
     /**
     * Ajoute un input checkbox
-    * @var String $name name de l'input
-    * @var String $value 
-    * @var Boolean $checked bouton coché ou non
-    * @var Array $htmlOptions 
+    * @param String $name name de l'input
+    * @param String $value 
+    * @param Boolean $checked bouton coché ou non
+    * @param Array $htmlOptions 
+    * @return String $res
     */
     public function inputCheckbox($name, $value, $checked=false, $htmlOptions=array())
     {
@@ -354,8 +365,9 @@ class Form
 
     /**
     * Ajoute un textarea
-    * @var String $name name de l'input
-    * @var Array $htmlOptions 
+    * @param String $name name de l'input
+    * @param Array $htmlOptions 
+    * @return String $res
     */
     public function textarea($name, $htmlOptions=array())
     {
@@ -382,8 +394,9 @@ class Form
 
     /**
     * Ajoute bouton submit
-    * @var String $value
-    * @var Array $htmlOptions 
+    * @param String $value
+    * @param Array $htmlOptions 
+    * @return String $res
     */
     public function submit($value,$htmlOptions=array())
     {
@@ -401,9 +414,10 @@ class Form
 
     /**
     * Ajoute un bouton 
-    * @var String $name name de l'input
-    * @var String $value
-    * @var Array $htmlOptions 
+    * @param String $name name de l'input
+    * @param String $value
+    * @param Array $htmlOptions 
+    * @return String $res
     */
     public function button($name,$value,$htmlOptions=array())
     {
@@ -419,9 +433,10 @@ class Form
 
     /**
     * Ajoute un input radio
-    * @var String $name name de l'input
-    * @var String $value
-    * @var Array $htmlOptions 
+    * @param String $name name de l'input
+    * @param String $value
+    * @param Array $htmlOptions 
+    * @return String $res
     */
     public function inputRadio($name, $value, $htmlOptions=array())
     {
@@ -444,8 +459,9 @@ class Form
 
     /**
     * Ajoute select 
-    * @var String $name name de l'input
-    * @var Array $htmlOptions 
+    * @param String $name name de l'input
+    * @param Array $htmlOptions 
+    * @return String $res
     */
     public function selectOption($name, $options,$htmlOptions=array())
     {

@@ -60,6 +60,7 @@ class ArticleController extends Controller
 
     /**
     * Affiche tous les exemples
+    * @param $page Numéro de la page par défaut 1
     */
     public function viewAllAction($page=1)
     {
@@ -84,7 +85,7 @@ class ArticleController extends Controller
 
     /**
     * Affiche un article
-    * @var Integer id de l'exemple
+    * @param Integer id de l'article
     */
     public function viewAction($id)
     {
@@ -101,7 +102,7 @@ class ArticleController extends Controller
 
     /**
     * Mise a un jour d'un article
-    * @var Integer id de l'article
+    * @param Integer id de l'article
     */
     public function updateAction($id)
     {     
@@ -134,8 +135,8 @@ class ArticleController extends Controller
     }
 
     /** 
-    * Suppression d'un exemple
-    * @var Integer id de l'exemple
+    * Suppression d'un article
+    * @param Integer id de l'article
     */
     public function deleteAction($id)
     {
@@ -150,8 +151,8 @@ class ArticleController extends Controller
         }
     }
     /**
-    * Confirme suppression d'un exemple
-    * @var Integer id de l'exemple
+    * Confirme suppression d'un article
+    * @param Integer id de l'article
     */
     public function confirmDeleteAction($id)
     {

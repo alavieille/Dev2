@@ -14,9 +14,7 @@ $(window).load(function(){
 
 <div  id="titleRow">
   <div class="row">
-    <div class="columns large-12">
-      <h1>Liste des articles</h1>
-    </div>
+    <h1 class="columns large-12"> Liste des articles</h1>
   </div>
 </div>
 <div class="row" id="previousArticle">

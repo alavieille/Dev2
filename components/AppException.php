@@ -15,7 +15,7 @@ class AppException extends Exception
 {
     /**
     * squelette utilisé par le controlleur
-    * @var string $layout
+    * @param string $layout
     */
     public $layout = "main";
 
