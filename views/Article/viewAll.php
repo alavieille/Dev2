@@ -32,7 +32,7 @@ $(window).load(function(){
 						<?php if($model->getChapo() != "" ) : ?>
 							<p class="text-justify" ><?php echo $model->getChapo(); ?></p>
 						<?php else : ?>
-							<p class="text-justify" ><?php echo $model->previousContenue(); ?></p>
+							<p class="text-justify" ><?php echo $model->excerptContenue(); ?></p>
 						<?php endif; ?>
 				</article>
 			</a>

@@ -67,7 +67,7 @@ class Article extends Model
     * Retourne un aperçu du texte
     * @return String
     */
-    public function previousContenue()
+    public function excerptContenue()
     {
         $text = $this->contenue;
         if (strlen($text) > 300) { 
