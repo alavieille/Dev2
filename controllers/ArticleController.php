@@ -1,6 +1,6 @@
 <?php 
 /**
-* Controlleur d'exemple
+* Controlleur des articles
 * @author Amaury Lavieille
 */
 namespace Dev2AL\Article;
@@ -11,13 +11,13 @@ use MvcApp\Components\App;
 use MvcApp\Components\AppException;
 
 /**
-* Controlleur d'exemple
+* Controlleur des article
 */
 class ArticleController extends Controller
 {
 
     /**
-    * initialise le controlleur exemple
+    * initialise le controlleur article
     */
     public function __construct()
     {
@@ -91,7 +91,9 @@ class ArticleController extends Controller
     {
         $model = ArticleDB::getInstance()->find($id);
         if(! is_null($model)) {
+            $arrayPicture = \Dev2AL\Image\ImageDB::getInstance()->findPictureArticle($id);
             $this->render("view",array(
+                "arrayPicture"=>$arrayPicture,
                 "model"=>$model,
             ));
         }

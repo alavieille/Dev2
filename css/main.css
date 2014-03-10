@@ -138,6 +138,23 @@ color: #333;
  	margin-top: 20px;
  }
 
+ #article #pictures li{
+ 	position: relative;
+ }
+  
+ #article #pictures li:hover .close{
+	display: block;
+}
+
+ #article #pictures .close{
+ 	display: none;
+ 	font-size: 3em;
+ 	color: red;
+ 	position: absolute;
+ 	right: 15px;
+ 	top:-20px;
+ }
+
 
 /**
  * 4.0 responsive

@@ -1,6 +1,6 @@
 <?php
 /**
-* Classe qui gére le modèle exemple en base de donnée
+* Classe qui gére le modèle article en base de donnée
 * @author Amaury Lavieille
 */
 namespace Dev2AL\Article;

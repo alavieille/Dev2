@@ -31,12 +31,31 @@
 			<p class="text-justify columns small-12">
 				<?php echo $model->getcontenue() ?>
 			</p>
-		</div>
+		</div>		
+
+		<?php if (count($arrayPicture)>0) : ?>
+			<div class="row" id="pictures">
+					<ul class="columns small-12  small-block-grid-3 "> 
+						<?php foreach ($arrayPicture as $image) : ?>
+							<li>
+							<a href="#" class="close">&times;</a>
+							<a class="th" href="<?php echo App::getApp()->getBasePath().'upload/'.$image->getFile() ?>"> 
+								<img src="<?php echo App::getApp()->getBasePath().'upload/'.$image->getFile() ?>" alt="<?php echo $image->getTitre() ?>" /> 
+							</a>
+							</li>
+							
+						<?php endforeach; ?>
+					</ul>
+			</div>
+		<?php endif; ?>
+
+
 		<footer>
 			<div class="columns small-12">
 				<ul class="button-group">
-				  <li><a href="<?php echo App::createUrl('article','update',$model->getId()); ?>" class="button small">Modifier</a></li>
-				  <li><a href="<?php echo App::createUrl('article','delete',$model->getId()); ?>" class="button small">Supprimer</a></li>
+				  <li><a href="<?php echo App::getApp()->createUrl('image','create',$model->getId()); ?>" class="button small">Ajouter une image</a></li>
+				  <li><a href="<?php echo App::getApp()->createUrl('article','update',$model->getId()); ?>" class="button small">Modifier</a></li>
+				  <li><a href="<?php echo App::getApp()->createUrl('article','delete',$model->getId()); ?>" class="button small">Supprimer</a></li>
 				</ul>
 			</div>
 		</footer>

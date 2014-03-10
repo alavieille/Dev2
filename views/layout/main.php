@@ -31,7 +31,7 @@
 				   
 				    <li><a href="<?php echo App::getApp()->createUrl('article','viewAll');?>">Liste des articles</a></li>
 
-				    <li><a href="<?php echo App::createUrl('article','create') ?>">Créer un article</a></li>
+				    <li><a href="<?php echo App::getApp()->createUrl('article','create') ?>">Créer un article</a></li>
 				 
 			    </ul>
 			  </section>

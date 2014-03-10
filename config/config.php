@@ -11,7 +11,7 @@ $config = array(
 	"defaultController" => "article", 
 	// information de connexion à la base de donnée
 	'db'=>array(
-			'dsn' => 'mysql:host=mysql.info.unicaen.fr;dbname=Dev2',
+			'dsn' => 'mysql:host=mysql.info.unicaen.fr;dbname=21004281_9',
 			'user' => '21004281',
 			'pwd' => 'Lertiotiopen15',
 
