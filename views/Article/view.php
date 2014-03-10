@@ -38,7 +38,7 @@
 					<ul class="columns small-12  small-block-grid-3 "> 
 						<?php foreach ($arrayPicture as $image) : ?>
 							<li>
-							<a href="#" class="close">&times;</a>
+							<a href="<?php echo App::getApp()->createUrl('image','delete',$image->getId()); ?>" class="close">&times;</a>
 							<a class="th" href="<?php echo App::getApp()->getBasePath().'upload/'.$image->getFile() ?>"> 
 								<img src="<?php echo App::getApp()->getBasePath().'upload/'.$image->getFile() ?>" alt="<?php echo $image->getTitre() ?>" /> 
 							</a>

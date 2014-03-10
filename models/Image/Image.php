@@ -54,6 +54,23 @@ class Image extends Model
  
 
     /**
+     * Retourne l'id de l'image
+     * @return String id de l'image
+     */
+    public function getId() {
+        return $this->id;
+    }
+    
+    /**
+     * Modifie l'id de l'image
+     * @param String $id Id de l'image
+     */
+    public function setId($id) {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
      * Retourne l'id de l'article
      * @return String id de l'article
      */

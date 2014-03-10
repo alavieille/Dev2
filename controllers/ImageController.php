@@ -33,6 +33,10 @@ class ImageController extends Controller
        //   App::getApp()->redirect("article","viewAll");
     }
 
+    /**
+    * Affiche le formulaire d'ajout d'une image 
+    * @param Int $idArticle  id de l'article
+    **/
     public function createAction($idArticle)
     {
        
@@ -42,7 +46,7 @@ class ImageController extends Controller
             "model"=>$image,
         ));
     }
-    
+        
 
     public function saveAction($idArticle)
     {
@@ -73,6 +77,20 @@ class ImageController extends Controller
             "idArticle"=>$idArticle,
             "model"=>$image,
         ));
+    }
+
+
+    /**
+    * Supprime une image
+    * @param $id id de l'image 
+    */
+    public function deleteAction($id)
+    {
+
+        $image = ImageDB::getInstance()->find($id);
+        unlink("upload/".$image->getFile());
+        ImageDB::getInstance()->delete($image);
+        App::getApp()->redirect("article","view",$image->getIdArticle());
     }
     
 

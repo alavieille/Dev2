@@ -22,6 +22,7 @@ class ImageDB extends Db
     private $createModelStatement;
     private $deleteModelStatement;
     private $findPictureArticleStatement;
+    private $findModelStatement;
 
 
     /**
@@ -35,6 +36,7 @@ class ImageDB extends Db
         $this->createModelStatement = $this->createInsertQuery();
         $this->deleteModelStatement = $this->createDeleteQuery();
         $this->findPictureArticleStatement = $this->createSelectPictureArticleQuery();
+        $this->findModelStatement = $this->createSelectQuery();
 
     }
 
@@ -52,6 +54,16 @@ class ImageDB extends Db
     }
 
    
+    /**
+    * Crée la requête préparée pour la selection d'une ligne
+    * @return PDO statement
+    */
+    public function createSelectQuery()
+    {
+        $query = "  SELECT * FROM ". $this->tableName." WHERE id=:id";
+        return $this->pdo->prepare($query);
+    }
+
     /**
     * Créer la requête preparée pour la mise jour d'une image 
     * @return PDO statement 
@@ -113,6 +125,21 @@ class ImageDB extends Db
             $res[] = Image::initialize($ligne);
         } 
         return $res;
+    }
+
+    /**
+    * Cherche une image
+    * @return Array array of model
+    */
+    public function find($id)
+    {
+        
+        $this->findModelStatement->bindValue("id",$id);
+        $this->findModelStatement->execute();
+        if($ligne = $this->findModelStatement->fetch()) {
+            return Image::initialize($ligne);
+        }
+        return null;
     }
 
   
