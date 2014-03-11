@@ -23,6 +23,7 @@ class ImageDB extends Db
     private $deleteModelStatement;
     private $findPictureArticleStatement;
     private $findModelStatement;
+    private $deleteAllModelStatement;
 
 
     /**
@@ -37,6 +38,7 @@ class ImageDB extends Db
         $this->deleteModelStatement = $this->createDeleteQuery();
         $this->findPictureArticleStatement = $this->createSelectPictureArticleQuery();
         $this->findModelStatement = $this->createSelectQuery();
+        $this->deleteAllModelStatement = $this->createDeleteAllImageQuery();
 
     }
 
@@ -84,6 +86,15 @@ class ImageDB extends Db
         return $this->pdo->prepare($query);
     }    
   
+    /**
+    * Créer la requête preparée pour suppression des images d'un article
+    * @return PDO statement 
+    */
+    private function createDeleteAllImageQuery()
+    {
+        $query = "DELETE FROM ".$this->tableName." WHERE idArticle=:idArticle";
+        return $this->pdo->prepare($query);
+    }
 
     /**
     * Sauvegarde un modele dans la base de donnée
@@ -142,6 +153,16 @@ class ImageDB extends Db
         return null;
     }
 
-  
+     /**
+    * Supprimer un article
+    * @var Object $model
+    */
+    public function deleteAllImageArticle($modelArticle)
+    {       
+        $this->deleteAllModelStatement->bindValue(":idArticle",$modelArticle->getId());
+        var_dump($this->deleteAllModelStatement->execute()); 
+
+    }
+
 
 }

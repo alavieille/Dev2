@@ -5,7 +5,6 @@
 */
 namespace Dev2AL\Article;
 
-
 use MvcApp\Components\Controller;
 use MvcApp\Components\App;
 use MvcApp\Components\AppException;
@@ -160,7 +159,13 @@ class ArticleController extends Controller
     {
         $model = ArticleDB::getInstance()->find($id);
         if(! is_null($model)) {
-            ArticleDB::getInstance()->delete($model);
+    
+            $arrayPicture = \Dev2AL\Image\ImageDB::getInstance()->findPictureArticle($model->getId());
+            foreach ($arrayPicture as $image) {
+                unlink(App::getApp()->getConfig("uploadFolder").$image->getFile());
+            }
+
+            \Dev2AL\Image\ImageDB::getInstance()->deleteAllImageArticle($model);
             App::getApp()->setFlash("Article supprimé avec succés","success");
             App::getApp()->redirect("article","viewAll");
         }

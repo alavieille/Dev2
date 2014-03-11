@@ -69,7 +69,7 @@ class ArticleDB extends Db
     }   
 
      /**
-    * Créer la requête preparée pour la mise jour d'un article 
+    * Créer la requête preparée pour la supprésion d' un article
     * @return PDO statement 
     */
     private function createDeleteQuery()

@@ -63,9 +63,8 @@ class ImageController extends Controller
                 $extension = pathinfo($_FILES["fileUpload"]["name"], PATHINFO_EXTENSION);
                 $fileName = uniqid().".".$extension;
                 $image->setFile($fileName);
-    
-                if(move_uploaded_file($_FILES["fileUpload"]["tmp_name"], "upload/".$fileName)) {
-                     ImageDB::getInstance()->save($image);
+                if(move_uploaded_file($_FILES["fileUpload"]["tmp_name"], App::getApp()->getConfig("uploadFolder").$fileName)) {
+                    ImageDB::getInstance()->save($image);
                     App::getApp()->redirect("article","view",$idArticle);
                 }
                 else {
@@ -88,7 +87,7 @@ class ImageController extends Controller
     {
 
         $image = ImageDB::getInstance()->find($id);
-        unlink("upload/".$image->getFile());
+        unlink(App::getApp()->getConfig("uploadFolder").$image->getFile());
         ImageDB::getInstance()->delete($image);
         App::getApp()->redirect("article","view",$image->getIdArticle());
     }
