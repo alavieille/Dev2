@@ -9,6 +9,7 @@ namespace Dev2AL\Image;
 use MvcApp\Components\Controller;
 use MvcApp\Components\App;
 use MvcApp\Components\AppException;
+use MvcApp\Components\Upload;
 
 /**
 * Controlleur des images
@@ -56,19 +57,22 @@ class ImageController extends Controller
             $data["idArticle"] = $idArticle;
             $image = Image::initialize($data);
             if($image->valid()) {
+                
                 if( !exif_imagetype($_FILES["fileUpload"]["tmp_name"])){
                     $image->setErrors("fileUpload","Le fichier n'est pas une image");
                 }
-     
-                $extension = pathinfo($_FILES["fileUpload"]["name"], PATHINFO_EXTENSION);
-                $fileName = uniqid().".".$extension;
-                $image->setFile($fileName);
-                if(move_uploaded_file($_FILES["fileUpload"]["tmp_name"], App::getApp()->getConfig("uploadFolder").$fileName)) {
-                    ImageDB::getInstance()->save($image);
-                    App::getApp()->redirect("article","view",$idArticle);
-                }
+
                 else {
-                     App::getApp()->setFlash("Impossible d'envoyer la photo","error");
+                    $upload = new Upload($_FILES["fileUpload"]);
+                    try {
+
+                        $image->setFile($upload->save(App::getApp()->getConfig("uploadFolder")));
+                        ImageDB::getInstance()->save($image);
+                        App::getApp()->redirect("article","view",$idArticle);
+
+                    } catch (Exception $e) {
+                        App::getApp()->setFlash("Impossible d'envoyer la photo","error");
+                    }
                 }
             }
         }

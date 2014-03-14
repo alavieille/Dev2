@@ -25,6 +25,7 @@ class App{
         "FlashMessage" => "FlashMessage.php",
         "Form" => "Form.php",
         "Model" => "Model.php",
+        "Upload" => "Upload.php",
         );
 
     /**
