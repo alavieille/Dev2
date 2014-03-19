@@ -29,6 +29,21 @@ class App{
         );
 
     /**
+    * @var Array contient les chemins des extensions
+    */
+    private static $pathExtentions = array(
+    );
+
+
+    /**
+    * @var Array contient les chemins des extensions
+    */
+    private static $pathPear = array(
+        "Mail_mime" => "Mail/mime.php",
+        "Mail" => "Mail.php",
+    );
+
+    /**
     * @var Object $instance contient l'instance de la classe
     */
     private static $instance;
@@ -154,6 +169,18 @@ class App{
     {
         self::$appName = isset($this->config["appName"]) ? $this->config["appName"] : "";
         self::$basePath = isset($this->config["basePath"]) ? $this->config["basePath"] : "";
+        if(isset($this->config["extensions"]))
+            $this->extractExtension(); 
+    }
+
+    /**
+    * Extrait la configuration des extensions
+    */
+    private function extractExtension()
+    {
+        foreach ($this->config["extensions"] as $className => $path) {
+            self::$pathExtentions[$className] = $path;
+        }
     }
 
     /**
@@ -234,23 +261,38 @@ class App{
     */
     public static function autoload($className)
     {   
-        
         $className = explode("\\", $className);
-        $package = $className[1];
-        $className = $className[count($className)-1];
         
+        if(isset($className[1])) {
+            $package = $className[1];
+        }
+
+        $className = $className[count($className)-1];
 
         if(array_key_exists($className, self::$pathComponents)) {
 
             $path = "components/".self::$pathComponents[$className];
         }
+
+        elseif(array_key_exists($className, self::$pathPear)) {
+
+            $path = self::$pathPear[$className];
+            require_once($path);
+            return;
+        }
+
+        elseif(array_key_exists($className, self::$pathExtentions)) {
+
+            $path = "extensions/".self::$pathExtentions[$className];
+        }
+
         elseif(strrpos($className,"Controller")) {
             $path = "controllers/".$className.".php";
         }
         else {  
-            $path = "models/".$package."/".$className.".php";
+            $path = "models/".$package."/".$className.".php";   
         }
-
+    
         if(file_exists($path)){
             require_once($path);
         }      

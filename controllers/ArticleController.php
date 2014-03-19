@@ -151,9 +151,68 @@ class ArticleController extends Controller
             throw new AppException("Impossible de trouver l'article ".$id);
         }
     }
+
+    /**
+    * Genere l'article au format PDF
+    * @param Integer id de l'article
+    */
+    public function generatePDFAction($id)
+    {
+        $article = ArticleDB::getInstance()->find($id);
+        $arrayPicture = \Dev2AL\Image\ImageDB::getInstance()->findPictureArticle($id);
+            if(! is_null($article)) {
+                $pdfArticle = new ArticlePDF($article,$arrayPicture);
+                $pdfArticle->generate();
+                $pdfArticle->Output();
+            }
+            else {
+                throw new AppException("Impossible de trouver l'article ".$id);
+            }
+    }
+
+    /**
+    * Envoie l'article par mail
+    * @param Integer id de l'article
+    */
+    public function sendEmailAction($id)
+    {
+        
+        error_reporting(E_ALL & ~E_STRICT); 
+        $article = ArticleDB::getInstance()->find($id);
+        $arrayPicture = \Dev2AL\Image\ImageDB::getInstance()->findPictureArticle($id);
+            if(! is_null($article)) {
+
+
+                $to="amaury.lavieille@gmail.com";
+                $sender="";
+                $subject="tet";
+                $headers = array(
+                         "From" => $sender,
+                         "Reply-To" => $sender,
+                         "Subject" => $subject
+                         );
+
+                //creation du mail
+                $mime=new \Mail_mime("\r\n");
+                $texte="Inscription de";
+                $mime->setTXTBody(utf8_decode($texte));
+              
+                $body=$mime->get();
+                $headers=$mime->headers($headers);
+
+                // Envoie du mail
+                $mail=& \Mail::factory("mail");
+                $mail_sent=$mail->send("amaury.lavieille@gmail.com",$headers,$body);
+
+            }
+            else {
+                throw new AppException("Impossible de trouver l'article ".$id);
+            }
+    }
+
     /**
     * Confirme suppression d'un article
-    * @param Integer id de l'article
+    * @var Integer id de l'article
     */
     public function confirmDeleteAction($id)
     {

@@ -1,5 +1,6 @@
 <?php 
 // configuration de l'application
+
 $config = array(
 	// nom de l'application 
 	"appName" => "Dev2", 
@@ -17,4 +18,8 @@ $config = array(
 			'pwd' => 'Lertiotiopen15',
 
 		),
+
+	"extensions" => array(
+			"FPDF" => "fpdf/fpdf.php"
+		)
 	);

@@ -3,6 +3,13 @@
 ?>
 <div class="row">
 	<article id="article" class="panel columns small-12"> 
+		<div class="columns small-12">
+			<ul class="button-group">
+				<li><a href="<?php echo App::getApp()->createUrl('article','generatePDF',$model->getId()); ?>" class="button small">Format PDF</a></li>
+				<li><a href="<?php echo App::getApp()->createUrl('article','sendEmail',$model->getId()); ?>" class="button small">Envoyer par Email</a></li>
+				
+			</ul>
+		</div>
 		<header>
 			<div class="row">
 			  <h1 class="columns small-12">
