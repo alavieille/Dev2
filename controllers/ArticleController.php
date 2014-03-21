@@ -178,10 +178,14 @@ class ArticleController extends Controller
     {
         
         error_reporting(E_ALL & ~E_STRICT); 
-        $article = ArticleDB::getInstance()->find($id);
+        $model = ArticleDB::getInstance()->find($id);
         $arrayPicture = \Dev2AL\Image\ImageDB::getInstance()->findPictureArticle($id);
-            if(! is_null($article)) {
+            if(! is_null($model)) {
 
+                ob_start();
+                 require_once("views/Article/viewEmail.php");
+                 $content = ob_get_contents();
+                ob_end_clean();
 
                 $to="amaury.lavieille@gmail.com";
                 $sender="";
@@ -194,15 +198,21 @@ class ArticleController extends Controller
 
                 //creation du mail
                 $mime=new \Mail_mime("\r\n");
-                $texte="Inscription de";
-                $mime->setTXTBody(utf8_decode($texte));
-              
+              //  $mime->setTXTBody(utf8_decode($texte));
+                $mime->setHTMLBody($content);
                 $body=$mime->get();
                 $headers=$mime->headers($headers);
 
                 // Envoie du mail
                 $mail=& \Mail::factory("mail");
                 $mail_sent=$mail->send("amaury.lavieille@gmail.com",$headers,$body);
+                if ($mail_sent) {
+                    App::getApp()->setFlash("Email envoyé avec succés","success");
+                }
+                else {
+                      App::getApp()->setFlash("Erreur lors de l'envoi de l'email","error");
+                }
+                App::getApp()->redirect("article","view",$id);
 
             }
             else {
@@ -223,7 +233,7 @@ class ArticleController extends Controller
             foreach ($arrayPicture as $image) {
                 unlink(App::getApp()->getConfig("uploadFolder").$image->getFile());
             }
-
+            ArticleDB::getInstance()->delete($model);
             \Dev2AL\Image\ImageDB::getInstance()->deleteAllImageArticle($model);
             App::getApp()->setFlash("Article supprimé avec succés","success");
             App::getApp()->redirect("article","viewAll");

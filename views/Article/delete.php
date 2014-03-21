@@ -12,8 +12,8 @@
 		Etes vous sur de vouloir supprimer <?php echo $model->getTitre(); ?> ?
 	</p>
 	<ul class="button-group">
-	  <li><a href="<?php echo App::createUrl('article','confirmDelete',$model->getId()); ?>" class="button small">Oui</a></li>
-	  <li><a href="<?php echo App::createUrl('article','view',$model->getId()); ?>" class="button small">Non</a></li>
+	  <li><a href="<?php echo App::getApp()->createUrl('article','confirmDelete',$model->getId()); ?>" class="button small">Oui</a></li>
+	  <li><a href="<?php echo App::getApp()->createUrl('article','view',$model->getId()); ?>" class="button small">Non</a></li>
 	</ul>
 </div>
 

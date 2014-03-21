@@ -2,18 +2,8 @@
 	use MvcApp\Components\App;
 ?>
 <div class="row">
-	<?php echo App::getApp()->getFlash(); ?>
-
 	<article id="article" class="panel columns small-12"> 
-		<div class="columns small-12">
-			<ul class="button-group">
-				<li><a href="<?php echo App::getApp()->createUrl('article','generatePDF',$model->getId()); ?>" class="button small">Format PDF</a></li>
-				<li><a href="<?php echo App::getApp()->createUrl('article','sendEmail',$model->getId()); ?>" class="button small">Envoyer par Email</a></li>
-				
-			</ul>
-		</div>
 		<header>
-
 			<div class="row">
 			  <h1 class="columns small-12">
 			    <?php echo $model->getTitre() ?>
@@ -58,17 +48,6 @@
 					</ul>
 			</div>
 		<?php endif; ?>
-
-
-		<footer>
-			<div class="columns small-12">
-				<ul class="button-group">
-				  <li><a href="<?php echo App::getApp()->createUrl('image','create',$model->getId()); ?>" class="button small">Ajouter une image</a></li>
-				  <li><a href="<?php echo App::getApp()->createUrl('article','update',$model->getId()); ?>" class="button small">Modifier</a></li>
-				  <li><a href="<?php echo App::getApp()->createUrl('article','delete',$model->getId()); ?>" class="button small">Supprimer</a></li>
-				</ul>
-			</div>
-		</footer>
 	</article>
 
 </div>

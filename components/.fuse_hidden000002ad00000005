@@ -21,7 +21,6 @@ class App{
         "App" => "App.php",
         "Controller" => "Controller.php",
         "Db" => "Db.php",
-        "ModelDB" => "ModelDB.php",
         "AppException" => "AppException.php",
         "FlashMessage" => "FlashMessage.php",
         "Form" => "Form.php",
@@ -262,7 +261,6 @@ class App{
     */
     public static function autoload($className)
     {   
-     //   var_dump($className);
         $className = explode("\\", $className);
         
         if(isset($className[1])) {
