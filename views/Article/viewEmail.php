@@ -38,10 +38,8 @@
 					<ul class="columns small-12  small-block-grid-3 "> 
 						<?php foreach ($arrayPicture as $image) : ?>
 							<li>
-							<a href="<?php echo App::getApp()->createUrl('image','delete',$image->getId()); ?>" class="close">&times;</a>
-							<a class="th" href="<?php echo App::getApp()->getBasePath().App::getApp()->getConfig("uploadFolder").$image->getFile() ?>"> 
-								<img src="<?php echo App::getApp()->getBasePath().App::getApp()->getConfig("uploadFolder").$image->getFile() ?>" alt="<?php echo $image->getTitre() ?>" /> 
-							</a>
+								<img src="<?php echo App::getApp()->getConfig("path") . App::getApp()->getConfig("uploadFolder").$image->getFile() ?>" alt="<?php echo $image->getTitre() ?>" /> 
+
 							</li>
 							
 						<?php endforeach; ?>

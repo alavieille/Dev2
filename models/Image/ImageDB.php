@@ -30,10 +30,11 @@ class ImageDB extends ModelDB
     {
         $this->tableName = "Image";
         $this->className = "\\".__NAMESPACE__."\\"."Image";
+        parent::__construct();
 
         $this->findPictureArticleStatement = $this->createSelectPictureArticleQuery();
         $this->deleteAllModelStatement = $this->createDeleteAllImageQuery();
-        parent::__construct();
+
 
     }
 

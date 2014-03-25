@@ -1,6 +1,8 @@
 <?php
 	use MvcApp\Components\App;
 ?>
+
+
 <div class="row">
 	<?php echo App::getApp()->getFlash(); ?>
 
@@ -47,6 +49,7 @@
 			<div class="row" id="pictures">
 					<ul class="columns small-12  small-block-grid-3 "> 
 						<?php foreach ($arrayPicture as $image) : ?>
+							
 							<li>
 							<a href="<?php echo App::getApp()->createUrl('image','delete',$image->getId()); ?>" class="close">&times;</a>
 							<a class="th" href="<?php echo App::getApp()->getBasePath().App::getApp()->getConfig("uploadFolder").$image->getFile() ?>"> 

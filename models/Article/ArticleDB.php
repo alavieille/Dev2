@@ -7,17 +7,10 @@ namespace Dev2AL\Article;
 
 
 use MvcApp\Components\ModelDB;
-use \PDO;
 
 class ArticleDB extends ModelDB
 {
     
-
-
-
-
-    private $countAllModelStatement;
-    private $findModelStatement;
 
     /**
     * Contructeur protégé, 
@@ -29,7 +22,6 @@ class ArticleDB extends ModelDB
         $this->className = "\\".__NAMESPACE__."\\"."Article";
         parent::__construct();
 
-        $this->countAllModelStatement = $this->createCountAllQuery();
     
     }
 
