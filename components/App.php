@@ -27,6 +27,9 @@ class App{
         "Form" => "Form.php",
         "Model" => "Model.php",
         "Upload" => "Upload.php",
+        "Router" => "Router.php",
+        "Route" => "Route.php",
+        "Dispatcher" => "Dispatcher.php",
         );
 
     /**
@@ -66,12 +69,18 @@ class App{
     private $config;
 
     /**
+    * @param Routeur de l'application
+    */
+    private $router;
+
+    /**
     * Constructeur
     * @param Array $config , tableau qui contient la configuration de l'applcation
     */
-    private function __construct($config)
+    private function __construct($config,$router)
     {
         $this->config = $config;
+        $this->router = $router;
         $this->extractConfig();
     }
 
@@ -79,10 +88,10 @@ class App{
     * Initialise l'application
     * @param Array $config configuration de l'application
     */
-    public static function newApp($config)
+    public static function newApp($config,$router)
     {
         if (self::$instance==null) {
-            self::$instance=new App($config);
+            self::$instance=new App($config,$router);
         }
         return self::$instance;
     }
@@ -106,6 +115,9 @@ class App{
         try {
             try {
                 session_start();
+                $request = (isset($_GET["p"]) and ($_GET["p"])!="") ? $_GET["p"] : $this->config["defaultController"];
+               // var_dump($route);
+                $route = $this->router->route($request);
                 $this->init();
             } 
             catch (AppException $e) {
