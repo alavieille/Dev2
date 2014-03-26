@@ -11,23 +11,46 @@ class Route
 {	
 
 	private $path;
-	private $controllerClass;
+	public $controllerClass;
+	private $action;
+	private $param;
 
-	public function __constrcut($path,$controllerClass,$action="index",$param=array())
+	public function __construct($path,$controllerClass,$action="index",$param=array())
 	{
 		$this->path = $path;
 		$this->controllerClass = $controllerClass;
 		$this->action = $action;
-		$this->$param;
+		$this->param = $param;
+		$this->cleanArrayParam();
 	}
 
-	public function math($request)
+	private function cleanArrayParam()
+	{
+
+		foreach ($this->param as $key => $param) {
+			if(trim($param) == "") {
+				unset($this->param[$key]);
+			}
+		}
+	}
+
+	public function match($request)
 	{
 		return $this->path === $request;
 	}
 
-	public function createController()
+	public function getController()
 	{
-		return new $this->controllerClass;
+		return  $this->controllerClass;
+	}
+
+	public function getAction()
+	{
+		return $this->action;
+	}
+
+	public function getParam()
+	{
+		return $this->param;
 	}
 }

@@ -13,9 +13,9 @@ $config = array(
 	"uploadFolder"=>"upload/",
 	// information de connexion à la base de donnée
 	'db'=>array(
-			'dsn' => 'mysql:host=mysql.info.unicaen.fr;dbname=21004281_9',
-			'user' => '21004281',
-			'pwd' => 'Lertiotiopen15',
+			'dsn' => 'mysql:host=localhost;dbname=Dev2',
+			'user' => 'root',
+			'pwd' => 'root',
 
 		),
 

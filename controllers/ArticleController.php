@@ -88,6 +88,7 @@ class ArticleController extends Controller
     */
     public function viewAction($id)
     {
+
         $model = ArticleDB::getInstance()->find($id);
         if(! is_null($model)) {
             $arrayPicture = \Dev2AL\Image\ImageDB::getInstance()->findPictureArticle($id);

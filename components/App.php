@@ -116,9 +116,8 @@ class App{
             try {
                 session_start();
                 $request = (isset($_GET["p"]) and ($_GET["p"])!="") ? $_GET["p"] : $this->config["defaultController"];
-               // var_dump($route);
                 $route = $this->router->route($request);
-                $this->init();
+                (new Dispatcher())->dispatch($route);
             } 
             catch (AppException $e) {
               
@@ -130,51 +129,7 @@ class App{
         }
     }
 
-    /**
-    * Fonction qui retourne l'action du controlleur transmis dans l'url
-    * Si le controlleur ou la méthode est inconnue alors une exception est levée
-    * @throws Exception 404
-    **/
-    private function init()
-    {        
-        list($controller,$action,$param) = $this->getRoute();
-        if(class_exists($controller) && method_exists($controller, $action)){
-            $instanceController = new $controller(); 
-            if($param != null) {
-                return $instanceController->$action($param);
-            }
-            else {
-                return $instanceController->$action();
-            }
-        }
-        else{
-            throw new AppException("Requete invalide", 404);
-            
-        }
-    }
-
-    /**
-    * Retourne le controlleur et l'action demande dans l'url
-    * @return Array 
-    **/
-    private function getRoute(){
-        $route = (isset($_GET["p"]) and ($_GET["p"])!="") ? $_GET["p"] : $this->config["defaultController"];
-        $routeArray = explode("/",$route);
-
-        $controller = $routeArray[0];
-        $action = (isset($routeArray[1]) && $routeArray[1] != "") ? $routeArray[1] : "index";
-        $param = isset($routeArray[2]) ? $routeArray[2] : null;
-
-        $controllerName = ucfirst($controller);
-        $classController = $controllerName."Controller";
-        $action = $action."Action";
-
-        $classController = $this->config["namespaceApp"]."\\".$controllerName."\\".$classController;
-
-        return array($classController,$action,$param);
-    }
-
-
+   
     /**
     * Extrait le tableau de configuration dans les paramètres de classe
     */
@@ -274,7 +229,7 @@ class App{
     */
     public static function autoload($className)
     {   
-     //   var_dump($className);
+        //var_dump($className);
         $className = explode("\\", $className);
         
         if(isset($className[1])) {
@@ -302,11 +257,12 @@ class App{
 
         elseif(strrpos($className,"Controller")) {
             $path = "controllers/".$className.".php";
+            //var_dump($path);
         }
         else {  
             $path = "models/".$package."/".$className.".php";   
         }
-    
+        //var_dump($path);
         if(file_exists($path)){
             require_once($path);
         }      
