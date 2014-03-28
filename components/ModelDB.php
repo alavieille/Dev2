@@ -220,6 +220,23 @@ Abstract class ModelDB extends Db
         return null;
     }
 
+    /**
+    * Cherche une ligne
+    * @return Object Model if exist else return null
+    */
+    public function findByattribute($attribute,$value)
+    {  
+        
+
+        $query = "  SELECT * FROM ". $this->tableName." WHERE ".$attribute."='".$value."'";
+        $find = $this->pdo->query($query);
+        if($ligne = $find->fetch()) {
+            return call_user_func($this->className.'::initialize',$ligne);
+        }
+        return null;
+    }
+
+
     /*
     * Crée la requête préparée pour compter le nombre de ligne
     * @return PDO statement

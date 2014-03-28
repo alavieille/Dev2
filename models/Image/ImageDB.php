@@ -42,9 +42,9 @@ class ImageDB extends ModelDB
     protected function queryData($model)
     {
         return array(
-            "titre" => $model->getTitre(),
-            "file" => $model->getFile(),
-            "idArticle" => $model->getIdArticle(),
+            "titre" => $model->titre,
+            "file" => $model->file,
+            "idArticle" => $model->idArticle,
         );
     }
 

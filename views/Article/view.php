@@ -9,8 +9,8 @@
 	<article id="article" class="panel columns small-12"> 
 		<div class="columns small-12">
 			<ul class="button-group">
-				<li><a href="<?php echo App::getApp()->createUrl('article','generatePDF',$model->getId()); ?>" class="button small">Format PDF</a></li>
-				<li><a href="<?php echo App::getApp()->createUrl('article','sendEmail',$model->getId()); ?>" class="button small">Envoyer par Email</a></li>
+				<li><a href="<?php echo App::getApp()->createUrl('article','generatePDF',$model->id); ?>" class="button small">Format PDF</a></li>
+				<li><a href="<?php echo App::getApp()->createUrl('article','sendEmail',$model->id); ?>" class="button small">Envoyer par Email</a></li>
 				
 			</ul>
 		</div>
@@ -18,30 +18,30 @@
 
 			<div class="row">
 			  <h1 class="columns small-12">
-			    <?php echo $model->getTitre() ?>
+			    <?php echo $model->titre ?>
 			  </h1>
 			</div>
 			<div class="row">
 			  <p class="columns small-6">
-			    <?php echo $model->getAuteur() ?>
+			    <?php echo $model->auteur ?>
 			  </p>  
 			  <p class="columns small-6 text-right ">
-			    <?php echo date("d-m-Y", strtotime($model->getDateCreation())) ?>
+			    <?php echo date("d-m-Y", strtotime($model->dateCreation)) ?>
 			  </p>
 			</div>
 		</header>
 
-		<?php if($model->getChapo() != "" ) : ?>
+		<?php if($model->chapo != "" ) : ?>
 			<div class="row">
 				<p class="text-justify columns small-12">
-					<?php echo $model->getChapo() ?>
+					<?php echo $model->chapo ?>
 				</p>
 			</div>
 		<?php endif; ?>
 
 		<div class="row">
 			<p class="text-justify columns small-12">
-				<?php echo $model->getcontenue() ?>
+				<?php echo $model->contenue ?>
 			</p>
 		</div>		
 
@@ -51,9 +51,9 @@
 						<?php foreach ($arrayPicture as $image) : ?>
 							
 							<li>
-							<a href="<?php echo App::getApp()->createUrl('image','delete',$image->getId()); ?>" class="close">&times;</a>
-							<a class="th" href="<?php echo App::getApp()->getBasePath().App::getApp()->getConfig("uploadFolder").$image->getFile() ?>"> 
-								<img src="<?php echo App::getApp()->getBasePath().App::getApp()->getConfig("uploadFolder").$image->getFile() ?>" alt="<?php echo $image->getTitre() ?>" /> 
+							<a href="<?php echo App::getApp()->createUrl('image','delete',$image->id); ?>" class="close">&times;</a>
+							<a class="th" href="<?php echo App::getApp()->getBasePath().App::getApp()->getConfig("uploadFolder").$image->file ?>"> 
+								<img src="<?php echo App::getApp()->getBasePath().App::getApp()->getConfig("uploadFolder").$image->file ?>" alt="<?php echo $image->titre ?>" /> 
 							</a>
 							</li>
 							
@@ -66,9 +66,9 @@
 		<footer>
 			<div class="columns small-12">
 				<ul class="button-group">
-				  <li><a href="<?php echo App::getApp()->createUrl('image','create',$model->getId()); ?>" class="button small">Ajouter une image</a></li>
-				  <li><a href="<?php echo App::getApp()->createUrl('article','update',$model->getId()); ?>" class="button small">Modifier</a></li>
-				  <li><a href="<?php echo App::getApp()->createUrl('article','delete',$model->getId()); ?>" class="button small">Supprimer</a></li>
+				  <li><a href="<?php echo App::getApp()->createUrl('image','create',$model->id); ?>" class="button small">Ajouter une image</a></li>
+				  <li><a href="<?php echo App::getApp()->createUrl('article','update',$model->id); ?>" class="button small">Modifier</a></li>
+				  <li><a href="<?php echo App::getApp()->createUrl('article','delete',$model->id); ?>" class="button small">Supprimer</a></li>
 				</ul>
 			</div>
 		</footer>

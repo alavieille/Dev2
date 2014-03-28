@@ -103,8 +103,8 @@ class Form
         foreach ($htmlOptions as $option => $valeur) {
             $res .= $option."='".$valeur."' ";
         }
-        $methodGet = "get".ucfirst($name);
-        $res .="value='".$this->model->$methodGet()."'";
+        
+        $res .="value='".$this->model->$name."'";
         $res .="/>\n";
 
         if(isset($this->model->getErrors()[$name])) {
@@ -130,8 +130,8 @@ class Form
         foreach ($htmlOptions as $option => $valeur) {
             $res .= $option."='".$valeur."' ";
         }
-        $methodGet = "get".ucfirst($name);
-        $res .="value='".$this->model->$methodGet()."'";
+
+        $res .="value='".$this->model->$name."'";
         $res .="/>\n";
 
         if(isset($this->model->getErrors()[$name])) {
@@ -158,8 +158,8 @@ class Form
         foreach ($htmlOptions as $option => $valeur) {
             $res .= $option."='".$valeur."' ";
         }
-        $methodGet = "get".ucfirst($name);
-        $res .="value='".$this->model->$methodGet()."'";
+        
+        $res .="value='".$this->model->$name."'";
         $res .="/>\n";
 
         if(isset($this->model->getErrors()[$name])) {
@@ -185,8 +185,8 @@ class Form
         foreach ($htmlOptions as $option => $valeur) {
             $res .= $option."='".$valeur."' ";
         }
-        $methodGet = "get".ucfirst($name);
-        $res .="value='".$this->model->$methodGet()."'";
+        
+        $res .="value='".$this->model->$name."'";
         $res .="/>\n";
 
         if(isset($this->model->getErrors()[$name])) {
@@ -212,7 +212,7 @@ class Form
         foreach ($htmlOptions as $option => $valeur) {
             $res .= $option."='".$valeur."' ";
         }
-        $methodGet = "get".ucfirst($name);
+       
         $res .="/>\n";
 
         if(isset($this->model->getErrors()[$name])) {
@@ -239,8 +239,8 @@ class Form
         foreach ($htmlOptions as $option => $valeur) {
             $res .= $option."='".$valeur."' ";
         }
-        $methodGet = "get".ucfirst($name);
-        $res .="value='".$this->model->$methodGet()."'";
+     
+        $res .="value='".$this->model->$name."'";
         $res .="/>\n";
 
         if(isset($this->model->getErrors()[$name])) {
@@ -266,8 +266,8 @@ class Form
         foreach ($htmlOptions as $option => $valeur) {
             $res .= $option."='".$valeur."' ";
         }
-        $methodGet = "get".ucfirst($name);
-        $res .="value='".$this->model->$methodGet()."'";
+        
+        $res .="value='".$this->model->$name."'";
         $res .="/>\n";
 
         if(isset($this->model->getErrors()[$name])) {
@@ -293,8 +293,8 @@ class Form
         foreach ($htmlOptions as $option => $valeur) {
             $res .= $option."='".$valeur."' ";
         }
-        $methodGet = "get".ucfirst($name);
-        $res .="value='".$this->model->$methodGet()."'";
+      
+        $res .="value='".$this->model->$name."'";
         $res .="/>\n";
 
         if(isset($this->model->getErrors()[$name])) {
@@ -321,8 +321,8 @@ class Form
         foreach ($htmlOptions as $option => $valeur) {
             $res .= $option."='".$valeur."' ";
         }
-        $methodGet = "get".ucfirst($name);
-        $res .="value='".$this->model->$methodGet()."'";
+        
+        $res .="value='".$this->model->$name."'";
         $res .="/>\n";
 
         if(isset($this->model->getErrors()[$name])) {
@@ -381,9 +381,9 @@ class Form
         foreach ($htmlOptions as $option => $valeur) {
             $res .= $option."='".$valeur."' ";
         }
-        $methodGet = "get".ucfirst($name);
+       
         $res .= "/>\n";
-        $res .= $this->model->$methodGet();
+        $res .= $this->model->$name;
         $res .= "</textarea>\n";
 
         if(isset($this->model->getErrors()[$name])) {

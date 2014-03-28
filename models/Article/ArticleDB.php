@@ -29,10 +29,10 @@ class ArticleDB extends ModelDB
     protected function queryData($model)
     {
         return array(
-            "titre" => $model->getTitre(),
-            "chapo" => $model->getChapo(),
-            "contenue" => $model->getContenue(),
-            "auteur" => $model->getAuteur()
+            "titre" => $model->titre,
+            "chapo" => $model->chapo,
+            "contenue" => $model->contenue,
+            "auteur" => $model->auteur
         );
     }
 

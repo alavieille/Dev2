@@ -8,6 +8,8 @@ namespace MvcApp\Components;
 
 Abstract class Model
 {
+    protected $errors;
+
     protected function __construct(){}
 
     /**
@@ -23,4 +25,35 @@ Abstract class Model
         }
         return $arrayRes;
     }
+
+
+    public function __get($property)
+    {
+        return $this->$property;
+    }
+
+    public function __set($property,$value)
+    {
+        return $this->$property = $value;
+    }
+
+    /**
+    * Retourne le tableau des erreurs
+    * @return Array
+    */
+    public function getErrors(){
+        return $this->errors;
+    }
+
+    
+    /**
+    * ajoute une erreur
+    * @param String $key nom de l'input 
+    * @param String $value Message de l'erreur
+    * @return Array
+    */
+    public function setErrors($key,$value){
+        return $this->errors[$key]=$value;
+    }
+
 }

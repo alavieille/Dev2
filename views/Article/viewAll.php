@@ -22,15 +22,15 @@ $(window).load(function(){
 <?php echo App::getApp()->getFlash(); ?>
 		<div id="masonryContainer">
 		<?php foreach ($arrayModel as $num => $model): ?>
-			<a class="panel masonry-brick columns" href="<?php echo App::getApp()->	createUrl('article','view',$model->getId()); ?>">
+			<a class="panel masonry-brick columns" href="<?php echo App::getApp()->	createUrl('article','view',$model->id); ?>">
 				<article >
-						<h3><?php echo $model->getTitre() ?></h3>
+						<h3><?php echo $model->titre?></h3>
 						<div class="row details">
-							<p class="auteur large-8 columns txt-left"><?php echo $model->getAuteur() ?></p>
-							<p class="large-4 columns "><?php echo date("d-m-Y", strtotime($model->getDateCreation())) ?></p>		
+							<p class="auteur large-8 columns txt-left"><?php echo $model->auteur ?></p>
+							<p class="large-4 columns "><?php echo date("d-m-Y", strtotime($model->dateCreation)) ?></p>		
 						</div>
-						<?php if($model->getChapo() != "" ) : ?>
-							<p class="text-justify" ><?php echo $model->getChapo(); ?></p>
+						<?php if($model->chapo != "" ) : ?>
+							<p class="text-justify" ><?php echo $model->chapo; ?></p>
 						<?php else : ?>
 							<p class="text-justify" ><?php echo $model->excerptContenue(); ?></p>
 						<?php endif; ?>

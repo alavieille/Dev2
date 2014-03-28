@@ -6,30 +6,30 @@
 		<header>
 			<div class="row">
 			  <h1 class="columns small-12">
-			    <?php echo $model->getTitre() ?>
+			    <?php echo $model->titre ?>
 			  </h1>
 			</div>
 			<div class="row">
 			  <p class="columns small-6">
-			    <?php echo $model->getAuteur() ?>
+			    <?php echo $model->auteur ?>
 			  </p>  
 			  <p class="columns small-6 text-right ">
-			    <?php echo date("d-m-Y", strtotime($model->getDateCreation())) ?>
+			    <?php echo date("d-m-Y", strtotime($model->dateCreation)) ?>
 			  </p>
 			</div>
 		</header>
 
-		<?php if($model->getChapo() != "" ) : ?>
+		<?php if($model->chapo != "" ) : ?>
 			<div class="row">
 				<p class="text-justify columns small-12">
-					<?php echo $model->getChapo() ?>
+					<?php echo $model->chapo ?>
 				</p>
 			</div>
 		<?php endif; ?>
 
 		<div class="row">
 			<p class="text-justify columns small-12">
-				<?php echo $model->getcontenue() ?>
+				<?php echo $model->contenue ?>
 			</p>
 		</div>		
 
@@ -38,7 +38,7 @@
 					<ul class="columns small-12  small-block-grid-3 "> 
 						<?php foreach ($arrayPicture as $image) : ?>
 							<li>
-								<img src="<?php echo App::getApp()->getConfig("path") . App::getApp()->getConfig("uploadFolder").$image->getFile() ?>" alt="<?php echo $image->getTitre() ?>" /> 
+								<img src="<?php echo App::getApp()->getConfig("path") . App::getApp()->getConfig("uploadFolder").$image->file ?>" alt="<?php echo $image->titre ?>" /> 
 
 							</li>
 							

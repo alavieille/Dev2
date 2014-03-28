@@ -33,6 +33,13 @@
 
 				    <li><a href="<?php echo App::getApp()->createUrl('article','create') ?>">Créer un article</a></li>
 				 
+			    </ul>			    
+			    <ul class="right">
+				   
+				    <li><a href="<?php echo App::getApp()->createUrl('user','create');?>">Inscription</a></li>
+
+				    <li><a href="<?php echo App::getApp()->createUrl('user','create') ?>">Connexion</a></li>
+				 
 			    </ul>
 			  </section>
 			</nav>  
