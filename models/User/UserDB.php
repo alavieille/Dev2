@@ -31,16 +31,16 @@ class UserDB extends ModelDB
         return array(
             "email" => $model->email,
             "password" => $model->password,
-            "nom" => $model->contenue,
+            "nom" => $model->nom,
             "prenom" => $model->prenom,
-            "status" => $model->status
+            "statut" => $model->statut
         );
     }
 
 
     protected function partQuery()
     {
-        $sql = " SET email=:email, password=:password, nom=:nom, auteur=:auteur, prenom=prenom, status=:status ";
+        $sql = " SET email=:email, password=:password, nom=:nom, prenom=:prenom, statut=:statut ";
         return $sql;
     }
 

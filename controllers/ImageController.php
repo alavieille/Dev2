@@ -26,6 +26,21 @@ class ImageController extends Controller
         parent::__construct();
     }
 
+    protected function roles()
+    {
+       return array(
+            array(
+                "role" => "*",
+                "actions" => array("index")
+            ),
+            array(
+                "role" => "@",
+                "actions" => array("create","save")
+            ),
+        );
+
+    }
+    
     /**
     * Action par défaut
     */
@@ -51,7 +66,7 @@ class ImageController extends Controller
 
     public function saveAction($idArticle)
     {
-        
+        $image = Image::initialize();
         if(isset($_POST)) {
             $data = $_POST;
             $data["idArticle"] = $idArticle;

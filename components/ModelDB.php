@@ -78,8 +78,9 @@ Abstract class ModelDB extends Db
     */
     public function save($model)
     {    
-        
-        $this->createModelStatement->execute($this->queryData($model)); 
+        var_dump($this->queryData($model));
+        var_dump($this->createModelStatement); 
+        $this->createModelStatement->execute($this->queryData($model));
         return $this->pdo->lastInsertId();
     }
 

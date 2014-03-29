@@ -35,11 +35,12 @@
 				 
 			    </ul>			    
 			    <ul class="right">
-				   
+				   	<?php if(! App::getApp()->getAuth()->isLogged()) :?>
 				    <li><a href="<?php echo App::getApp()->createUrl('user','create');?>">Inscription</a></li>
-
-				    <li><a href="<?php echo App::getApp()->createUrl('user','create') ?>">Connexion</a></li>
-				 
+				    <li><a href="<?php echo App::getApp()->createUrl('user','login') ?>">Connexion</a></li>
+					<?php else : ?>
+				    <li><a href="<?php echo App::getApp()->createUrl('user','logout') ?>">Deconnexion</a></li>
+				 	<?php endif; ?>
 			    </ul>
 			  </section>
 			</nav>  
@@ -47,6 +48,7 @@
 	  	
 	  	<!--content -->
  		<div role="content">
+ 			<?php //var_dump(App::getApp()->getAuth()); ?>
 			<?php echo $content; ?>
 	    </div>
 

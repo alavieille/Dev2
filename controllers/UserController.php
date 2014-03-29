@@ -8,6 +8,7 @@ namespace Dev2AL\User;
 
 use MvcApp\Components\Controller;
 use MvcApp\Components\App;
+use MvcApp\Components\AuthManager;
 use MvcApp\Components\AppException;
 
 
@@ -26,6 +27,22 @@ class UserController extends Controller
         parent::__construct();
     }
 
+    protected function roles()
+    {
+        return array(
+            array(
+                "role" => "*",
+                "actions" => array("index","create","save","login")
+            ),
+            array(
+                "role" => "@",
+                "actions" => array("logout")
+            )
+
+        );
+
+    }
+    
     /**
     * Action par défaut
     */
@@ -47,16 +64,19 @@ class UserController extends Controller
 
     }
 
-
+    /**
+    * Inscription
+    */
     public function saveAction()
     {
+        $user = User::initialize();
         if(isset($_POST)) {
             $user = User::initialize($_POST);
-            var_dump(UserDB::getInstance()->findByattribute("email",$user->email));
-           /* if(! isset(UserDB::getInstance()->findByattribute("email",$user->email))) {
+           
+            if(! is_null(UserDB::getInstance()->findByattribute("email",$user->email))) {
                 $user->setErrors("email","L'email est déjà utilisé");
             }
-            */
+            
             if($user->valid()) {
                  UserDB::getInstance()->save($user);
                  App::getApp()->setFlash("Inscription reussite", "success");
@@ -67,6 +87,38 @@ class UserController extends Controller
         $this->render("create",array(
             "model"=>$user,
         )); 
+    }
+
+
+    /**
+    * Connexion d'un utilisateur
+    **/
+    public function loginAction()
+    {
+        $userIdentity = UserIdentity::initialize();
+
+        if(isset($_POST) && ! empty($_POST)){
+            $userIdentity = UserIdentity::initialize($_POST);
+            
+            if($userIdentity->valid()) {
+                $user = UserDB::getInstance()->findByattribute("email",$userIdentity->email);
+                AuthManager::getInstance()->login($user,$user->statut);
+   
+                App::getApp()->setFlash("Connexion reussite", "success");
+                App::getApp()->redirect("article","viewAll");
+            }
+
+        }
+        $this->render("login",array(
+            "model" => $userIdentity,
+        ));
+    }
+
+    public function logoutAction()
+    {
+        AuthManager::getInstance()->logout();
+        App::getApp()->setFlash("Deconnexion reussite", "success");
+        App::getApp()->redirect("article","viewAll");
     }
         
 

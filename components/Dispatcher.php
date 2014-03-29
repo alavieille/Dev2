@@ -23,10 +23,10 @@ class Dispatcher
 		$param = $route->getParam();
 		if(class_exists($controller) && method_exists($controller, $action)) {
 			$controller = new $controller;
-			call_user_func_array(array($controller, $action), $param);
+			$controller->runAction($action,$param);	
 		}
 		else {
-			throw new AppException("Requete invalide", 404);
+			throw new RouteException("Requete invalide", 404);
 		}
 	}
 

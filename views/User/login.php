@@ -2,13 +2,14 @@
   use MvcApp\Components\App;
   use MvcApp\Components\Form;
 
-  $form = new Form($model,App::getApp()->createUrl('user','save'),array(
+  $form = new Form($model,App::getApp()->createUrl('user','login'),array(
         "id" => "formCreateExemple"
         ));
 ?>
+
 <div  id="titleRow">
   <div class="row">
-    <h1 class="columns large-12">Inscription</h1>
+    <h1 class="columns large-12">Connexion</h1>
   </div>
 </div>
 
@@ -19,8 +20,11 @@
       
       <div class="row">
           <div class="large-12 columns">
+         
             <?php echo $form->label("email","Email"); ?>
             <?php echo $form->inputEmail("email"); ?>
+
+         
           </div>
       </div>       
 
@@ -30,27 +34,6 @@
             <?php echo $form->inputPassword("password"); ?>
           </div>
       </div> 
-
-      <div class="row">
-          <div class="large-12 columns">
-            <?php echo $form->label("confirm","Confirmation du mot de passe"); ?>
-            <?php echo $form->inputPassword("confirm"); ?>
-          </div>
-      </div> 
-
-      <div class="row">
-          <div class="large-12 columns">
-            <?php echo $form->label("nom","Nom"); ?>
-            <?php echo $form->inputText("nom"); ?>
-          </div>
-      </div>   
-
-      <div class="row">
-          <div class="large-12 columns">
-            <?php echo $form->label("prenom","Prenom"); ?>
-            <?php echo $form->inputText("prenom"); ?>
-          </div>
-      </div>    
 
       <div class="row">
           <div class="large-1 columns">

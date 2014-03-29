@@ -20,6 +20,7 @@ class Article extends Model
     protected $dateCreation;
     protected $datePublication;
 
+
     protected $errors;
 
     /**
@@ -55,7 +56,7 @@ class Article extends Model
         $data['titre'] = isset($dataObj['titre']) ? $dataObj['titre'] : '';
         $data['chapo'] = isset($dataObj['chapo']) ? $dataObj['chapo'] : '';
         $data['contenue'] = isset($dataObj['contenue']) ? $dataObj['contenue'] : '';
-        $data['auteur'] = isset($dataObj['auteur']) ? $dataObj['auteur'] : '';
+        $data['auteur'] = isset($dataObj['auteur']) ? $dataObj['auteur'] : 0;
         $data['status'] = isset($dataObj['status']) ? $dataObj['status'] : null;
         $data['dateCreation'] = isset($dataObj['date_creation']) ? $dataObj['date_creation'] : null;
         $data['datePublication'] = isset($dataObj['date_publication']) ? $dataObj['date_publication'] : null;

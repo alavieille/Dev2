@@ -24,6 +24,37 @@ class ArticleController extends Controller
         parent::__construct();
     }
 
+    protected function roles()
+    {
+        return array(
+           array(
+                "role" => "*",
+                "actions" => array("index","viewAll","view","sendEmail")
+            ),
+            array(
+                "role" => "@",
+                "actions" => array("create","save"),
+            ),
+            array(
+                "role" => "@",
+                "actions" => array("update"),
+                "expression"=>$this->isTest(),
+            ),
+            array(
+                "role" => "admin",
+                "actions" => array("update","delete","confirmDelete","confirmUpdate"),
+            )
+        );
+
+    }
+    
+
+
+    public function isTest()
+    {
+
+        return false;
+    }
     /**
     * Action par défaut
     */
@@ -45,8 +76,12 @@ class ArticleController extends Controller
     */
     public function saveAction()
     {     
+        $article = Article::initialize();
+
         if(isset($_POST)) {
             $article = Article::initialize($_POST);
+            $auteur = App::getApp()->getAuth()->getValue();
+            $article->auteur = $auteur->id;
             if($article->valid()) {
                 $id = ArticleDB::getInstance()->save($article);
                 App::getApp()->redirect("article","view",$id);
@@ -86,9 +121,9 @@ class ArticleController extends Controller
     * Affiche un article
     * @param Integer id de l'article
     */
-    public function viewAction($id)
-    {
-
+    public function viewAction($id,$t)
+    {   
+    
         $model = ArticleDB::getInstance()->find($id);
         if(! is_null($model)) {
             $arrayPicture = \Dev2AL\Image\ImageDB::getInstance()->findPictureArticle($id);

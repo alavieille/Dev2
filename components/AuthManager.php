@@ -11,14 +11,15 @@ class AuthManager
 
   
     protected static $instance = null;
-    protected $infosAuthentification = array();
+    protected $auth;
 
     private function __construct()
     {
-        if (isset($_SESSION['infosAuthentification'])) {
-            $this->infosAuthentification = $_SESSION['infosAuthentification'];
-        } else {
-            $this->infosAuthentification = array();
+        if (isset($_SESSION['auth']) && isset($_SESSION['auth']["value"]) && isset($_SESSION['auth']["role"])) {
+            $this->auth = new Auth(true,$_SESSION["auth"]["role"],$_SESSION["auth"]["value"]);
+        } 
+        else {
+            $this->auth = new Auth();
         }
     }
 
@@ -33,21 +34,24 @@ class AuthManager
     }
 
 
-    public function login($user)
+    public function login($user,$role)
     {
-    	$_SESSION["user"] = $user;
+        $this->auth = new Auth(true,$role,$user);
+        $_SESSION["auth"]["role"] = $role;
+        $_SESSION["auth"]["value"] = $user;
     }	
 
     public function logout()
     {
-    	unset($_SESSION["user"]);
+    	unset($_SESSION["auth"]["role"]);
+        unset($_SESSION["auth"]["value"]);
+        $this->auth = new Auth();
     }
 
-    public function isLogged()
+    public function getAuth()
     {
-    	return (isset($_SESSION["user"]));
+        return $this->auth;
     }
-
 
 }
 

@@ -11,7 +11,7 @@ use MvcApp\Components\App;
 /**
 * Classe parente qui représente un controlleur
 */
-class Controller
+Abstract class Controller
 {
     /**
     * squelette utilisé par le controlleur
@@ -26,13 +26,28 @@ class Controller
     public $name;
 
 
+    public $roleManager;
+
     /**
     * initialise un constructeur en générale
     **/
-    public function __construct()
-    {
+    public function __construct(){
+        $this->roleManager = new RoleManager($this->roles());
 
     }
+
+    abstract protected function roles();
+
+
+    public function runAction($action,$param)
+    {
+        if($this->roleManager->validAccess($action,App::getApp()->getAuth())){
+            call_user_func_array(array($this,$action), $param);
+
+            //$this->$action($param);
+        }
+    }
+
 
     /**
     * Inclut la vue definsi par $filename dans le layout

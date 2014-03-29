@@ -22,7 +22,9 @@ class App{
         "Controller" => "Controller.php",
         "Db" => "Db.php",
         "ModelDB" => "ModelDB.php",
-        "AppException" => "AppException.php",
+        "AppException" => "exception/AppException.php",
+        "RouteException" => "exception/RouteException.php",
+        "RoleException" => "exception/RoleException.php",
         "FlashMessage" => "FlashMessage.php",
         "Form" => "Form.php",
         "Model" => "Model.php",
@@ -30,6 +32,12 @@ class App{
         "Router" => "Router.php",
         "Route" => "Route.php",
         "Dispatcher" => "Dispatcher.php",
+        "AuthManager" => "AuthManager.php",
+        "Auth" => "Auth.php",
+        "RoleManager" => "role/RoleManager.php",
+        "Role" => "role/Role.php",
+        "RoleAllUser" => "role/RoleAllUser.php",
+        "RoleLoggedUser" => "role/RoleLoggedUser.php",
         );
 
     /**
@@ -73,6 +81,12 @@ class App{
     */
     private $router;
 
+
+    /**
+    * @param Authentification de l'application
+    */
+    private $auth;
+
     /**
     * Constructeur
     * @param Array $config , tableau qui contient la configuration de l'applcation
@@ -115,6 +129,7 @@ class App{
         try {
             try {
                 session_start();
+                $this->initAuth();
                 $request = (isset($_GET["p"]) and ($_GET["p"])!="") ? $_GET["p"] : $this->config["defaultController"];
                 $route = $this->router->route($request);
                 (new Dispatcher())->dispatch($route);
@@ -140,6 +155,20 @@ class App{
         if(isset($this->config["extensions"]))
             $this->extractExtension(); 
     }
+
+    /**
+    * Gestion de l'authentification de l'application
+    */
+    private function initAuth()
+    {
+        $this->auth = AuthManager::getInstance()->getAuth();
+    }
+
+    public function getAuth()
+    {
+        return $this->auth;
+    }
+
 
     /**
     * Extrait la configuration des extensions

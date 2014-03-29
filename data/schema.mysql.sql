@@ -20,15 +20,14 @@ CREATE TABLE IF NOT EXISTS `Image` (
   PRIMARY KEY (`id`)
 )
 
+
 CREATE TABLE IF NOT EXISTS `User` (
-  `email` varchar(100) NOT NULL,
-  `lastname` varchar(100) NOT NULL,
-  `firstname` varchar(100) NOT NULL,
-  `password` varchar(300) NOT NULL,
-  `picture` varchar(100) DEFAULT NULL,
-  `hash_auto_login` varchar(100) DEFAULT NULL,
-  `tempory_password` varchar(100) DEFAULT NULL,
-  `date_tmp_password` datetime DEFAULT NULL,
-  PRIMARY KEY (`email`),
-  UNIQUE KEY `email` (`email`),
-) 
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `prenom` varchar(255) NOT NULL,
+  `statut` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+)

@@ -26,13 +26,6 @@
 
       <div class="row">
           <div class="large-12 columns">
-            <?php echo $form->label("auteur","Auteur"); ?>
-            <?php echo $form->inputText("auteur"); ?>
-          </div>
-      </div>    
-
-      <div class="row">
-          <div class="large-12 columns">
             <?php echo $form->label("chapo","Chapô"); ?>
             <?php echo $form->textarea("chapo"); ?>
           </div>
