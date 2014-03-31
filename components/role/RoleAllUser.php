@@ -16,7 +16,16 @@ class RoleAllUser extends Role
 	**/
 	public function validAccess($action,$userAuth)
 	{
-		return (in_array($action, $this->actions)  && $this->expression );
+		$validAction = (in_array($action, $this->actions));
+		if($validAction) {
+			$expression = true;
+			if(! is_null($this->expression)) {
+				$expression = $this->validExpression($instanceController,$paramAction);
+			}
+			return $expression;
+		}
+		return false;
+
 	}
 
 }

@@ -4,12 +4,14 @@
 * @author Amaury Lavieille
 */
 namespace Dev2AL\Image;
+use Dev2AL\Article\ArticleDB;
 
 
 use MvcApp\Components\Controller;
 use MvcApp\Components\App;
 use MvcApp\Components\AppException;
 use MvcApp\Components\Upload;
+
 
 /**
 * Controlleur des images
@@ -35,8 +37,13 @@ class ImageController extends Controller
             ),
             array(
                 "role" => "@",
-                "actions" => array("create","save")
+                "actions" => array("create","save","delete"),
+                "expression" => "isAuthor",
             ),
+            array(
+                "role" => "admin",
+                "actions" => array("create","save","delete"),
+            )
         );
 
     }
@@ -47,6 +54,23 @@ class ImageController extends Controller
     public function indexAction()
     {
        //   App::getApp()->redirect("article","viewAll");
+    }
+
+    /**
+    * Verifie si l'utilisateur est l'auteur de l'article
+    */
+    public function isAuthor($id)
+    {
+
+       if(! is_null(App::getApp()->getAuth()->getValue())) 
+       {
+        $model = ArticleDB::getInstance()->find($id);
+        if(! is_null($model)) {
+            return (App::getApp()->getAuth()->getValue()->id === $model->auteur);
+        }
+        else throw new AppException("Impossible de trouver l'article ".$id);
+       }
+       return false;
     }
 
     /**

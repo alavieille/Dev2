@@ -25,8 +25,8 @@ class RoleManager
 
 		foreach ($roles as $role) {
 
-		
-			$expression = isset($role["expression"]) ? $role["expression"] : true;
+			
+			$expression = isset($role["expression"]) ? $role["expression"] : null;
 			//var_dump($expression);
 			if($role["role"] == "*") { // tous les utilisateurs
 				$this->arrayRoles[] = new RoleAllUser($role["role"],$role["actions"],$expression);
@@ -45,12 +45,13 @@ class RoleManager
 	* @param String $action l'action demandé
 	* @param Object $authUser instance de Auth
 	*/
-	public function validAccess($action, $authUser)
+	public function validAccess($action, $authUser,$instanceController,$paramAction)
 	{
 
 
 		foreach ($this->arrayRoles as $role) {
-			if($role->validAccess($action,$authUser)) {
+			
+			if($role->validAccess($action,$authUser,$instanceController,$paramAction)) {
 				return true;
 			}
 		}

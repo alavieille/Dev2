@@ -41,7 +41,8 @@ Abstract class Controller
 
     public function runAction($action,$param)
     {
-        if($this->roleManager->validAccess($action,App::getApp()->getAuth())){
+     //   var_dump($this->roleManager->validAccess($action,App::getApp()->getAuth(),$this,$param));
+        if($this->roleManager->validAccess($action,App::getApp()->getAuth(),$this,$param)){
             call_user_func_array(array($this,$action), $param);
 
             //$this->$action($param);

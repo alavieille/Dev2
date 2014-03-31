@@ -37,8 +37,8 @@ class ArticleController extends Controller
             ),
             array(
                 "role" => "@",
-                "actions" => array("update"),
-                "expression"=>$this->isTest(),
+                "actions" => array("update","delete","confirmDelete","confirmUpdate"),
+                "expression"=>"isAuthor",
             ),
             array(
                 "role" => "admin",
@@ -49,12 +49,23 @@ class ArticleController extends Controller
     }
     
 
-
-    public function isTest()
+    /**
+    * Verifie si l'utilisateur est l'auteur de l'article
+    */
+    public function isAuthor($id)
     {
 
-        return false;
+       if(! is_null(App::getApp()->getAuth()->getValue())) 
+       {
+        $model = ArticleDB::getInstance()->find($id);
+        if(! is_null($model)) {
+            return (App::getApp()->getAuth()->getValue()->id === $model->auteur);
+        }
+        else throw new AppException("Impossible de trouver l'article ".$id);
+       }
+       return false;
     }
+
     /**
     * Action par défaut
     */
@@ -121,15 +132,17 @@ class ArticleController extends Controller
     * Affiche un article
     * @param Integer id de l'article
     */
-    public function viewAction($id,$t)
+    public function viewAction($id)
     {   
     
         $model = ArticleDB::getInstance()->find($id);
         if(! is_null($model)) {
             $arrayPicture = \Dev2AL\Image\ImageDB::getInstance()->findPictureArticle($id);
+            $isAuthor = (!is_null(App::getApp()->getAuth()->getValue())) ? (App::getApp()->getAuth()->getValue()->id == $model->auteur) : false;
             $this->render("view",array(
                 "arrayPicture"=>$arrayPicture,
                 "model"=>$model,
+                "isAuthor"=>$isAuthor,
             ));
         }
         else {

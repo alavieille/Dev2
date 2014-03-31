@@ -14,10 +14,18 @@ class RoleLoggedUser extends Role
 	* @param String $action action demandé
 	* @param Object $userAuth Instance of Auth
 	**/
-	public function validAccess($action,$userAuth)
+	public function validAccess($action,$userAuth,$instanceController,$paramAction)
 	{
-
-		return ($userAuth->isLogged() && in_array($action, $this->actions)  && $this->expression );
+		$validAction = ($userAuth->isLogged() && in_array($action, $this->actions));
+		if($validAction) {
+			$expression = true;
+			if(! is_null($this->expression)) {
+				$expression = $this->validExpression($instanceController,$paramAction);
+		
+			}
+			return $expression;
+		}
+		return false;
 	}
 
 }

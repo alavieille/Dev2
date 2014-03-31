@@ -62,16 +62,17 @@
 			</div>
 		<?php endif; ?>
 
-
-		<footer>
-			<div class="columns small-12">
-				<ul class="button-group">
-				  <li><a href="<?php echo App::getApp()->createUrl('image','create',$model->id); ?>" class="button small">Ajouter une image</a></li>
-				  <li><a href="<?php echo App::getApp()->createUrl('article','update',$model->id); ?>" class="button small">Modifier</a></li>
-				  <li><a href="<?php echo App::getApp()->createUrl('article','delete',$model->id); ?>" class="button small">Supprimer</a></li>
-				</ul>
-			</div>
-		</footer>
+		<?php if($isAuthor) : ?>
+			<footer>
+				<div class="columns small-12">
+					<ul class="button-group">
+					  <li><a href="<?php echo App::getApp()->createUrl('image','create',$model->id); ?>" class="button small">Ajouter une image</a></li>
+					  <li><a href="<?php echo App::getApp()->createUrl('article','update',$model->id); ?>" class="button small">Modifier</a></li>
+					  <li><a href="<?php echo App::getApp()->createUrl('article','delete',$model->id); ?>" class="button small">Supprimer</a></li>
+					</ul>
+				</div>
+			</footer>
+	<?php endif; ?>
 	</article>
 
 </div>
