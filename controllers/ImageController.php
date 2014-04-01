@@ -64,11 +64,12 @@ class ImageController extends Controller
 
        if(! is_null(App::getApp()->getAuth()->getValue())) 
        {
-        $model = ArticleDB::getInstance()->find($id);
+        $model = ImageDB::getInstance()->find($id);
         if(! is_null($model)) {
-            return (App::getApp()->getAuth()->getValue()->id === $model->auteur);
+            $article =  ArticleDB::getInstance()->find($model->idArticle);
+            return (App::getApp()->getAuth()->getValue()->id === $article->auteur);
         }
-        else throw new AppException("Impossible de trouver l'article ".$id);
+        else throw new AppException("Impossible de trouver l'image ".$id);
        }
        return false;
     }
@@ -91,8 +92,8 @@ class ImageController extends Controller
     public function saveAction($idArticle)
     {
         $image = Image::initialize();
-        if(isset($_POST)) {
-            $data = $_POST;
+        if(! is_null(App::getApp()->getRequest()->getPost())) {
+            $data = App::getApp()->getRequest()->getPost();
             $data["idArticle"] = $idArticle;
             $image = Image::initialize($data);
             if($image->valid()) {
@@ -105,7 +106,7 @@ class ImageController extends Controller
                     $upload = new Upload($_FILES["fileUpload"]);
                     try {
 
-                        $image->setFile($upload->save(App::getApp()->getConfig("uploadFolder")));
+                        $image->file = $upload->save(App::getApp()->getConfig("uploadFolder"));
                         ImageDB::getInstance()->save($image);
                         App::getApp()->redirect("article","view",$idArticle);
 
@@ -128,11 +129,10 @@ class ImageController extends Controller
     */
     public function deleteAction($id)
     {
-
         $image = ImageDB::getInstance()->find($id);
-        unlink(App::getApp()->getConfig("uploadFolder").$image->getFile());
+        unlink(App::getApp()->getConfig("uploadFolder").$image->file);
         ImageDB::getInstance()->delete($image);
-        App::getApp()->redirect("article","view",$image->getIdArticle());
+        App::getApp()->redirect("article","view",$image->idArticle);
     }
     
 

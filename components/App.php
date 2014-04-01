@@ -20,20 +20,21 @@ class App{
     private static $pathComponents = array(
         "App" => "App.php",
         "Controller" => "Controller.php",
-        "Db" => "Db.php",
-        "ModelDB" => "ModelDB.php",
+        "Db" => "db/Db.php",
+        "ModelDB" => "model/ModelDB.php",
         "AppException" => "exception/AppException.php",
         "RouteException" => "exception/RouteException.php",
         "RoleException" => "exception/RoleException.php",
-        "FlashMessage" => "FlashMessage.php",
-        "Form" => "Form.php",
-        "Model" => "Model.php",
-        "Upload" => "Upload.php",
-        "Router" => "Router.php",
-        "Route" => "Route.php",
-        "Dispatcher" => "Dispatcher.php",
-        "AuthManager" => "AuthManager.php",
-        "Auth" => "Auth.php",
+        "FlashMessage" => "utils/FlashMessage.php",
+        "Form" => "utils/Form.php",
+        "Model" => "model/Model.php",
+        "Upload" => "utils/Upload.php",
+        "Router" => "router/Router.php",
+        "Route" => "router/Route.php",
+        "Request" => "router/Request.php",
+        "Dispatcher" => "router/Dispatcher.php",
+        "AuthManager" => "auth/AuthManager.php",
+        "Auth" => "auth/Auth.php",
         "RoleManager" => "role/RoleManager.php",
         "Role" => "role/Role.php",
         "RoleAllUser" => "role/RoleAllUser.php",
@@ -72,20 +73,25 @@ class App{
 
 
     /**
-    * @param Array $config Contient la configuration de l'application
+    * @var Array $config Contient la configuration de l'application
     */
     private $config;
 
     /**
-    * @param Routeur de l'application
+    * @var Routeur de l'application
     */
     private $router;
 
 
     /**
-    * @param Authentification de l'application
+    * @var Authentification de l'application
     */
     private $auth;
+
+    /**
+    * @var Requête demandé par l'utilisateur
+    */
+    private $request;
 
     /**
     * Constructeur
@@ -95,6 +101,7 @@ class App{
     {
         $this->config = $config;
         $this->router = $router;
+        $this->request = new Request();
         $this->extractConfig();
     }
 
@@ -130,8 +137,7 @@ class App{
             try {
                 session_start();
                 $this->initAuth();
-                $request = (isset($_GET["p"]) and ($_GET["p"])!="") ? $_GET["p"] : $this->config["defaultController"];
-                $route = $this->router->route($request);
+                $route = $this->router->route($this->request);
                 (new Dispatcher())->dispatch($route);
             } 
             catch (AppException $e) {
@@ -190,6 +196,17 @@ class App{
         return isset($this->config[$index]) ? $this->config[$index] : "";
     }
 
+
+    /**
+    * Retourne la requête demandé par l'utilisateur
+    * @return Instance of Request
+    */
+    public function getRequest()
+    {
+        return $this->request;
+    }
+
+
     /**
     * Retourne le nom de l'application
     * @return String
@@ -215,9 +232,12 @@ class App{
     * @param String $param 
     * @return String url
     */
-    public function createUrl($method,$action="",$param="")
+    public function createUrl($method,$action="",$param=array())
     {
-        $url = self::$basePath.$method."/".$action."/".$param;
+        $url = self::$basePath.$method."/".$action;
+        foreach ($param as $par) {
+            $url .= "/".$par;
+        }
         return $url;
     }
 

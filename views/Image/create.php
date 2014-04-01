@@ -2,7 +2,7 @@
   use MvcApp\Components\App;
   use MvcApp\Components\Form;
 
-  $form = new Form($model,App::getApp()->createUrl('image','save',$idArticle),array(
+  $form = new Form($model,App::getApp()->createUrl('image','save',array($idArticle)),array(
         "id" => "formCreateExemple",
         "enctype"=>"multipart/form-data",
         ));

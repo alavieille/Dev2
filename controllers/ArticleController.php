@@ -29,7 +29,7 @@ class ArticleController extends Controller
         return array(
            array(
                 "role" => "*",
-                "actions" => array("index","viewAll","view","sendEmail")
+                "actions" => array("index","viewAll","view","sendEmail","generatePDF")
             ),
             array(
                 "role" => "@",
@@ -89,8 +89,8 @@ class ArticleController extends Controller
     {     
         $article = Article::initialize();
 
-        if(isset($_POST)) {
-            $article = Article::initialize($_POST);
+        if(! is_null(App::getApp()->getRequest()->getPost())) {
+            $article = Article::initialize(App::getApp()->getRequest()->getPost());
             $auteur = App::getApp()->getAuth()->getValue();
             $article->auteur = $auteur->id;
             if($article->valid()) {
@@ -170,10 +170,13 @@ class ArticleController extends Controller
     /**
     * Confirme la mise à jour d'un article
     */
-    public function confirmUpdateAction()
+    public function confirmUpdateAction($id)
     {     
-        if(isset($_POST)) {
-            $article = Article::initialize($_POST);
+       
+        if(! is_null(App::getApp()->getRequest()->getPost())) {
+            $article = Article::initialize(App::getApp()->getRequest()->getPost());
+            $auteur = App::getApp()->getAuth()->getValue();
+            $article->auteur = $auteur->id;
             if($article->valid()) {
                 $id = ArticleDB::getInstance()->update($article);
                 App::getApp()->redirect("article","view",$id);
@@ -278,7 +281,7 @@ class ArticleController extends Controller
         $model = ArticleDB::getInstance()->find($id);
         if(! is_null($model)) {
     
-            $arrayPicture = \Dev2AL\Image\ImageDB::getInstance()->findPictureArticle($model->getId());
+            $arrayPicture = \Dev2AL\Image\ImageDB::getInstance()->findPictureArticle($model->id);
             foreach ($arrayPicture as $image) {
                 unlink(App::getApp()->getConfig("uploadFolder").$image->getFile());
             }

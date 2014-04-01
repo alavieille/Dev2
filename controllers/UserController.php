@@ -70,8 +70,8 @@ class UserController extends Controller
     public function saveAction()
     {
         $user = User::initialize();
-        if(isset($_POST)) {
-            $user = User::initialize($_POST);
+        if(! is_null(App::getApp()->getRequest()->getPost())) {
+            $user = User::initialize(App::getApp()->getRequest()->getPost());
            
             if(! is_null(UserDB::getInstance()->findByattribute("email",$user->email))) {
                 $user->setErrors("email","L'email est déjà utilisé");
@@ -97,8 +97,8 @@ class UserController extends Controller
     {
         $userIdentity = UserIdentity::initialize();
 
-        if(isset($_POST) && ! empty($_POST)){
-            $userIdentity = UserIdentity::initialize($_POST);
+        if(! is_null(App::getApp()->getRequest()->getPost())) {
+            $userIdentity = UserIdentity::initialize(App::getApp()->getRequest()->getPost());
             
             if($userIdentity->valid()) {
                 $user = UserDB::getInstance()->findByattribute("email",$userIdentity->email);

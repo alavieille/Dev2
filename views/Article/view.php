@@ -9,8 +9,8 @@
 	<article id="article" class="panel columns small-12"> 
 		<div class="columns small-12">
 			<ul class="button-group">
-				<li><a href="<?php echo App::getApp()->createUrl('article','generatePDF',$model->id); ?>" class="button small">Format PDF</a></li>
-				<li><a href="<?php echo App::getApp()->createUrl('article','sendEmail',$model->id); ?>" class="button small">Envoyer par Email</a></li>
+				<li><a href="<?php echo App::getApp()->createUrl('article','generatePDF',array($model->id)); ?>" class="button small">Format PDF</a></li>
+				<li><a href="<?php echo App::getApp()->createUrl('article','sendEmail',array($model->id)); ?>" class="button small">Envoyer par Email</a></li>
 				
 			</ul>
 		</div>
@@ -51,7 +51,7 @@
 						<?php foreach ($arrayPicture as $image) : ?>
 							
 							<li>
-							<a href="<?php echo App::getApp()->createUrl('image','delete',$image->id); ?>" class="close">&times;</a>
+							<a href="<?php echo App::getApp()->createUrl('image','delete',array($image->id)); ?>" class="close">&times;</a>
 							<a class="th" href="<?php echo App::getApp()->getBasePath().App::getApp()->getConfig("uploadFolder").$image->file ?>"> 
 								<img src="<?php echo App::getApp()->getBasePath().App::getApp()->getConfig("uploadFolder").$image->file ?>" alt="<?php echo $image->titre ?>" /> 
 							</a>
@@ -66,9 +66,9 @@
 			<footer>
 				<div class="columns small-12">
 					<ul class="button-group">
-					  <li><a href="<?php echo App::getApp()->createUrl('image','create',$model->id); ?>" class="button small">Ajouter une image</a></li>
-					  <li><a href="<?php echo App::getApp()->createUrl('article','update',$model->id); ?>" class="button small">Modifier</a></li>
-					  <li><a href="<?php echo App::getApp()->createUrl('article','delete',$model->id); ?>" class="button small">Supprimer</a></li>
+					  <li><a href="<?php echo App::getApp()->createUrl('image','create',array($model->id)); ?>" class="button small">Ajouter une image</a></li>
+					  <li><a href="<?php echo App::getApp()->createUrl('article','update',array($model->id)); ?>" class="button small">Modifier</a></li>
+					  <li><a href="<?php echo App::getApp()->createUrl('article','delete',array($model->id)); ?>" class="button small">Supprimer</a></li>
 					</ul>
 				</div>
 			</footer>

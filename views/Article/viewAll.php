@@ -22,7 +22,7 @@ $(window).load(function(){
 <?php echo App::getApp()->getFlash(); ?>
 		<div id="masonryContainer">
 		<?php foreach ($arrayModel as $num => $model): ?>
-			<a class="panel masonry-brick columns" href="<?php echo App::getApp()->	createUrl('article','view',$model->id); ?>">
+			<a class="panel masonry-brick columns" href="<?php echo App::getApp()->	createUrl('article','view',array($model->id)); ?>">
 				<article >
 						<h3><?php echo $model->titre?></h3>
 						<div class="row details">
@@ -45,17 +45,17 @@ $(window).load(function(){
   <ul class="pagination">
     <li class="arrow <?php echo (($page == 1) ? 'unavailable':'') ?>">
     	<?php if($page > 1 ) : ?>
-   			<a href="<?php echo App::getApp()->createUrl('article','viewAll',$page-1); ?>">&laquo;</a>
+   			<a href="<?php echo App::getApp()->createUrl('article','viewAll',array($page-1)); ?>">&laquo;</a>
    		<?php endif; ?>
     </li>	
 	<?php for($i=1;$i<=$nbrTotalPage;$i++): ?>
 		<li class="<?php echo (($i == $page) ? 'current':'') ?>">
-				<a href="<?php echo App::getApp()->createUrl('article','viewAll',$i); ?>" ><?php echo $i ?></a>
+				<a href="<?php echo App::getApp()->createUrl('article','viewAll',array($i)); ?>" ><?php echo $i ?></a>
 		</li>
 	<?php endfor; ?>
     <li class="arrow <?php echo (($page == $nbrTotalPage) ? 'unavailable':'') ?>">
     	<?php if($page < $nbrTotalPage ) : ?>
-    		<a href="<?php echo App::getApp()->createUrl('article','viewAll',$page+1); ?>">&raquo;</a>
+    		<a href="<?php echo App::getApp()->createUrl('article','viewAll',array($page+1)); ?>">&raquo;</a>
     	<?php endif; ?>
     </li>
   </ul>

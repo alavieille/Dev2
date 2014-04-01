@@ -99,7 +99,7 @@ class ImageDB extends ModelDB
     */
     public function deleteAllImageArticle($modelArticle)
     {       
-       $this->deleteAllModelStatement->bindValue(":idArticle",$modelArticle->getId());
+       $this->deleteAllModelStatement->bindValue(":idArticle",$modelArticle->id);
        $this->deleteAllModelStatement->execute(); 
 
     }

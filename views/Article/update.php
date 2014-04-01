@@ -2,7 +2,7 @@
   use MvcApp\Components\App;
   use MvcApp\Components\Form;
 
-  $form = new Form($model,App::getApp()->createUrl('article','confirmUpdate'),array(
+  $form = new Form($model,App::getApp()->createUrl('article','confirmUpdate',array($model->id)),array(
         "id" => "formCreateExemple"
         ));
 ?>
@@ -23,13 +23,6 @@
             <?php echo $form->inputText("titre"); ?>
           </div>
       </div>       
-
-      <div class="row">
-          <div class="large-12 columns">
-            <?php echo $form->label("auteur","Auteur"); ?>
-            <?php echo $form->inputText("auteur"); ?>
-          </div>
-      </div>    
 
       <div class="row">
           <div class="large-12 columns">

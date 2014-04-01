@@ -29,7 +29,7 @@ class ArticlePDF extends \FPDF {
 		parent::__construct();
 		$this->article = $article;
 		$this->arrayImages = $images;
-		$this->setTitle($this->article->getTitre());
+		$this->setTitle($this->article->titre);
 			
 	}
 
@@ -40,11 +40,11 @@ class ArticlePDF extends \FPDF {
 	{
 		 $this->SetFont('Arial','B',15);
 		 $this->Cell(80);
-		 $this->Cell(30,10,$this->article->getTitre());
+		 $this->Cell(30,10,$this->article->titre);
 		 $this->Ln(10);
 		 $this->SetFont('Arial','',10);
-		 $this->Cell(30,10,$this->article->getAuteur());
-		 $this->Cell(30,10,date("d-m-Y", strtotime($this->article->getDateCreation()))) ;
+		 $this->Cell(30,10,$this->article->auteur);
+		 $this->Cell(30,10,date("d-m-Y", strtotime($this->article->dateCreation))) ;
 		 $this->Ln(20);
 	}
 
@@ -54,7 +54,7 @@ class ArticlePDF extends \FPDF {
 	public function  addChapo()
 	{
 		$this->SetFont('Arial','',12);
-		$this->MultiCell(0,5,$this->article->getChapo());
+		$this->MultiCell(0,5,$this->article->chapo);
 		$this->Ln(10);
 	}
 
@@ -64,7 +64,7 @@ class ArticlePDF extends \FPDF {
 	public function  addContent()
 	{
 		$this->SetFont('Arial','',12);
-		$this->MultiCell(0,5,$this->article->getContenue());
+		$this->MultiCell(0,5,$this->article->contenue);
 		$this->Ln(10);
 	}	
 
@@ -75,9 +75,9 @@ class ArticlePDF extends \FPDF {
 	{
 		foreach ($this->arrayImages as $image) {
 
-			$this->Cell(30,10,$image->getTitre());
+			$this->Cell(30,10,$image->titre);
 			$this->Ln(10);
-			$path = App::getApp()->getConfig("uploadFolder").$image->getFile();
+			$path = App::getApp()->getConfig("uploadFolder").$image->file;
 			$this->Image($path);
 			$this->Ln(10);
 		}
