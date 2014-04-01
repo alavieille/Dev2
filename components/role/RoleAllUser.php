@@ -14,7 +14,7 @@ class RoleAllUser extends Role
 	* @param String $action action demandé
 	* @param Object $userAuth Instance of Auth
 	**/
-	public function validAccess($action,$userAuth)
+	public function validAccess($action,$userAuth,$instanceController,$paramAction)
 	{
 		$validAction = (in_array($action, $this->actions));
 		if($validAction) {
