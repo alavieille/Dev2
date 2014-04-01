@@ -37,9 +37,16 @@ class ImageController extends Controller
             ),
             array(
                 "role" => "@",
-                "actions" => array("create","save","delete"),
+                "actions" => array("create","save"),
+                "expression" => "isAuthorArticle",
+            ),
+
+            array(
+                "role" => "@",
+                "actions" => array("delete"),
                 "expression" => "isAuthor",
             ),
+
             array(
                 "role" => "admin",
                 "actions" => array("create","save","delete"),
@@ -57,11 +64,26 @@ class ImageController extends Controller
     }
 
     /**
+    * Verifie si l'utilisateur est l'auteur de l'image
+    */
+    public function isAuthorArticle($id)
+    {
+       if(! is_null(App::getApp()->getAuth()->getValue())) 
+       {
+        $model = ArticleDB::getInstance()->find($id);
+        if(! is_null($model)) {
+            return (App::getApp()->getAuth()->getValue()->id === $model->auteur);
+        }
+        else throw new AppException("Impossible de trouver l'article ".$id);
+       }
+       return false;
+    }
+
+    /**
     * Verifie si l'utilisateur est l'auteur de l'article
     */
     public function isAuthor($id)
     {
-
        if(! is_null(App::getApp()->getAuth()->getValue())) 
        {
         $model = ImageDB::getInstance()->find($id);

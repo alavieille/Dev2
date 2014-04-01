@@ -26,8 +26,7 @@ $(window).load(function(){
 				<article >
 						<h3><?php echo $model->titre?></h3>
 						<div class="row details">
-							<p class="auteur large-8 columns txt-left"><?php echo $model->auteur ?></p>
-							<p class="large-4 columns "><?php echo date("d-m-Y", strtotime($model->dateCreation)) ?></p>		
+						<p class="large-4 columns "><?php echo date("d-m-Y", strtotime($model->dateCreation)) ?></p>		
 						</div>
 						<?php if($model->chapo != "" ) : ?>
 							<p class="text-justify" ><?php echo $model->chapo; ?></p>

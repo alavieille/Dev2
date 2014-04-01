@@ -137,11 +137,14 @@ class ArticleController extends Controller
     
         $model = ArticleDB::getInstance()->find($id);
         if(! is_null($model)) {
+
             $arrayPicture = \Dev2AL\Image\ImageDB::getInstance()->findPictureArticle($id);
+            $auteur = \Dev2AL\User\UserDB::getInstance()->find($model->auteur);
             $isAuthor = (!is_null(App::getApp()->getAuth()->getValue())) ? (App::getApp()->getAuth()->getValue()->id == $model->auteur) : false;
             $this->render("view",array(
                 "arrayPicture"=>$arrayPicture,
                 "model"=>$model,
+                "auteur"=>$auteur,
                 "isAuthor"=>$isAuthor,
             ));
         }

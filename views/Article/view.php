@@ -23,7 +23,7 @@
 			</div>
 			<div class="row">
 			  <p class="columns small-6">
-			    <?php echo $model->auteur ?>
+			    <?php echo $auteur->nom." ".$auteur->prenom ?>
 			  </p>  
 			  <p class="columns small-6 text-right ">
 			    <?php echo date("d-m-Y", strtotime($model->dateCreation)) ?>
