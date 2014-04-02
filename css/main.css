@@ -28,6 +28,7 @@ textarea{
  */
 body{
 	background-color: #efefef;
+	padding-top:50px;
 }
 
 .top-bar,.top-bar.expanded .title-area

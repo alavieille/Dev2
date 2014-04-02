@@ -10,17 +10,25 @@
 	<link rel="stylesheet" href="<?php echo App::getApp()->getBasePath() ?>css/foundation/css/normalize.css" />
 	<link rel="stylesheet" href="<?php echo App::getApp()->getBasePath() ?>css/foundation/css/foundation.css" />
 	<link rel="stylesheet" href="<?php echo App::getApp()->getBasePath() ?>css/main.css" />
-    <script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/vendor/modernizr.js"></script>
 	<script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/vendor/jquery.js"></script>
+    <script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/vendor/modernizr.js"></script>
+    <script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/foundation.min.js"></script>
+    <script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/foundation/foundation.abide.js"></script>
 	<script src="<?php echo App::getApp()->getBasePath() ?>js/utils.js"></script>
 	<script>
+		$(document).foundation();
 		App = {
 			urls : "<?php echo App::getApp()->getBasePath(); ?>"
-		}
+		};
 	</script>
 </head>
 	<body>
-
+<div id="myModal" class="reveal-modal" data-reveal>
+  <h2>Awesome. I have it.</h2>
+  <p class="lead">Your couch.  It is mine.</p>
+  <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
 		<!-- navigation -->
 		<div class="fixed">
 			<nav class="top-bar" data-topbar>
@@ -59,9 +67,9 @@
 
 
 
-    <script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
+   
+
 	</body>
+
+
 </html>

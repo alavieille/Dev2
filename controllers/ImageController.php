@@ -104,7 +104,7 @@ class ImageController extends Controller
     {
        
         $image = Image::initialize();
-        $this->renderPartial("create",array(
+        $this->render("create",array(
             "idArticle"=>$idArticle,
             "model"=>$image,
         ));
@@ -154,7 +154,7 @@ class ImageController extends Controller
         $image = ImageDB::getInstance()->find($id);
         unlink(App::getApp()->getConfig("uploadFolder").$image->file);
         ImageDB::getInstance()->delete($image);
-        App::getApp()->redirect("article","view",$image->idArticle);
+        //App::getApp()->redirect("article","view",$image->idArticle);
     }
     
 
