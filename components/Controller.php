@@ -68,4 +68,19 @@ Abstract class Controller
         require_once("views/layout/".$this->layout.".php");
     }
 
+    /**
+    * Inclut la vue defini par $filename sans layout
+    * @param string $filename
+    * @param Array $vars 
+    */
+    public function renderPartial($filename="",$vars=array())
+    {
+        $content = "";
+        extract($vars);
+        if($filename != ""){
+            require_once("views/".$this->name."/".$filename.".php");
+        }
+        
+    }
+
 }

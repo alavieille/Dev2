@@ -104,7 +104,7 @@ class ImageController extends Controller
     {
        
         $image = Image::initialize();
-        $this->render("create",array(
+        $this->renderPartial("create",array(
             "idArticle"=>$idArticle,
             "model"=>$image,
         ));

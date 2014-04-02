@@ -61,4 +61,12 @@ class Request
     	return $this->post;
     }
 
+    /**
+    * Verifie si une requête est une requête ajax
+    * @return boolean
+    */
+    public function isAjax()
+    {
+    	return (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
+    }
 }	

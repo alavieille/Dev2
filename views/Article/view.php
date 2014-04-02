@@ -1,8 +1,9 @@
 <?php
 	use MvcApp\Components\App;
+
 ?>
 
-
+<script src="<?php echo App::getApp()->getBasePath() ?>js/article.js"></script>
 <div class="row">
 	<?php echo App::getApp()->getFlash(); ?>
 
@@ -66,7 +67,8 @@
 			<footer>
 				<div class="columns small-12">
 					<ul class="button-group">
-					  <li><a href="<?php echo App::getApp()->createUrl('image','create',array($model->id)); ?>" class="button small">Ajouter une image</a></li>
+					  <li><a id="addImage" href="" class="button small">Ajouter une image</a></li>
+					  
 					  <li><a href="<?php echo App::getApp()->createUrl('article','update',array($model->id)); ?>" class="button small">Modifier</a></li>
 					  <li><a href="<?php echo App::getApp()->createUrl('article','delete',array($model->id)); ?>" class="button small">Supprimer</a></li>
 					</ul>
