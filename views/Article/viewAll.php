@@ -1,16 +1,9 @@
 <?php
 	use MvcApp\Components\App;
 ?>
+<script src="<?php echo App::getApp()->getBasePath() ?>js/Article/viewAll.js"></script>
 <script src="<?php echo App::getApp()->getBasePath() ?>js/masonry.min.js"></script>
-<script>
-$(window).load(function(){
-  $('#masonryContainer').masonry({  
-    itemSelector: '.masonry-brick',
-    isFitWidth: true,
 
-  });  
-});    
-</script>
 
 <div  id="titleRow">
   <div class="row">
@@ -19,43 +12,25 @@ $(window).load(function(){
 </div>
 <div class="row" id="previousArticle">
 	<div class="large-12 columns">
-<?php echo App::getApp()->getFlash(); ?>
-		<div id="masonryContainer">
-		<?php foreach ($arrayModel as $num => $model): ?>
-			<a class="panel masonry-brick columns" href="<?php echo App::getApp()->	createUrl('article','view',array($model->id)); ?>">
-				<article >
-						<h3><?php echo $model->titre?></h3>
-						<div class="row details">
-						<p class="large-4 columns "><?php echo date("d-m-Y", strtotime($model->dateCreation)) ?></p>		
-						</div>
-						<?php if($model->chapo != "" ) : ?>
-							<p class="text-justify" ><?php echo $model->chapo; ?></p>
-						<?php else : ?>
-							<p class="text-justify" ><?php echo $model->excerptContenue(); ?></p>
-						<?php endif; ?>
-				</article>
-			</a>
-		<?php endforeach; ?>
-		</div>
+  <?php echo App::getApp()->getFlash(); ?>
+		<?php $this->renderPartial("_viewAllArticle",array(
+            "arrayModel" => $arrayModel,
+        )); ?>
 	</div>
 </div>
 
 <div class="pagination-centered">
   <ul class="pagination">
-    <li class="arrow <?php echo (($page == 1) ? 'unavailable':'') ?>">
-    	<?php if($page > 1 ) : ?>
-   			<a href="<?php echo App::getApp()->createUrl('article','viewAll',array($page-1)); ?>">&laquo;</a>
-   		<?php endif; ?>
+    <li class="arrow">
+   			<a data-page=<?php echo 1 ?> href="">&laquo;</a>
     </li>	
 	<?php for($i=1;$i<=$nbrTotalPage;$i++): ?>
 		<li class="<?php echo (($i == $page) ? 'current':'') ?>">
-				<a href="<?php echo App::getApp()->createUrl('article','viewAll',array($i)); ?>" ><?php echo $i ?></a>
+				<a data-page=<?php echo $i ?> href="" ><?php echo $i ?></a>
 		</li>
 	<?php endfor; ?>
-    <li class="arrow <?php echo (($page == $nbrTotalPage) ? 'unavailable':'') ?>">
-    	<?php if($page < $nbrTotalPage ) : ?>
-    		<a href="<?php echo App::getApp()->createUrl('article','viewAll',array($page+1)); ?>">&raquo;</a>
-    	<?php endif; ?>
+    <li class="arrow">
+    		<a data-page=<?php echo $nbrTotalPage ?> href="" >&raquo;</a>
     </li>
   </ul>
 </div>

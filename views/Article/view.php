@@ -3,7 +3,7 @@
 
 ?>
 
-<script src="<?php echo App::getApp()->getBasePath() ?>js/article.js"></script>
+<script src="<?php echo App::getApp()->getBasePath() ?>js/Article/view.js"></script>
 <div class="row">
 	<?php echo App::getApp()->getFlash(); ?>
 

@@ -121,11 +121,20 @@ class ArticleController extends Controller
         $arrayArticle = ArticleDB::getInstance()->findLimit($offset,$nbrParPage);
  
         //$arrayArticle = ArticleDB::getInstance()->findAll();
-        $this->render("viewAll",array(
-            "arrayModel" => $arrayArticle,
-            "nbrTotalPage" => $nbTotalPage,
-            "page" => $page,
-        ));
+        if(App::getApp()->getRequest()->isAjax()) {
+            $this->renderPartial("_viewAllArticle",array(
+                "arrayModel" => $arrayArticle,
+                "nbrTotalPage" => $nbTotalPage,
+                "page" => $page,
+            ));
+        }
+        else {
+            $this->render("viewAll",array(
+                "arrayModel" => $arrayArticle,
+                "nbrTotalPage" => $nbTotalPage,
+                "page" => $page,
+            ));
+        }
     }   
 
     /**
