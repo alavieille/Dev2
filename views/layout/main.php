@@ -45,6 +45,7 @@
 				    <li><a href="<?php echo App::getApp()->createUrl('article','viewAll');?>">Liste des articles</a></li>
 
 				    <li><a href="<?php echo App::getApp()->createUrl('article','create') ?>">Créer un article</a></li>
+				    <li><a href="<?php echo App::getApp()->createUrl('syndication','rss2') ?>">Flux Rss Le Monde</a></li>
 				 
 			    </ul>			    
 			    <ul class="right">

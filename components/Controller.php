@@ -78,7 +78,7 @@ Abstract class Controller
         $content = "";
         extract($vars);
         if($filename != ""){
-            require_once("views/".$this->name."/".$filename.".php");
+            require("views/".$this->name."/".$filename.".php");
         }
         
     }

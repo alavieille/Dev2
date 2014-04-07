@@ -20,7 +20,7 @@ class ImageController extends Controller
 {
 
     /**
-    * initialise le controlleur exemple
+    * initialise le controlleur Image
     */
     public function __construct()
     {
