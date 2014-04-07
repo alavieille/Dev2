@@ -13,22 +13,15 @@
 	<script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/vendor/jquery.js"></script>
     <script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/vendor/modernizr.js"></script>
     <script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/foundation.min.js"></script>
-    <script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/foundation/foundation.abide.js"></script>
 	<script src="<?php echo App::getApp()->getBasePath() ?>js/utils.js"></script>
 	<script>
-		$(document).foundation();
+		$(function(){$(document).foundation()});
 		App = {
 			urls : "<?php echo App::getApp()->getBasePath(); ?>"
 		};
 	</script>
 </head>
 	<body>
-<div id="myModal" class="reveal-modal" data-reveal>
-  <h2>Awesome. I have it.</h2>
-  <p class="lead">Your couch.  It is mine.</p>
-  <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
-  <a class="close-reveal-modal">&#215;</a>
-</div>
 		<!-- navigation -->
 		<div class="fixed">
 			<nav class="top-bar" data-topbar>
@@ -45,7 +38,16 @@
 				    <li><a href="<?php echo App::getApp()->createUrl('article','viewAll');?>">Liste des articles</a></li>
 
 				    <li><a href="<?php echo App::getApp()->createUrl('article','create') ?>">Créer un article</a></li>
-				    <li><a href="<?php echo App::getApp()->createUrl('syndication','rss2') ?>">Flux Rss Le Monde</a></li>
+				    <li class="has-dropdown">
+        				<a href="#">Flux Rss</a>
+				        <ul class="dropdown">
+				    		<li><a href="<?php echo App::getApp()->createUrl('syndication','leMondeRss') ?>">Le Monde Sport</a></li>
+				    		<li><a href="<?php echo App::getApp()->createUrl('syndication','newYorkTimeRss') ?>">New York Times</a></li>
+				    		<li><a href="<?php echo App::getApp()->createUrl('syndication','w3cRss') ?>">W3C</a></li>
+				    		<li><a href="<?php echo App::getApp()->createUrl('syndication','googleRss') ?>">Google</a></li>
+				        </ul>
+				    </li>
+					
 				 
 			    </ul>			    
 			    <ul class="right">
@@ -72,5 +74,7 @@
 
 	</body>
 
+
+   
 
 </html>

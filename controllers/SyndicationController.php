@@ -31,27 +31,41 @@ class SyndicationController extends Controller
 	  return array(
 	    array(
 	        "role" => "*",
-	        "actions" => array("rss2"),  
+	        "actions" => array("leMondeRss","newYorkTimeRss","w3cRss","googleRss"),  
 	    	)
 	    );
 
 	}
 
-	public function rss2Action()
-	{
-		$url ="http://rss.lemonde.fr/c/205/f/3058/index.rss";
-		$proxy = "http://proxy.unicaen.fr:3128";
-		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_PROXY, $proxy);
-		curl_setopt($curl, CURLOPT_URL, $url);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		$data = curl_exec($curl);
-		$rss2 = new Rss2($data);
 
+	public function leMondeRssAction(){
+		$url = "http://rss.lemonde.fr/c/205/f/3058/index.rss";
+		$this->rss($url);
+	}
+
+	public function newYorkTimeRssAction()
+	{
+		$url = "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml";
+		$this->rss($url);
+	}
+
+	public function w3cRssAction()
+	{
+		$url = "http://www.w3.org/blog/news/feed/atom";
+		$this->rss($url);
+	}
+
+	public function googleRssAction()
+	{
+		$url = "http://feeds.feedburner.com/blogspot/MKuf?format=xml";
+		$this->rss($url);
+	}
+
+	public function rss($url)
+	{
+		$rss = FactorySyndication::initialize($url);
 		$this->render("viewAll",array(
-			"items"=>$rss2->getItem(),
-			"rss"=>$rss2->getRss(),
+			"rss"=>$rss,
 		));
-		//var_dump($rss->toHtml());
 	}
 }

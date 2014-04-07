@@ -4,20 +4,22 @@
 * @author Amaury Lavieille
 */
 
+namespace Dev2AL\Syndication;
+
 Abstract Class AbstractSyndication
 {
 
 
-	protected $rss;
+	protected $xml;
 
-	public function __construct($rss)
+	public function __construct($xml)
 	{
-		$this->rss = $rss;
+		$this->xml = $xml;
 	}
 
 
-	public function getRss()
+	public function getXml()
 	{
-		return $this->rss;
+		return $this->xml;
 	}
 }

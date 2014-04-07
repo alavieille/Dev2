@@ -10,9 +10,16 @@
 	<link rel="stylesheet" href="<?php echo App::getApp()->getBasePath() ?>css/foundation/css/normalize.css" />
 	<link rel="stylesheet" href="<?php echo App::getApp()->getBasePath() ?>css/foundation/css/foundation.css" />
 	<link rel="stylesheet" href="<?php echo App::getApp()->getBasePath() ?>css/main.css" />
-    <script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/vendor/modernizr.js"></script>
 	<script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/vendor/jquery.js"></script>
-
+    <script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/vendor/modernizr.js"></script>
+    <script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/foundation.min.js"></script>
+	<script src="<?php echo App::getApp()->getBasePath() ?>js/utils.js"></script>
+	<script>
+		$(function(){$(document).foundation()});
+		App = {
+			urls : "<?php echo App::getApp()->getBasePath(); ?>"
+		};
+	</script>
 </head>
 	<body>
 		

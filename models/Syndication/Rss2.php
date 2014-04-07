@@ -6,31 +6,20 @@
 
 namespace Dev2AL\Syndication;
 
-class Rss2
+class Rss2 extends AbstractSyndication
 {
 
-	protected $rss;
 
-	public function __construct($data)
+
+	public function getItems()
 	{
-		$this->rss = simplexml_load_string($data);
-
-	}
-	/*public function toHtml(){
-		//var_dump($this);
-		foreach ($this->children() as $child) {
-			var_dump($child);
-		}
-	}*/
-	
-
-	public function getItem()
-	{
-		return $this->rss->channel->item;
+		return $this->xml->channel->item;
+		
 	}
 
-	public function getRss()
+	public function getTitle()
 	{
-		return $this->rss;
+		return $this->xml->channel->title;
 	}
+
 }

@@ -60,8 +60,8 @@ var loadContent = function(data,page)
 		 isFitWidth: true,
 
 	});  
-	$(".pagination li:not(.arrow)").removeClass("current");
-	$(".pagination li:not(.arrow) a[data-page='"+page+"'").parent().addClass("current");
+	$(".pagination li").not(".arrow").removeClass("current");
+	$(".pagination li").not(".arrow").children("a[data-page='"+page+"']").parent().addClass("current");
 
 
 }
