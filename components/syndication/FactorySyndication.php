@@ -1,6 +1,7 @@
 <?php 
 
-namespace Dev2AL\Syndication;
+namespace Dev2AL\Components\Syndication;
+use MvcApp\Core\App;
 
 class FactorySyndication 
 {
@@ -9,7 +10,7 @@ class FactorySyndication
 	public static function initialize($url)
 	{
 		
-		$proxy = "http://proxy.unicaen.fr:3128";
+		$proxy = app::getApp()->getConfig("curl_proxy");
 		$curl = curl_init();
 		curl_setopt($curl, CURLOPT_PROXY, $proxy);
 		curl_setopt($curl, CURLOPT_URL, $url);

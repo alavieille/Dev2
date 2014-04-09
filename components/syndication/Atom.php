@@ -4,7 +4,7 @@
 * @author Amaury Lavieille
 */
 
-namespace Dev2AL\Syndication;
+namespace Dev2AL\Components\Syndication;
 
 class Atom extends AbstractSyndication
 {

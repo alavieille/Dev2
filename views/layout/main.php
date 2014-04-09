@@ -37,9 +37,12 @@
 			    <ul class="left">
 				   
 				    <li><a href="<?php echo App::getApp()->createUrl('article','viewAll');?>">Liste des articles</a></li>
-
+					<?php if(! App::getApp()->getAuth()->isLogged()) :?>
 				    <li><a href="<?php echo App::getApp()->createUrl('article','create') ?>">Créer un article</a></li>
+					<?php endif; ?>
+
 				    <li class="has-dropdown">
+
         				<a href="#">Flux Rss</a>
 				        <ul class="dropdown">
 				    		<li><a href="<?php echo App::getApp()->createUrl('syndication','leMondeRss') ?>">Le Monde Sport</a></li>
@@ -53,7 +56,7 @@
         				<a href="#">Evènement</a>
 				        <ul class="dropdown">
 				    		<li><a href="<?php echo App::getApp()->createUrl('evenement','eventLocation',array("paris")) ?>">Paris</a></li>
-				    		<li><a class="eventPos" href="<?php echo App::getApp()->createUrl('evenement','eventLocation') ?>">Postiton Actuel</a></li>
+				    		<li><a class="eventPos" href="<?php echo App::getApp()->createUrl('evenement','eventCoord') ?>">Postiton Actuel</a></li>
 				        </ul>
 				    </li>
 					

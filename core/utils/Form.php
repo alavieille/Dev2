@@ -3,7 +3,7 @@
 * Classe pour créer et gérer un formulaire
 * @author Amaury Lavieille
 */
-namespace MvcApp\Components;
+namespace MvcApp\Core;
 
 /**
 * Classe qui représente un formulaire

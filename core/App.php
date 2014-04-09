@@ -236,7 +236,9 @@ class App{
     {
         $url = self::$basePath.$method."/".$action;
         foreach ($param as $par) {
-            $url .= "/".$par;
+
+
+            $url .= "/".urlencode($par);
         }
         return $url;
     }
@@ -279,38 +281,40 @@ class App{
     public static function autoload($className)
     {   
         $className = explode("\\", $className);
-        
-        if(isset($className[1])) {
-            $package = $className[1];
+        array_shift($className);
+        if(isset($className[0])) {
+            $package = $className[0];
         }
-        $className = $className[count($className)-1];
-        if(array_key_exists($className, self::$pathComponents)) {
+        $class = $className[count($className)-1];
+        array_pop($className);
+        if(array_key_exists($class, self::$pathComponents)) {
 
-            $path = "core/".self::$pathComponents[$className];
+            $path = "core/".self::$pathComponents[$class];
         }
 
-        elseif(array_key_exists($className, self::$pathPear)) {
+        elseif(array_key_exists($class, self::$pathPear)) {
 
-            $path = self::$pathPear[$className];
+            $path = self::$pathPear[$class];
             require_once($path);
             return;
         }
 
-        elseif(array_key_exists($className, self::$pathExtentions)) {
+        elseif(array_key_exists($class, self::$pathExtentions)) {
 
-            $path = "extensions/".self::$pathExtentions[$className];
+            $path = "extensions/".self::$pathExtentions[$class];
         }
 
-        elseif(strrpos($className,"Controller")) {
-            $path = "controllers/".$className.".php";
+        elseif(strrpos($class,"Controller")) {
+            $path = "controllers/".$class.".php";
         }
 
         elseif(isset($package) &&  $package=="Components") {
-            $path = strtolower($package)."/".$className.".php";   
+
+            $path = strtolower(implode("/", $className))."/".$class.".php";   
         }
 
         else {  
-            $path = "models/".$package."/".$className.".php";   
+            $path = "models/".$package."/".$class.".php";   
         }
         if(file_exists($path)){
             require_once($path);

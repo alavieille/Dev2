@@ -10,7 +10,7 @@ namespace Dev2AL\Syndication;
 use MvcApp\Core\Controller;
 use MvcApp\Core\App;
 use MvcApp\Core\AppException;
-
+use Dev2AL\Components\Syndication\FactorySyndication;
 
 
 /**
@@ -26,6 +26,7 @@ class SyndicationController extends Controller
     {
         $this->name = 'Syndication';
         parent::__construct();
+        var_dump( gmdate("Y-m-d\TH:i:s.\\0\\0\\0\\Z", time()));
     }
 
 	protected function roles()

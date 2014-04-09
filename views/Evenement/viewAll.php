@@ -4,7 +4,7 @@
 
 <div  id="titleRow">
   <header class="row">
-    <h1 class="columns large-12">Evenement de Paris</h1>
+    <h1 class="columns large-12"><?php echo $title; ?></h1>
   </header>
 </div>
 <div class="row" id="previousArticle">
@@ -17,6 +17,7 @@
 					<p><?php echo $event->venue->name; ?> - <?php echo $event->venue->location->city ?></p>
 					<p><?php echo $event->venue->location->street ?></p>
 					<a target="_blank" 	class="button tiny" href="<?php echo  $event->url; ?>">Voir sur LastFm</a>
+					<a class="button tiny" href="<?php echo App::getApp()->createUrl('evenement','productArtist',array(urlencode($event->artists->artist))); ?>">Voir les produits</a>
 
 				</article>
 	

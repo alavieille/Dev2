@@ -1,6 +1,7 @@
 <?php 
 
 namespace Dev2AL\Components;
+use MvcApp\Core\App;
 
 class LastFm
 {
@@ -18,15 +19,21 @@ class LastFm
 
 	}
 
-	public function searchEvent($location)
+	public function searchEventByLocation($location)
 	{
 		$url = $this->apiUrl."&location=".$location;
 		return $this->getData($url);
 	}
 
+	public function searchEventByCoord($lat,$lng)
+	{
+		$url = $this->apiUrl."&lat=".$lat."&long=".$lng;
+		return $this->getData($url);
+	}
+
 	private function getData($url)
 	{
-		$proxy = "http://proxy.unicaen.fr:3128";
+		$proxy = app::getApp()->getConfig("curl_proxy");
 		$curl = curl_init();
 		curl_setopt($curl, CURLOPT_PROXY, $proxy);
 		curl_setopt($curl, CURLOPT_URL, $url);
@@ -34,7 +41,5 @@ class LastFm
 		$data = curl_exec($curl);
 		return $data;
 	}
-
-//http://ws.audioscrobbler.com/2.0/?method=geo.getevents&api_key=f7556041b3454bdd1b36164dd4c68a03&location=paris
 
 }
