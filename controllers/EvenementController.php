@@ -42,8 +42,8 @@ class EvenementController extends Controller
 
 
 	public function eventLocationAction($location){
-
-		$lastfm = new LastFm("http://ws.audioscrobbler.com/2.0/?method=geo.getevents","f7556041b3454bdd1b36164dd4c68a03");
+		$lastFmKey = app::getApp()->getConfig("lastFmKey");
+		$lastfm = new LastFm("http://ws.audioscrobbler.com/2.0/?method=geo.getevents",$lastFmKey);
 		$data = $lastfm->searchEventByLocation($location);
 		$xml = simplexml_load_string($data);
 
@@ -54,7 +54,8 @@ class EvenementController extends Controller
 	}
 
 	public function eventCoordAction($lat,$lng){
-		$lastfm = new LastFm("http://ws.audioscrobbler.com/2.0/?method=geo.getevents","f7556041b3454bdd1b36164dd4c68a03");
+		$lastFmKey = app::getApp()->getConfig("lastFmKey");
+		$lastfm = new LastFm("http://ws.audioscrobbler.com/2.0/?method=geo.getevents",$lastFmKey);
 		$data = $lastfm->searchEventByCoord($lat,$lng);
 		$xml = simplexml_load_string($data);
 
@@ -66,8 +67,8 @@ class EvenementController extends Controller
 
 	public function productArtistAction($artist)
 	{
-		$aws_key = "AKIAIRRFFYPENQMXAPXQ";
-		$aws_secret = "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";
+		$aws_key = app::getApp()->getConfig("awsKey");
+		$aws_secret = app::getApp()->getConfig("awsSecret");
 		$aws = new AwsApi($aws_key,$aws_secret);
 		$data = $aws->getProductArtist($artist);
 		$xml = simplexml_load_string($data);

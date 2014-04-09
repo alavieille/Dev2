@@ -17,7 +17,10 @@ $config = array(
 			'user' => 'localhost',
 			'pwd' => 'localhost',
 		),
-
+	'curl_proxy'=>'',
+	'lastFmKey'=>"",
+	'awsKey'=>"",
+	'awsSecret'=>"",
 	"extensions" => array(
 			"FPDF" => "fpdf/fpdf.php"
 		)
