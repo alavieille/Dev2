@@ -1,5 +1,5 @@
 <?php
-	use MvcApp\Components\App;
+	use MvcApp\Core\App;
 ?>
 <script src="<?php echo App::getApp()->getBasePath() ?>js/Article/viewAll.js"></script>
 <script src="<?php echo App::getApp()->getBasePath() ?>js/masonry.min.js"></script>

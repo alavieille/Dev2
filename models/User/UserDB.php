@@ -6,7 +6,7 @@
 namespace Dev2AL\User;
 
 
-use MvcApp\Components\ModelDB;
+use MvcApp\Core\ModelDB;
 
 class UserDB extends ModelDB
 {

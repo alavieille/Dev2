@@ -5,7 +5,7 @@
 */
 namespace Dev2AL\Image;
 
-use MvcApp\Components\ModelDB;
+use MvcApp\Core\ModelDB;
 use \PDO;
 
 class ImageDB extends ModelDB

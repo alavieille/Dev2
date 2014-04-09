@@ -1,5 +1,5 @@
 <?php
-	use MvcApp\Components\App;
+	use MvcApp\Core\App;
 ?>
 <!doctype html>
 <html class="no-js" lang="fr">
@@ -14,6 +14,7 @@
     <script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/vendor/modernizr.js"></script>
     <script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/foundation.min.js"></script>
 	<script src="<?php echo App::getApp()->getBasePath() ?>js/utils.js"></script>
+	<script src="<?php echo App::getApp()->getBasePath() ?>js/main.js"></script>
 	<script>
 		$(function(){$(document).foundation()});
 		App = {
@@ -45,6 +46,14 @@
 				    		<li><a href="<?php echo App::getApp()->createUrl('syndication','newYorkTimeRss') ?>">New York Times</a></li>
 				    		<li><a href="<?php echo App::getApp()->createUrl('syndication','w3cRss') ?>">W3C</a></li>
 				    		<li><a href="<?php echo App::getApp()->createUrl('syndication','googleRss') ?>">Google</a></li>
+				        </ul>
+				    </li>
+
+				    <li class="has-dropdown">
+        				<a href="#">Evènement</a>
+				        <ul class="dropdown">
+				    		<li><a href="<?php echo App::getApp()->createUrl('evenement','eventLocation',array("paris")) ?>">Paris</a></li>
+				    		<li><a class="eventPos" href="<?php echo App::getApp()->createUrl('evenement','eventLocation') ?>">Postiton Actuel</a></li>
 				        </ul>
 				    </li>
 					

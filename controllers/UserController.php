@@ -6,10 +6,10 @@
 namespace Dev2AL\User;
 
 
-use MvcApp\Components\Controller;
-use MvcApp\Components\App;
-use MvcApp\Components\AuthManager;
-use MvcApp\Components\AppException;
+use MvcApp\Core\Controller;
+use MvcApp\Core\App;
+use MvcApp\Core\AuthManager;
+use MvcApp\Core\AppException;
 
 
 /**

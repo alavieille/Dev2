@@ -2,7 +2,7 @@
   use MvcApp\Components\App;
 ?>
 
-<div class="panel" href="<?php echo $item->link ?>">
+<div class="panel">
 	<article>
 		<h3><?php echo $item->title ?></h3>
 		<?php if( isset($item->description) ) :  ?>

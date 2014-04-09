@@ -5,7 +5,7 @@
 */
 namespace Dev2AL\Article;
 
-use MvcApp\Components\App;
+use MvcApp\Core\App;
 
 class ArticlePDF extends \FPDF {
 

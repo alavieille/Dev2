@@ -1,5 +1,5 @@
 <?php
-	use MvcApp\Components\App;
+	use MvcApp\Core\App;
 ?>
 <div id="masonryContainer">
 		<?php foreach ($arrayModel as $num => $model): ?>

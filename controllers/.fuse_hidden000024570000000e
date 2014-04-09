@@ -1,0 +1,73 @@
+<?php 
+/**
+* Controlleur des évenements
+* @author Amaury Lavieille
+*/
+namespace Dev2AL\Evenement;
+
+use Dev2AL\Components\LastFm;
+
+use MvcApp\Core\Controller;
+use MvcApp\Core\App;
+use MvcApp\Core\AppException;
+
+
+
+/**
+* Controlleur des évènements
+*/
+class EvenementController extends Controller
+{
+
+ 	/**
+    * initialise le controlleur des évènements
+    */
+    public function __construct()
+    {
+        $this->name = 'Evenement';
+        parent::__construct();
+    }
+
+	protected function roles()
+	{
+	  return array(
+	    array(
+	        "role" => "*",
+	        "actions" => array("eventParis"),  
+	    	)
+	    );
+
+	}
+
+
+	public function eventLocationAction($location){
+
+		$lastfm = new LastFm("http://ws.audioscrobbler.com/2.0/?method=geo.getevents","f7556041b3454bdd1b36164dd4c68a03");
+		$data = $lastfm->searchEvent($location);
+		$xml = simplexml_load_string($data);
+
+		$this->render("viewAll",array(
+			"events"=>$xml->events->event,
+		));
+
+		
+		//var_dump($arrayEvents[0]);
+		/*$url = "http://ws.audioscrobbler.com/2.0/?method=geo.getevents&location=paris&api_key=f7556041b3454bdd1b36164dd4c68a03";
+		$proxy = "http://proxy.unicaen.fr:3128";
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_PROXY, $proxy);
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		$data = curl_exec($curl);
+		$xml = simplexml_load_string($data);
+		
+		$arrayEvents = array();
+		foreach ($xml->events->event as $dataEvent) {
+			$arrayEvents[] = Event::initialize($dataEvent);
+		}*/
+
+
+
+
+	}
+}

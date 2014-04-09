@@ -1,5 +1,5 @@
 <?php
-	use MvcApp\Components\App;
+	use MvcApp\Core\App;
 
 ?>
 

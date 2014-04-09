@@ -6,7 +6,7 @@
 namespace Dev2AL\Image;
 
 
-use MvcApp\Components\Model;
+use MvcApp\Core\Model;
 
 class Image extends Model
 {

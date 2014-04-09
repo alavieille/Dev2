@@ -1,6 +1,6 @@
 <?php
-  use MvcApp\Components\App;
-  use MvcApp\Components\Form;
+  use MvcApp\Core\App;
+  use MvcApp\Core\Form;
 
   $form = new Form($model,App::getApp()->createUrl('article','save'),array(
         "id" => "formCreateExemple"

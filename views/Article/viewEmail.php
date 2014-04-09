@@ -1,5 +1,5 @@
 <?php
-	use MvcApp\Components\App;
+	use MvcApp\Core\App;
 ?>
 <div class="row">
 	<article id="article" class="panel columns small-12"> 

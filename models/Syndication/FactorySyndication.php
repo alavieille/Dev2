@@ -11,7 +11,7 @@ class FactorySyndication
 		
 		$proxy = "http://proxy.unicaen.fr:3128";
 		$curl = curl_init();
-		//curl_setopt($curl, CURLOPT_PROXY, $proxy);
+		curl_setopt($curl, CURLOPT_PROXY, $proxy);
 		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		$data = curl_exec($curl);

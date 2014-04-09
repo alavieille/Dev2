@@ -5,9 +5,11 @@
 */
 namespace Dev2AL\Syndication;
 
-use MvcApp\Components\Controller;
-use MvcApp\Components\App;
-use MvcApp\Components\AppException;
+
+
+use MvcApp\Core\Controller;
+use MvcApp\Core\App;
+use MvcApp\Core\AppException;
 
 
 

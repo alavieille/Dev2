@@ -4,7 +4,7 @@
 */
 
 namespace Dev2AL\User;
-use MvcApp\Components\Model;
+use MvcApp\Core\Model;
 
 
 class UserIdentity extends Model

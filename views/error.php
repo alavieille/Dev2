@@ -1,5 +1,5 @@
 <?php
-	use MvcApp\Components\App;
+	use MvcApp\Core\App;
 ?>
 <!doctype html>
 <html class="no-js" lang="fr">

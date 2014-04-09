@@ -6,8 +6,8 @@
 namespace Dev2AL\Article;
 
 
-use MvcApp\Components\Model;
-use MvcApp\Components\App;
+use MvcApp\Core\Model;
+use MvcApp\Core\App;
 
 class Article extends Model
 {

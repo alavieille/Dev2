@@ -1,9 +1,9 @@
 <?php 
 require_once("config/init.php");
-require_once("components/App.php");
-use MvcApp\Components\App;
-use MvcApp\Components\Router;
-use MvcApp\Components\Route;
+require_once("core/App.php");
+use MvcApp\Core\App;
+use MvcApp\Core\Router;
+use MvcApp\Core\Route;
 
 $router = new Router();
 /*

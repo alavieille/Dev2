@@ -7,10 +7,10 @@ namespace Dev2AL\Image;
 use Dev2AL\Article\ArticleDB;
 
 
-use MvcApp\Components\Controller;
-use MvcApp\Components\App;
-use MvcApp\Components\AppException;
-use MvcApp\Components\Upload;
+use MvcApp\Core\Controller;
+use MvcApp\Core\App;
+use MvcApp\Core\AppException;
+use MvcApp\Core\Upload;
 
 
 /**

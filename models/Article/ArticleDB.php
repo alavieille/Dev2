@@ -6,7 +6,7 @@
 namespace Dev2AL\Article;
 
 
-use MvcApp\Components\ModelDB;
+use MvcApp\Core\ModelDB;
 
 class ArticleDB extends ModelDB
 {
