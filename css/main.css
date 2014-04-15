@@ -65,6 +65,15 @@ box-shadow: 0 10px 0 1px #f90, 0 16px 0 1px #f90, 0 22px 0 1px #f90;
 	border-top:2px solid #f90;
 
 }
+
+.top-bar-section a.infoPosition{
+	color:#888 !important;
+	border-top:2px solid #fff !important;
+}
+.top-bar-section a.infoPosition:hover{
+	cursor: default !important;
+}
+
 h1, h2, h3, h4, h5, h6 {
 font-family: "Proxima Nova","proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
 font-weight: 200;

@@ -7,7 +7,9 @@ $(function(){
 var searchBook = function()
 {
 	var value = $("#searchBook .searchContent").val();
-	var googleAPI = "https://www.googleapis.com/books/v1/volumes?q="+value;
+	if( value == "")
+        return false;
+    var googleAPI = "https://www.googleapis.com/books/v1/volumes?q="+value;
 	$.getJSON(googleAPI, function (response) {
 
     // In console, you can see the response objects
@@ -17,7 +19,11 @@ var searchBook = function()
     	res += "<li>";
     	console.log(item.volumeInfo);
     	res += "<h4>"+item.volumeInfo.title+"</h4>";
-    	res += "<p>"+item.volumeInfo.description+"</p>";
+        if( typeof item.volumeInfo.publisher != 'undefined')
+           res += "<p>"+item.volumeInfo.publisher.toLowerCase()+"</p>";        
+
+       if( typeof item.volumeInfo.description != 'undefined')
+    	   res += "<p>"+item.volumeInfo.description+"</p>";
     	res += "<a target='_blank' class='button tiny' href='"+item.volumeInfo.infoLink+"'>Voir le livre</a>";
     	res += "</li>";
     });

@@ -1,6 +1,7 @@
 $(function(){
 		lat = null;
 		lng = null;
+		localisation = null;
 		getPosition();
 		$(".eventPos").click(eventLocation);
 });
@@ -21,16 +22,25 @@ var eventLocation = function()
 
 var getPosition = function()
 {
-	if(navigator.geolocation)
+	if(navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(event){
 			lat = event.coords.latitude;
 			lng = event.coords.longitude;
-	
-			return {"lat" : lat ,"lng" :lng}
-			/*var url = $(".eventPos").attr('href')+"/"+lat+"/"+lng;
-			document.location.replace(url);*/
-			//console.log(url);
+
+			getLocation(lat,lng);
 		});	
-	//return null;
+	}
+}
+
+
+var getLocation = function(lat,lng)
+{
+	 url = App.urls+"site/searchPosition/"+lat+"/"+lng;
+	 $.getJSON(url,function(data){
+	 	if(data.geonames.length > 0) {
+	 		$(".userPos").html(data.geonames[0].name);
+	 	}
+	 	 
+	});
 }
 

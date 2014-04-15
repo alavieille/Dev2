@@ -59,12 +59,19 @@
 				    		<li><a class="eventPos" href="<?php echo App::getApp()->createUrl('evenement','eventCoord') ?>">Postiton Actuel</a></li>
 				        </ul>
 				    </li>
-				    <li><a href="<?php echo App::getApp()->createUrl('book','search') ?>">Google books</a></li>
-					
+				    <li class="has-dropdown">
+        				<a href="#">Google Books</a>
+				        <ul class="dropdown">
+				    		<li><a href="<?php echo App::getApp()->createUrl('book','search') ?>">Recherche</a></li>
+				    		<li><a href="<?php echo App::getApp()->createUrl('book','regions') ?>">Regions</a></li>
+				        </ul>
+				    </li>
+		
 				 
 			    </ul>	
 
 			    <ul class="right">
+				    <li><a class="infoPosition" >Position : <span class="userPos">inconnue</span></a></li>
 				   	<?php if(! App::getApp()->getAuth()->isLogged()) :?>
 				    <li><a href="<?php echo App::getApp()->createUrl('user','create');?>">Inscription</a></li>
 				    <li><a href="<?php echo App::getApp()->createUrl('user','login') ?>">Connexion</a></li>

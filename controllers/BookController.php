@@ -31,7 +31,7 @@ class BookController extends Controller
 	  return array(
 	    array(
 	        "role" => "*",
-	        "actions" => array("search"),  
+	        "actions" => array("search","regions"),  
 	    	)
 	    );
 
@@ -40,6 +40,13 @@ class BookController extends Controller
 	public function searchAction()
 	{
 		$this->render("search",array(
+			
+		));
+	}
+
+	public function regionsAction()
+	{
+		$this->render("regions",array(
 			
 		));
 	}
