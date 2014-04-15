@@ -37,7 +37,7 @@
 			    <ul class="left">
 				   
 				    <li><a href="<?php echo App::getApp()->createUrl('article','viewAll');?>">Liste des articles</a></li>
-					<?php if(! App::getApp()->getAuth()->isLogged()) :?>
+					<?php if(App::getApp()->getAuth()->isLogged()) :?>
 				    <li><a href="<?php echo App::getApp()->createUrl('article','create') ?>">Créer un article</a></li>
 					<?php endif; ?>
 
@@ -59,9 +59,11 @@
 				    		<li><a class="eventPos" href="<?php echo App::getApp()->createUrl('evenement','eventCoord') ?>">Postiton Actuel</a></li>
 				        </ul>
 				    </li>
+				    <li><a href="<?php echo App::getApp()->createUrl('book','search') ?>">Google books</a></li>
 					
 				 
-			    </ul>			    
+			    </ul>	
+
 			    <ul class="right">
 				   	<?php if(! App::getApp()->getAuth()->isLogged()) :?>
 				    <li><a href="<?php echo App::getApp()->createUrl('user','create');?>">Inscription</a></li>

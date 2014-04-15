@@ -46,7 +46,9 @@ class EvenementController extends Controller
 		$lastfm = new LastFm("http://ws.audioscrobbler.com/2.0/?method=geo.getevents",$lastFmKey);
 		$data = $lastfm->searchEventByLocation($location);
 		$xml = simplexml_load_string($data);
-
+		if( $xml === false) {
+			throw new AppException("Impossible de récupérer les évènements");
+		}
 		$this->render("viewAll",array(
 			"title"=>"Evènement de Paris",
 			"events"=>$xml->events->event,
