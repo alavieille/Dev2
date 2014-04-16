@@ -72,12 +72,14 @@ class EvenementController extends Controller
 		$aws_key = app::getApp()->getConfig("awsKey");
 		$aws_secret = app::getApp()->getConfig("awsSecret");
 		$aws = new AwsApi($aws_key,$aws_secret);
-		$data = $aws->getProductArtist($artist);
-		$xml = simplexml_load_string($data);
-
+		$data = $aws->getProductArtistSoap($artist);
+		
+		// var_dump($data->Items);
+		/*$xml = simplexml_load_string($data);
+*/
 		$this->render("viewAllProduct",array(
 			"artist"=>$artist,
-			"items"=>$xml->Items,
+			"items"=>$data->Items,
 		));
 	}
 

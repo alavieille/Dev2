@@ -4,6 +4,54 @@
 		{
 			"follow_symlinks": true,
 			"path": "."
+		},
+		{
+			"follow_symlinks": true,
+			"path": "components"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "config"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "controllers"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "core"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "css"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "data"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "docs"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "extensions"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "js"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "models"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "upload"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "views"
 		}
 	]
 }

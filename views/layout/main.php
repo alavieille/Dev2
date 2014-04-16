@@ -10,7 +10,8 @@
 	<link rel="stylesheet" href="<?php echo App::getApp()->getBasePath() ?>css/foundation/css/normalize.css" />
 	<link rel="stylesheet" href="<?php echo App::getApp()->getBasePath() ?>css/foundation/css/foundation.css" />
 	<link rel="stylesheet" href="<?php echo App::getApp()->getBasePath() ?>css/main.css" />
-	<script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/vendor/jquery.js"></script>
+
+   	<script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/vendor/jquery.js"></script>
     <script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/vendor/modernizr.js"></script>
     <script src="<?php echo App::getApp()->getBasePath() ?>css/foundation/js/foundation.min.js"></script>
 	<script src="<?php echo App::getApp()->getBasePath() ?>js/utils.js"></script>
@@ -63,7 +64,7 @@
         				<a href="#">Google Books</a>
 				        <ul class="dropdown">
 				    		<li><a href="<?php echo App::getApp()->createUrl('book','search') ?>">Recherche</a></li>
-				    		<li><a href="<?php echo App::getApp()->createUrl('book','regions') ?>">Regions</a></li>
+				    		<li><a id="searchBookPos" href="<?php echo App::getApp()->createUrl('book','regions') ?>">Regions</a></li>
 				        </ul>
 				    </li>
 		
@@ -84,14 +85,13 @@
 	  	</div>
 	  	
 	  	<!--content -->
- 		<div role="content">
+ 		<div id="content" role="content">
  			<?php //var_dump(App::getApp()->getAuth()); ?>
 			<?php echo $content; ?>
 	    </div>
 
 
 
-   
 
 	</body>
 

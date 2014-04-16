@@ -2,7 +2,7 @@ $(function(){
 
 	$(".pagination li a").click(changePage);
 
-	$(window).on('popstate', navigate);
+	$(window).on('popstate', navigateArticle);
 
 
   	$(window).load(function(){
@@ -12,6 +12,7 @@ $(function(){
 	  		});  
 	});
 });
+
 
 var changePage = function(){
 	var page = $(this).data("page");
@@ -38,9 +39,9 @@ var loadArticle = function(page){
 	return false;
 }
 
-var navigate = function()
+var navigateArticle = function()
 {
-	if(	window.location.hash != "") {
+	if(	window.location.hash != "" && window.location.hash != "#!book") {
 		console.log('changement de page');
 	    // history.state contient l'objet stocké pour l'URL courante
 
@@ -62,6 +63,5 @@ var loadContent = function(data,page)
 	});  
 	$(".pagination li").not(".arrow").removeClass("current");
 	$(".pagination li").not(".arrow").children("a[data-page='"+page+"']").parent().addClass("current");
-
 
 }

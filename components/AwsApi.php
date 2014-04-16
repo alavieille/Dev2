@@ -16,9 +16,70 @@ class AwsApi
 		$this->awsSecret = $awsSecret;
 		$this->baseUrl = "http://webservices.amazon.com/onca/xml?";
 	}
+	/****
+	* SOAP
+	****/ 
 
+	public function getProductArtistSoap($artist)
+	{
+	
+		$Time = gmstrftime("%Y-%m-%dT%H:%M:%S.000Z");
+		$Signature = base64_encode(hash_hmac("sha256", "ItemSearch".$Time, $this->awsSecret, true));
+		//$client = new \SoapClient('http://ecs.amazonaws.com/AWSECommerceService/2010-11-01/FR/AWSECommerceService.wsdl', array('trace' => 1));		
+		$proxy = array('proxy_host'=> "proxy.unicaen.fr",
+                       'proxy_port'=> 3128,
+                       'exceptions' => true,
+                        'soap_version' => SOAP_1_1, 
+                        'trace' => true
+                       );
 
-	public function getProductArtist($artist)
+		$client = new \SoapClient('http://webservices.amazon.fr/AWSECommerceService/AWSECommerceService.wsdl',$proxy);
+		$header_arr = array();
+		$header_arr[] = new \SoapHeader( 'http://security.amazonaws.com/doc/2007-01-01/', 'AWSAccessKeyId', $this->awsAccesKey );
+		$header_arr[] = new \SoapHeader( 'http://security.amazonaws.com/doc/2007-01-01/', 'Timestamp', $Time );
+		$header_arr[] = new \SoapHeader( 'http://security.amazonaws.com/doc/2007-01-01/', 'Signature', $Signature );
+
+		$params = array(
+	        'AWSAccessKeyId' => $this->awsAccesKey,
+	        'AssociateTag' => "9761-7414-9122",
+			'Request' => array(
+	                        'SearchIndex' => 'Music',
+					        'Keywords' => $artist
+	                    )
+	         );
+		$client->__setSoapHeaders($header_arr);
+		$res = $client->ItemSearch($params);
+		return $res;
+	}
+/*
+
+	$Time = gmstrftime("%Y-%m-%dT%H:%M:%S.000Z");
+$Signature = base64_encode(hash_hmac("sha256", "ItemSearch".$Time, 'Mon SECRETID', true));
+$client = new SoapClient('http://ecs.amazonaws.com/AWSECommerceService/2010-11-01/FR/AWSECommerceService.wsdl', 
+            array('trace' => 1));
+ 
+// Construction du header
+$header_arr = array();
+$header_arr[] = new SoapHeader( 'http://security.amazonaws.com/doc/2007-01-01/', 'AWSAccessKeyId', "MA CLE AWS" );
+$header_arr[] = new SoapHeader( 'http://security.amazonaws.com/doc/2007-01-01/', 'Timestamp', $Time );
+$header_arr[] = new SoapHeader( 'http://security.amazonaws.com/doc/2007-01-01/', 'Signature', $Signature );
+$client->__setSoapHeaders($header_arr);
+ 
+ 
+$params = array(
+        'AWSAccessKeyId' => 'MA CLE AWS',
+		'Request' => array(
+                        'SearchIndex' => 'Books',
+				        'Keywords' => 'Harry%20Potter'
+                    )
+         );
+ 
+$res = $client->ItemSearch($params);*/
+
+	/****
+	* REST
+	**/
+	public function getProductArtistRest($artist)
 	{
 		$url_params = array(
 			 'Operation'=>"ItemSearch",
