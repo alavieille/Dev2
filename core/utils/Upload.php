@@ -4,7 +4,7 @@
 * @author Amaury Lavieille
 **/
 
-namespace MvcApp\Components;
+namespace MvcApp\Core;
 
 use \Exception;
 

@@ -120,7 +120,7 @@ class ImageController extends Controller
             $image = Image::initialize($data);
             if($image->valid()) {
                 
-                if( !exif_imagetype($_FILES["fileUpload"]["tmp_name"])){
+                if(! exif_imagetype($_FILES["fileUpload"]["tmp_name"])){
                     $image->setErrors("fileUpload","Le fichier n'est pas une image");
                 }
 

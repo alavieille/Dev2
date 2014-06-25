@@ -9,6 +9,7 @@
 </div>
 <div class="row" id="previousArticle">
 	<div class="large-12 columns">
+	<?php if(! is_null($events)) : ?>
 		<?php foreach ($events as $event) : ?>
 			<div class="panel">
 				<article>
@@ -23,5 +24,6 @@
 	
 			</div>
 		<?php endforeach; ?>
+	<?php endif; ?>
 	</div>
 </div>

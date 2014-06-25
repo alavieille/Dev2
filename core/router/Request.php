@@ -15,8 +15,8 @@ class Request
 	public function __construct()
 	{
 
-		$this->post = (count($_POST) > 0 ? $_POST : null);
-		$this->get =  (count($_GET) > 0 ? $_GET : null);
+		$this->post = (count($_POST) > 0 ? $_POST : array());
+		$this->get =  (count($_GET) > 0 ? $_GET : array());
 	}
 
 
@@ -27,6 +27,7 @@ class Request
 	*/
 	public function getGetIndex($name)
 	{
+		;
 		if(array_key_exists($name, $this->get)) {
 			return $this->get[$name];
 		}

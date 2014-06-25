@@ -10,9 +10,9 @@
 	<article id="article" class="panel columns small-12"> 
 		<div class="columns small-12">
 			<ul class="button-group">
-				<li><a href="<?php echo App::getApp()->createUrl('article','generatePDF',array($model->id)); ?>" class="button small">Format PDF</a></li>
+			<!-- 	<li><a href="<?php echo App::getApp()->createUrl('article','generatePDF',array($model->id)); ?>" class="button small">Format PDF</a></li>
 				<li><a href="<?php echo App::getApp()->createUrl('article','sendEmail',array($model->id)); ?>" class="button small">Envoyer par Email</a></li>
-				
+				 -->
 			</ul>
 		</div>
 		<header>

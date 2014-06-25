@@ -26,7 +26,6 @@ class SyndicationController extends Controller
     {
         $this->name = 'Syndication';
         parent::__construct();
-        var_dump( gmdate("Y-m-d\TH:i:s.\\0\\0\\0\\Z", time()));
     }
 
 	protected function roles()
